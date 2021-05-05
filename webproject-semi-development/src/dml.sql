@@ -4,23 +4,23 @@ SELECT * FROM member;
 SELECT * FROM post;
 SELECT * FROM postcomment;
 ----country-----
-INSERT INTO country VALUES('33', 'ÇÁ¶û½º', sysdate, 'ºÒ¾î','À¯·Î');
-INSERT INTO country VALUES('39', 'ÀÌÅ»¸®¾Æ', sysdate, 'ÀÌÅ»¸®¾Æ¾î','À¯·Î');
-INSERT INTO country VALUES('44', '¿µ±¹', sysdate, '¿µ¾î','ÆÄ¿îµå');
-INSERT INTO country VALUES('49', 'µ¶ÀÏ', sysdate, 'sµ¶ÀÏ¾î','À¯·Î');
+INSERT INTO country VALUES('33', 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½', sysdate, 'ï¿½Ò¾ï¿½','ï¿½ï¿½ï¿½ï¿½');
+INSERT INTO country VALUES('39', 'ï¿½ï¿½Å»ï¿½ï¿½ï¿½ï¿½', sysdate, 'ï¿½ï¿½Å»ï¿½ï¿½ï¿½Æ¾ï¿½','ï¿½ï¿½ï¿½ï¿½');
+INSERT INTO country VALUES('44', 'ï¿½ï¿½ï¿½ï¿½', sysdate, 'ï¿½ï¿½ï¿½ï¿½','ï¿½Ä¿ï¿½ï¿½');
+INSERT INTO country VALUES('49', 'ï¿½ï¿½ï¿½ï¿½', sysdate, 'sï¿½ï¿½ï¿½Ï¾ï¿½','ï¿½ï¿½ï¿½ï¿½');
 ----manager-----
-INSERT INTO manager VALUES('managerKim', 'a','ÁÖÄ¿ÇÇ');
+INSERT INTO manager VALUES('managerKim', 'a','ï¿½ï¿½Ä¿ï¿½ï¿½');
 ----member-----
-INSERT INTO member VALUES('java','a','ÃÖÀÎÀç','ms','19950929','a@ab.c','»çÁø','33');
-INSERT INTO member VALUES('spring','a','±èÁöÀº','f','19930316','b@ab.c','¸ÀÁý','39');
-INSERT INTO member VALUES('mvc','a','±èµ¿°Ç','m','19940421','rlagjqm1@naver.com','¶Ñ¹÷ÀÌ','44');
-INSERT INTO member VALUES('singleton','a','ÀÌ´Ù¿µ','f','19930822','c@ab.c','¶Ñ¹÷ÀÌ','39');
-INSERT INTO member VALUES('francfranc','a','Á¶¼öºó','f','19920908','d@ab.c','¸ÀÁý','49');
-INSERT INTO member VALUES('princessK','a','±èÁ¤À±','m','19940501','f@ab.c','¸®¹«Áø','33');
+INSERT INTO member VALUES('java','a','ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½','ms','19950929','a@ab.c','ï¿½ï¿½ï¿½ï¿½','33');
+INSERT INTO member VALUES('spring','a','ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½','f','19930316','b@ab.c','ï¿½ï¿½ï¿½ï¿½','39');
+INSERT INTO member VALUES('mvc','a','ï¿½èµ¿ï¿½ï¿½','m','19940421','rlagjqm1@naver.com','ï¿½Ñ¹ï¿½ï¿½ï¿½','44');
+INSERT INTO member VALUES('singleton','a','ï¿½Ì´Ù¿ï¿½','f','19930822','c@ab.c','ï¿½Ñ¹ï¿½ï¿½ï¿½','39');
+INSERT INTO member VALUES('francfranc','a','ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½','f','19920908','d@ab.c','ï¿½ï¿½ï¿½ï¿½','49');
+INSERT INTO member VALUES('princessK','a','ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½','m','19940501','f@ab.c','ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½','33');
 ----post-----
 CREATE SEQUENCE post_seq;
-INSERT INTO post VALUES(post_seq.nextval, '33', 'Á¤º¸', 'ÇÁ¶û½º È¯Àü¼Ò Á¤º¸', 'java', sysdate, 0, '°øÇ×¿¡¼­ È¯Àü ¤¤¤¤ ºÀÁê¸£¸¶Æ®¾È¿¡ ÀÖ´Â È¯Àü¼Ò°¡ ÀßÃÄÁà¿ä!');
-INSERT INTO post VALUES(post_seq.nextval, '39', 'µ¿Çà', 'ÀÌÅ»¸®¾Æ¿¡¼­ ÇÑ½ÄÀ» ¿ÜÄ¡´Ù', 'spring',  sysdate, 0,'ÆÄ½ºÅ¸ ÇÇÀÚ Áú·È¾î¿ä ³»ÀÏ Àú³á ±èÄ¡Âî°³¿¡ ¼ÒÁÖ ÇÑÀÜ ÇÏ½ÇºÐ? ');
-INSERT INTO post VALUES( post_seq.nextval, '44', 'ÈÄ±â', '¿µ±¹ ¸ÀÁý ÇÃ·§¾ÆÀÌ¾ð ÃßÃµ!', 'mvc', sysdate,  0,'¿µ±¹ À½½Ä ¸À¾ø±â·Î À¯¸íÇÏÁö¸¸ ½ºÅ×ÀÌÅ©°¡ ¸À¾ø±â´Â ÈûµéÁÒ °¡¼ººñ¿¡ ÈÄ½Ä ¾ÆÀÌ½ºÅ©¸²±îÁö ¿ÏÀüÃßÃµÀÔ´Ï´Ù!');
-INSERT INTO post VALUES(post_seq.nextval, '49', 'ÈÄ±â', 'µ¶ÀÏ È÷Æ²·¯È£ÅÚ ºñÃß¤Ð', 'singleton', sysdate, 0, 'µ¶ÀÏ È÷Æ²·¯È£ÅÚ °Å¸£¼¼¿ä º£µå¹ö±× ³ª¿È ¤Ð');
+INSERT INTO post VALUES(post_seq.nextval, '33', 'ï¿½ï¿½ï¿½ï¿½', 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È¯ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½', 'java', sysdate, 0, 'ï¿½ï¿½ï¿½×¿ï¿½ï¿½ï¿½ È¯ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ê¸£ï¿½ï¿½Æ®ï¿½È¿ï¿½ ï¿½Ö´ï¿½ È¯ï¿½ï¿½ï¿½Ò°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½!');
+INSERT INTO post VALUES(post_seq.nextval, '39', 'ï¿½ï¿½ï¿½ï¿½', 'ï¿½ï¿½Å»ï¿½ï¿½ï¿½Æ¿ï¿½ï¿½ï¿½ ï¿½Ñ½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½', 'spring',  sysdate, 0,'ï¿½Ä½ï¿½Å¸ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½È¾ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½î°³ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ï½Çºï¿½? ');
+INSERT INTO post VALUES( post_seq.nextval, '44', 'ï¿½Ä±ï¿½', 'ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½Ãµ!', 'mvc', sysdate,  0,'ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å©ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ä½ï¿½ ï¿½ï¿½ï¿½Ì½ï¿½Å©ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ãµï¿½Ô´Ï´ï¿½!');
+INSERT INTO post VALUES(post_seq.nextval, '49', 'ï¿½Ä±ï¿½', 'ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ²ï¿½ï¿½È£ï¿½ï¿½ ï¿½ï¿½ï¿½ß¤ï¿½', 'singleton', sysdate, 0, 'ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ²ï¿½ï¿½È£ï¿½ï¿½ ï¿½Å¸ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½');
 ----postcomment-----
