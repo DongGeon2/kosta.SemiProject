@@ -1,4 +1,4 @@
-package org.kosta.semi.model;
+package org.kosta.semi.model.vo;
 
 public class ManagerVO {
 	private String id;
