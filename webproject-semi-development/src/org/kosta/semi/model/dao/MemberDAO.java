@@ -9,7 +9,6 @@ import javax.sql.DataSource;
 
 import org.kosta.semi.model.vo.MemberVO;
 
-import com.sun.corba.se.spi.orbutil.fsm.Guard.Result;
 
 public class MemberDAO {
 	/**
@@ -67,6 +66,7 @@ public class MemberDAO {
 	}
 	/**
 	 * id로 회원 이름 조회 
+	 * 회원가입시 아이디 중복 확인
 	 * @param id
 	 * @return id,name
 	 * @throws SQLException
@@ -92,6 +92,7 @@ public class MemberDAO {
 		}
 		return vo;
 	}
+
 	/**
 	 * email로 회원 id 조회
 	 * @param email
@@ -145,5 +146,62 @@ public class MemberDAO {
 			closeAll(rs, pstmt, con);
 		}
 		return vo;
+	}
+	
+	/**
+	 * 회원 가입
+	 * @param mvo
+	 * @throws SQLException
+	 */
+	public void registerMember(MemberVO mvo) throws SQLException {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		try{
+			con=dataSource.getConnection();
+			StringBuffer sql = new StringBuffer();
+			sql.append("INSERT INTO member ");
+			sql.append("(member_id,password,name,gender,birth,email,travel_style,country_id) ");
+			sql.append("VALUES(?,?,?,?,?,?,?,?)");
+			pstmt=con.prepareStatement(sql.toString());
+			pstmt.setString(1, mvo.getId());
+			pstmt.setString(2, mvo.getPassword());
+			pstmt.setString(3, mvo.getName());
+			pstmt.setString(4, mvo.getGender());
+			pstmt.setString(5, mvo.getBirth());
+			pstmt.setString(6, mvo.getEmail());
+			pstmt.setString(7, mvo.getTravelStyle());
+			pstmt.setString(8, mvo.getCountryVO().getCountryId());
+			pstmt.executeUpdate();
+		}finally{
+			closeAll(pstmt,con);
+		}
+	}
+	
+	/**
+	 * 회원정보 수정
+	 * 수정 가능 정보 : 비밀번호, 이름, 생년월일, 여행스타일, 나라
+	 * @param mvo.id
+	 * @throws SQLException
+	 */
+	public void UpdateMember(MemberVO mvo) throws SQLException {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		try{
+			con=dataSource.getConnection();
+			StringBuffer sql = new StringBuffer();
+			sql.append("UPDATE member set ");
+			sql.append("password=?, name=?, birth=?, travel_style=?, country_id=? ");
+			sql.append("where member_id = ?");
+			pstmt=con.prepareStatement(sql.toString());
+			pstmt.setString(1, mvo.getPassword());
+			pstmt.setString(2, mvo.getName());
+			pstmt.setString(3, mvo.getBirth());
+			pstmt.setString(4, mvo.getTravelStyle());
+			pstmt.setString(5, mvo.getCountryVO().getCountryId());
+			pstmt.setString(6, mvo.getId());
+			pstmt.executeUpdate();
+		}finally{
+			closeAll(pstmt,con);
+		}
 	}
 }
