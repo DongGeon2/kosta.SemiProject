@@ -31,78 +31,22 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td>1</td>
-						<td>프랑스</td>
-						<td>정보</td>
-						<td class="left"><a href="#">프랑스환전소</a></td>
-						<td>java</td>
-						<td>2021.05.04</td>
-						<td>0</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>이탈리아</td>
-						<td>동행</td>
-						<td class="left"><a href="#">이탈리아에서 한식을 외치다</a></td>
-						<td>spring</td>
-						<td>2021.05.05</td>
-						<td>0</td>
-					</tr>
-					<tr>
-						<td>3</td>
-						<td>영국</td>
-						<td>후기</td>
-						<td class="left"><a href="#">영국 맛집 플랫아이언 추천!</a></td>
-						<td>mvc</td>
-						<td>2021.05.06</td>
-						<td>0</td>
-					</tr>
-					<tr>
-						<td>4</td>
-						<td>프랑스</td>
-						<td>후기</td>
-						<td class="left"><a href="#">독일 히틀러호텔 비추 ㅠ</a></td>
-						<td>singleton</td>
-						<td>2021.05.07</td>
-						<td>0</td>
-					</tr>
-					<tr>
-						<td>5</td>
-						<td>프랑스</td>
-						<td>정보</td>
-						<td class="left"><a href="#">프랑스환전소</a></td>
-						<td>java</td>
-						<td>2021.05.04</td>
-						<td>0</td>
-					</tr>
-					<tr>
-						<td>6</td>
-						<td>이탈리아</td>
-						<td>동행</td>
-						<td class="left"><a href="#">이탈리아에서 한식을 외치다</a></td>
-						<td>spring</td>
-						<td>2021.05.05</td>
-						<td>0</td>
-					</tr>
-					<tr>
-						<td>7</td>
-						<td>영국</td>
-						<td>후기</td>
-						<td class="left"><a href="#">영국 맛집 플랫아이언 추천!</a></td>
-						<td>mvc</td>
-						<td>2021.05.06</td>
-						<td>0</td>
-					</tr>
-					<tr>
-						<td>8</td>
-						<td>프랑스</td>
-						<td>후기</td>
-						<td class="left"><a href="#">독일 히틀러호텔 비추 ㅠ</a></td>
-						<td>singleton</td>
-						<td>2021.05.07</td>
-						<td>0</td>
-					</tr>
+				 <c:forEach var="pvo" items="${requestScope.list}">
+				   <td>${pvo.postNo}</td>
+				   <td>${pvo.countryVO.countryName}</td>
+				   <td>${pvo.postcategory}</td>
+				   		<td><c:choose>
+				   			<c:when test="${sessionScope.mvo!=null}">
+				   				<a href="${pageContext.request.contextPath}/PostDetailController.do?countryId=${pvo.countryVO.countryId}">${pvo.postTitle}
+				   			</c:when>
+				   			<c:otherwise>
+								${pvo.postTitle}
+				   			</c:otherwise>
+				   			</c:choose></td>
+						<td>${pvo.memberVO.name}</td>
+						<td>${pvo.timePosted}</td>
+						<td>${pvo.hits}</td>
+					</c:forEach>
 				</tbody>
 			</table>
 		</div>
