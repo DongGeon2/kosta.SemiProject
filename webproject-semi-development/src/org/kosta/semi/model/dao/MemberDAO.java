@@ -38,7 +38,7 @@ public class MemberDAO {
 	 * 회원정보로 로그인
 	 * @param id
 	 * @param password
-	 * @return MemberVO(id, password)
+	 * @return MemberVO(id, name)
 	 * @throws SQLException
 	 */
 	public MemberVO login(String id,String password) throws SQLException{
@@ -56,7 +56,6 @@ public class MemberDAO {
 			if(rs.next()){
 				vo=new MemberVO();
 				vo.setId(id);
-				vo.setPassword(password);
 				vo.setName(rs.getString(1));
 			}
 		}finally{
