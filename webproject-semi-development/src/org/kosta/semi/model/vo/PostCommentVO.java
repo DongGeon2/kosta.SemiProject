@@ -1,40 +1,40 @@
 package org.kosta.semi.model.vo;
 
 public class PostCommentVO {
-	private String comment_no;
-	private String post_no;
-	private String member_id;
+	private String commentNo;
+	private String postNo;
+	private String id;
 	private String content;
-	private String time_commented;
+	private String timeCommented;
 	public PostCommentVO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public PostCommentVO(String comment_no, String post_no, String member_id, String content, String time_commented) {
+	public PostCommentVO(String commentNo, String postNo, String id, String content, String timeCommented) {
 		super();
-		this.comment_no = comment_no;
-		this.post_no = post_no;
-		this.member_id = member_id;
+		this.commentNo = commentNo;
+		this.postNo = postNo;
+		this.id = id;
 		this.content = content;
-		this.time_commented = time_commented;
+		this.timeCommented = timeCommented;
 	}
-	public String getComment_no() {
-		return comment_no;
+	public String getCommentNo() {
+		return commentNo;
 	}
-	public void setComment_no(String comment_no) {
-		this.comment_no = comment_no;
+	public void setCommentNo(String commentNo) {
+		this.commentNo = commentNo;
 	}
-	public String getPost_no() {
-		return post_no;
+	public String getPostNo() {
+		return postNo;
 	}
-	public void setPost_no(String post_no) {
-		this.post_no = post_no;
+	public void setPostNo(String postNo) {
+		this.postNo = postNo;
 	}
-	public String getMember_id() {
-		return member_id;
+	public String getId() {
+		return id;
 	}
-	public void setMember_id(String member_id) {
-		this.member_id = member_id;
+	public void setId(String id) {
+		this.id = id;
 	}
 	public String getContent() {
 		return content;
@@ -42,15 +42,15 @@ public class PostCommentVO {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public String getTime_commented() {
-		return time_commented;
+	public String getTimeCommented() {
+		return timeCommented;
 	}
-	public void setTime_commented(String time_commented) {
-		this.time_commented = time_commented;
+	public void setTimeCommented(String timeCommented) {
+		this.timeCommented = timeCommented;
 	}
 	@Override
 	public String toString() {
-		return "PostCommentVO [comment_no=" + comment_no + ", post_no=" + post_no + ", member_id=" + member_id
-				+ ", content=" + content + ", time_commented=" + time_commented + "]";
+		return "PostCommentVO [commentNo=" + commentNo + ", postNo=" + postNo + ", id=" + id + ", content=" + content
+				+ ", timeCommented=" + timeCommented + "]";
 	}
 }
