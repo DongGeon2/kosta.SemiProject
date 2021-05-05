@@ -24,3 +24,5 @@
 <!-- Custom styles for this page -->
 <link href="../vendor/datatables/dataTables.bootstrap4.min.css"
 	rel="stylesheet">
+<!-- semiProject styles -->
+<link href="../css/mystyle.css" rel="stylesheet">

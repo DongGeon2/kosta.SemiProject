@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<!-- 
+	board-list.jsp
+	나라별 게시판 list 불러오기
+ -->
 <div class="card shadow mb-4">
 	<div class="card-header py-3">
 		<h6 class="m-0 font-weight-bold text-primary">프랑스 게시판</h6>
@@ -71,7 +75,9 @@
 					</tr>
 				</tbody>
 			</table>
-			<button type="button" class="btn btn btn-outline-secondary btn-sm" style="float:right"><i class="fas fa-fw fa-pencil-alt"></i> 글쓰기</button>
+			<div class="btnWrap">
+				<button type="button" class="btn btn btn-outline-secondary btn-sm"><i class="fas fa-fw fa-pencil-alt"></i> 글쓰기</button>
+			</div>
 		</div>
 		<!-- Pagination -->
 		<ul class="pagination justify-content-center" style="margin-top: 50px">

@@ -115,7 +115,7 @@
 						main-list.jsp url 에 setAttribute 해서 넘겨주기		
 						<c:import url="${url}"></c:import>
 					--%>
-					<c:import url="/board/board-list.jsp"></c:import>
+					<c:import url="/board/post-detail.jsp"></c:import>
 					<!-- /.TABLE BOARD -->
 				</div>
 				<!-- /.container-fluid -->
