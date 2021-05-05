@@ -65,6 +65,7 @@ public class MemberDAO {
 	}
 	/**
 	 * id로 회원 이름 조회 
+	 * 회원가입시 아이디 중복 확인
 	 * @param id
 	 * @return id,name
 	 * @throws SQLException
@@ -89,6 +90,35 @@ public class MemberDAO {
 			closeAll(rs, pstmt,con);
 		}
 		return vo;
+	}
+	
+	/**
+	 * 회원 가입
+	 * @param mvo
+	 * @throws SQLException
+	 */
+	public void registerMember(MemberVO mvo) throws SQLException {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		try{
+			con=dataSource.getConnection();
+			StringBuffer sql = new StringBuffer();
+			sql.append("INSERT INTO member ");
+			sql.append("(member_id,password,name,gender,birth,email,travel_style,country_id) ");
+			sql.append("VALUES(?,?,?,?,?,?,?,?)");
+			pstmt=con.prepareStatement(sql.toString());
+			pstmt.setString(1, mvo.getId());
+			pstmt.setString(1, mvo.getPassword());
+			pstmt.setString(1, mvo.getName());
+			pstmt.setString(1, mvo.getGender());
+			pstmt.setString(1, mvo.getBirth());
+			pstmt.setString(1, mvo.getEmail());
+			pstmt.setString(1, mvo.getTravelStyle());
+			pstmt.setString(1, mvo.getCountryVO().getCountryId());
+			pstmt.executeUpdate();
+		}finally{
+			closeAll(pstmt,con);
+		}
 	}
 	
 }
