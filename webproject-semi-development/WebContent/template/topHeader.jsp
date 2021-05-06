@@ -72,8 +72,7 @@
 					class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> Mypage
 				</a>
 				<div class="dropdown-divider"></div>
-				<a class="dropdown-item" href="${pageContext.request.contextPath}/LogoutController.do" data-toggle="modal"
-					data-target="#logoutModal"> <i
+				<a class="dropdown-item" href="${pageContext.request.contextPath}/LogoutController.do"> <i
 					class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i> logout
 				</a>
 			</div></li>
