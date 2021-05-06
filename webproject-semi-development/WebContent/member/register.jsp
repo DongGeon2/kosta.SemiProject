@@ -44,16 +44,12 @@
 								<div class="form-group row">
 									<div class="col-sm-6 mb-3 mb-sm-0">
 										<input type="text" class="form-control form-control-user"
-											id="exampleFirstName" placeholder="First Name">
+											id="exampleFirstName" placeholder="이름">
 									</div>
 									<div class="col-sm-6">
 										<input type="text" class="form-control form-control-user"
-											id="exampleLastName" placeholder="Last Name">
+											id="exampleLastName" placeholder="ID">
 									</div>
-								</div>
-								<div class="form-group">
-									<input type="email" class="form-control form-control-user"
-										id="exampleInputEmail" placeholder="Email Address">
 								</div>
 								<div class="form-group row">
 									<div class="col-sm-6 mb-3 mb-sm-0">
@@ -62,8 +58,12 @@
 									</div>
 									<div class="col-sm-6">
 										<input type="password" class="form-control form-control-user"
-											id="exampleRepeatPassword" placeholder="Repeat Password">
+											id="exampleRepeatPassword" placeholder="Password 확인">
 									</div>
+								</div>
+								<div class="form-group">
+									<input type="email" class="form-control form-control-user"
+										id="exampleInputEmail" placeholder="이메일 주소">
 								</div>
 								<a href="login.html" class="btn btn-primary btn-user btn-block">
 									함께 여행하기 </a>
@@ -81,27 +81,16 @@
 			</div>
 		</div>
 
-<<<<<<< HEAD
-	</div>
+    <!-- Bootstrap core JavaScript-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-	<!-- Bootstrap core JavaScript-->
-	<script src="vendor/jquery/jquery.min.js"></script>
-	<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-	<!-- Core plugin JavaScript-->
-	<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-
-	<!-- Custom scripts for all pages-->
-	<script src="js/sb-admin-2.min.js"></script>
-=======
     <!-- Core plugin JavaScript-->
     <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
     
     
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
->>>>>>> branch 'main' of https://github.com/DongGeon2/kosta.SemiProject.git
 
 </body>
-
 </html>
