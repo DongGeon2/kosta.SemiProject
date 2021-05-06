@@ -32,7 +32,6 @@ public class AllListController implements Controller {
 		ArrayList<PostVO> list = PostDAO.getInstance().getAllPostingList(pagingBean);
 		request.setAttribute("list", list);
 		request.setAttribute("url", "/board/main-list.jsp");
-		request.setAttribute("urlCountry", "/template/memberCount.jsp");
 		System.out.println("2");
 		return "/template/layout.jsp";
 	}

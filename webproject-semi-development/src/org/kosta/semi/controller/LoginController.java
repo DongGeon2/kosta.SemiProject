@@ -20,7 +20,7 @@ public class LoginController implements Controller {
 			System.out.println(mvo.toString());
 			return "redirect:index.jsp";
 		} else {			
-			return "redirect:member/login-fail.jsp";		
+			return "redirect:login/login-fail.jsp";		
 		}
 	}
 
