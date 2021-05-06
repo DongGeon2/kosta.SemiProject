@@ -44,18 +44,16 @@
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">한국인 모여라</h1>
                                     </div>
-                                    <form class="user">
+                                    <form action="${pageContext.request.contextPath}/LoginController.do" method="post" class="user">
                                         <div class="form-group">
                                             <input type="text" class="form-control form-control-user"
-                                                id="id" placeholder="ID">
+                                                name="id" placeholder="ID">
                                         </div>
                                         <div class="form-group">
                                             <input type="password" class="form-control form-control-user"
-                                                id="password" placeholder="Password">
+                                                name="password" placeholder="Password">
                                         </div>
-                                        <a href="LoginController.do" class="btn btn-primary btn-user btn-block">
-                                            Login
-                                        </a>
+                                        <input type="submit" value="login">
                                     </form>
                                     <hr>
                                     <!--todo 나중에 연결 -->
