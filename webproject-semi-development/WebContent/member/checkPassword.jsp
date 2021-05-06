@@ -6,7 +6,7 @@
 <h4 class="h4 mb-0 text-gray-800" style="text-align: center">
 비밀번호 확인
 </h4>
- <form action="${pageContext.request.contextPath}/CheckPasswordController.do" method="post" class="user">
+ <form action="${pageContext.request.contextPath}/UpdateMemberFormController.do" method="post" class="user">
 	<div class="form-group">
 	<input type="password" class="form-control form-control-user" name="password" placeholder="Password">
 	</div>
