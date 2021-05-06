@@ -1,4 +1,4 @@
-package org.kosta.semi.controller.member;
+package org.kosta.semi.controller;
 
 import java.util.ArrayList;
 
