@@ -5,9 +5,8 @@
 			class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
 			id="accordionSidebar">
 			<!-- Sidebar - Brand -->
-			<a
-				class="sidebar-brand d-flex align-items-center justify-content-center"
-				href="index.html">
+			<a class="sidebar-brand d-flex align-items-center justify-content-center"
+				href="${pageContext.request.contextPath}/index.jsphttps://github.com/StartBootstrap/startbootstrap-sb-admin-2/blob/master/register.html">
 				<div class="sidebar-brand-icon rotate-n-15">
 					<i class="fas fa-map-marked"></i>
 				</div>
@@ -19,7 +18,7 @@
 
 			<!-- Nav Item - Dashboard -->
 			<li class="nav-item active"><a class="nav-link"
-				href="index.html"> <i class="fas fa-fw fa-home"></i> <span>Home</span></a>
+				href="${pageContext.request.contextPath}/index.jsp"> <i class="fas fa-fw fa-home"></i> <span>Home</span></a>
 			</li>
 
 			<!-- Divider -->
