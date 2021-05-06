@@ -27,7 +27,6 @@ public class AllListController implements Controller {
 		}
 		
 		
-
 		request.setAttribute("pagingBean", pagingBean);
 		ArrayList<PostVO> list = PostDAO.getInstance().getAllPostingList(pagingBean);
 		request.setAttribute("list", list);
