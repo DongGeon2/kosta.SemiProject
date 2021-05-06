@@ -14,7 +14,7 @@ import org.kosta.semi.model.PostVO;
 
 
 
-public class ListController implements Controller {
+public class AllListController implements Controller {
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("1");
 		int totalPostCount=PostDAO.getInstance().getTotalPostCount();
@@ -29,7 +29,7 @@ public class ListController implements Controller {
 		
 
 		request.setAttribute("pagingBean", pagingBean);
-		ArrayList<PostVO> list = PostDAO.getInstance().getPostingAllList(pagingBean);
+		ArrayList<PostVO> list = PostDAO.getInstance().getAllPostingList(pagingBean);
 		request.setAttribute("list", list);
 		request.setAttribute("url", "/board/main-list.jsp");
 		System.out.println("2");
