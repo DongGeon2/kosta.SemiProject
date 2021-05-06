@@ -27,14 +27,14 @@
 				<div class="container-fluid">
 					<!-- Page Heading -->
 					<!-- content1 나라별회원수현황. url에 앞 경로명 추가해야. -->
-					<%-- <c:import url="MemberCountController.do"></c:import> --%>
+					<c:import url="memberCountForward.jsp"></c:import> --%>
 					
 					<!-- TABLE BOARD -->
 					<%-- 			
 						main-list.jsp url 에 setAttribute 해서 넘겨주기		
 						<c:import url="${url}"></c:import>
 					--%>
-					<c:import url="/board/main-list.jsp"></c:import>
+					<c:import url="${url}"></c:import>
 					<!-- /.TABLE BOARD -->
 				</div>
 				<!-- /.container-fluid -->
