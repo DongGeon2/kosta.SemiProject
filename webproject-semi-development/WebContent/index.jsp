@@ -34,7 +34,7 @@
 						main-list.jsp url 에 setAttribute 해서 넘겨주기		
 						<c:import url="${url}"></c:import>
 					--%>
-					<c:import url="/board/main-list.jsp"></c:import>
+					<c:import url="${url}"></c:import>
 					<!-- /.TABLE BOARD -->
 				</div>
 				<!-- /.container-fluid -->
