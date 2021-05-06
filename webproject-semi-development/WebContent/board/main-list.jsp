@@ -34,10 +34,11 @@
 				 <c:forEach var="pvo" items="${requestScope.list}">
 				   <td>${pvo.postNo}</td>
 				   <td>${pvo.countryVO.countryName}</td>
-				   <td>${pvo.postcategory}</td>
+				   <td>${pvo.catergory}</td>
 				   		<td><c:choose>
 				   			<c:when test="${sessionScope.mvo!=null}">
 				   				<a href="${pageContext.request.contextPath}/PostDetailController.do?countryId=${pvo.countryVO.countryId}">${pvo.postTitle}
+				   				</a>
 				   			</c:when>
 				   			<c:otherwise>
 								${pvo.postTitle}
@@ -51,12 +52,25 @@
 			</table>
 		</div>
 		<!-- Pagination -->
+		${requestScope.pagingBean}-- pagingbean을 못받는 상태 
+		<c:set var="pb" value="${requestScope.pagingBean}"></c:set>
 		<ul class="pagination justify-content-center" style="margin-top: 50px">
-			<li class="page-item"><a class="page-link" href="#">Previous</a></li>
-			<li class="page-item"><a class="page-link" href="#">1</a></li>
-			<li class="page-item active"><a class="page-link" href="#">2</a></li>
-			<li class="page-item"><a class="page-link" href="#">3</a></li>
-			<li class="page-item"><a class="page-link" href="#">Next</a></li>
+			<c:if test="${pb.previousPageGroup}">
+			<li class="page-item"><a href="${pageContext.request.contextPath}/ListController.do?pageNo=${pb.startPageOfPageGroup-1}">&laquo;</a></li>
+			</c:if>
+			<c:forEach var="page" begin="${pb.startPageOfPageGroup}" end="${pb.endPageOfPageGroup}">
+			<c:choose>
+				<c:when test="">
+				<li class="page-item active"><a class="page-link" href="${pageContext.request.contextPath}/ListController.do?pageNo=${page}">${page}</a></li>
+				</c:when>
+				<c:otherwise>
+			<li><a href="${pageContext.request.contextPath}/ListController.do?pageNo=${page}">${page}</a></li>
+			`	</c:otherwise>
+			</c:choose>
+			</c:forEach>
+		  <c:if test="${pb.nextPageGroup}">
+		  <li><a href="${pageContext.request.contextPath}/ListController.do?pageNo=${pb.endPageOfPageGroup+1}">&raquo;</a></li>	
+		  </c:if>		
 		</ul>
 		<!-- /.Pagination -->
 	</div>

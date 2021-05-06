@@ -9,7 +9,7 @@ INSERT INTO country VALUES('39', '이탈리아', sysdate, '이탈리아어','유
 INSERT INTO country VALUES('44', '영국', sysdate, '영어','파운드');
 INSERT INTO country VALUES('49', '독일', sysdate, '독일어','유로');
 ----manager-----
-INSERT INTO manager VALUES('managerKim', 'a','주커피');
+INSERT INTO manager VALUES('managerKim', 'a','주커피');W
 ----member-----
 INSERT INTO member VALUES('java','a','최인재','m','19950929','a@ab.c','사진','33');
 INSERT INTO member VALUES('spring','a','김지은','f','19930316','b@ab.c','맛집','39');
@@ -24,3 +24,29 @@ INSERT INTO post VALUES(post_seq.nextval, '39', '동행', '이탈리아에서 �
 INSERT INTO post VALUES( post_seq.nextval, '44', '후기', '영국 맛집 플랫아이언 추천!', 'mvc', sysdate,  0,'영국 음식 맛없기로 유명하지만 스테이크가 맛없기는 힘들죠 가성비에 후식 아이스크림까지 완전추천입니다!');
 INSERT INTO post VALUES(post_seq.nextval, '49', '후기', '독일 히틀러호텔 비추ㅠ', 'francfranc', sysdate, 0, '독일 히틀러호텔 거르세요 베드버그 나옴 ㅠ');
 ----postcomment-----
+
+
+SELECT p.post_no, c.country_name, p.category_name,p.post_title,p.member_id, to_char(time_posted, 'YYYY.MM.DD') as time_posted, p.hits 
+FROM post p, country c WHERE p.country_id=c.country_id
+
+SELECT p.post_no, c.country_name, p.category_name, p.post_title, p.member_id, p.time_posted, p.hits
+FROM (SELECT row_number() over(ORDER BY post_no DESC) as rnum,  post_no,post_title , member_id, hits, country_id, category_name, to_char(time_posted, 'YYYY.MM.DD') as time_posted FROM post) p, country c
+WHERE p.country_id=c.country_id AND rnum BETWEEN 1 AND 5
+
+SELECT p.post_no, c.country_name, p.category_name,p.post_title,p.member_id,to_char(time_posted, 'YYYY.MM.DD') as time_posted, p.hits
+FROM post p, country c WHERE p.country_id=c.country_id
+
+SELECT row_number() over(ORDER BY post_no DESC) as rnum, member_id, hits, country_id, to_char(time_posted, 'YYYY.MM.DD') as time_posted FROM post;
+
+SELECT B.no,B.title,B.hits,B.time_posted,M.name
+FROM (SELECT row_number() over(ORDER BY NO DESC) as rnum,no,title,hits,to_char(time_posted,'YYYY.MM.DD') as time_posted,id FROM board) B, board_member M
+		WHERE  B.id=M.id AND rnum BETWEEN 1 AND 5
+-- 사용 sql
+SELECT p.post_no, c.country_name, p.category_name, p.post_title, p.member_id, p.time_posted, p.hits
+FROM (SELECT row_number() over(ORDER BY post_no DESC) as rnum,  post_no,post_title , member_id, hits, country_id, category_name, to_char(time_posted, 'YYYY.MM.DD') as time_posted FROM post) p, country c
+WHERE p.country_id=c.country_id AND rnum BETWEEN 1 AND 5		
+		
+		
+		
+		
+		

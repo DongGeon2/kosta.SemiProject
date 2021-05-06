@@ -4,6 +4,9 @@ DROP TABLE manager;
 DROP TABLE member;
 DROP TABLE post;
 DROP TABLE postcomment;
+
+SELECT * FROM MEMBER;
+
 --1번
 CREATE TABLE country(
    country_id VARCHAR2(100) primary key,

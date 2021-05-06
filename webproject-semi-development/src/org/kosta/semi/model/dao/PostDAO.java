@@ -34,7 +34,13 @@ public class PostDAO {
 		if(con!=null)
 			con.close();
 	}
-	public ArrayList<PostVO> getPostingAll() throws SQLException{
+	/*
+SELECT p.post_no, c.country_name, p.category_name, p.post_title, p.member_id, p.time_posted, p.hits
+FROM (SELECT row_number() over(ORDER BY post_no DESC) as rnum,  post_no,post_title,
+member_id, hits, country_id, category_name, to_char(time_posted, 'YYYY.MM.DD') as time_posted FROM post) p, country c
+WHERE p.country_id=c.country_id AND rnum BETWEEN 1 AND 5		
+	 */
+	public ArrayList<PostVO> getPostingAllList(PagingBean pagingBean) throws SQLException{
 		ArrayList<PostVO> list = new ArrayList<PostVO>();
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -42,10 +48,13 @@ public class PostDAO {
 		try {
 			con=dataSource.getConnection();
 			StringBuilder sql = new StringBuilder();
-			sql.append("SELECT p.post_no, c.country_name, p.category_name,p.post_title,p.member_id,  ");
-			sql.append(" to_char(time_posted, 'YYYY.MM.DD') as time_posted, p.hits ");
-			sql.append(" FROM post p, country c WHERE p.country_id=c.country_id");
+			sql.append("SELECT p.post_no, c.country_name, p.category_name, p.post_title, p.member_id, p.time_posted, p.hits  ");
+			sql.append(" FROM (SELECT row_number() over(ORDER BY post_no DESC) as rnum,  post_no,post_title, ");
+			sql.append(" member_id, hits, country_id, category_name, to_char(time_posted, 'YYYY.MM.DD') as time_posted FROM post) p, country c");
+			sql.append(" WHERE p.country_id=c.country_id AND rnum BETWEEN ? AND ? ");
 			pstmt=con.prepareStatement(sql.toString());
+			pstmt.setInt(1, pagingBean.getStartRowNumber());
+			pstmt.setInt(2, pagingBean.getEndRowNumber());
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				PostVO vo = new PostVO();
@@ -67,5 +76,24 @@ public class PostDAO {
 			closeAll(rs, pstmt, con);
 		}
 		return list;
+	}
+	
+	
+	public int getTotalPostCount() throws SQLException{
+		int totalCount=0;
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		try {
+			con=dataSource.getConnection();
+			String sql="select count(*) from board";
+			pstmt=con.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			if(rs.next())
+				totalCount=rs.getInt(1);
+		}finally {
+			closeAll(rs, pstmt, con);
+		}
+		return totalCount;
 	}
 }
