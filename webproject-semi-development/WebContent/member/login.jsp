@@ -63,7 +63,6 @@
                                      <a class="small" href="">아이디 찾기</a>&nbsp;&nbsp;
                                      <a class="small" href="">비밀번호 찾기</a>&nbsp;&nbsp;
                                      <a class="small" href="">회원가입</a>
-                                    
                                     </div>
                                 </div>
                             </div>
