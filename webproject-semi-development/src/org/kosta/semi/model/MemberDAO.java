@@ -45,20 +45,31 @@ public class MemberDAO {
 	 */
 	public MemberVO login(String id,String password) throws SQLException{
 		MemberVO vo=null;
+		CountryVO cvo = null;
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		try{
 			con=dataSource.getConnection();
-			String sql="select name from member where member_id=? and password=?";
-			pstmt=con.prepareStatement(sql);
+			StringBuffer sql= new StringBuffer();
+			sql.append("select m.name,m.gender,m.birth,m.email,m.travel_style,c.country_id,c.country_name ");
+			sql.append("from member m, country c ");
+			sql.append("where m.country_id=c.country_id and member_id=? and password=?");
+			pstmt=con.prepareStatement(sql.toString());
 			pstmt.setString(1, id);
 			pstmt.setString(2, password);
 			rs=pstmt.executeQuery();
 			if(rs.next()){
 				vo=new MemberVO();
+				cvo = new CountryVO();
 				vo.setId(id);
 				vo.setName(rs.getString(1));
+				vo.setGender(rs.getString(2));
+				vo.setBirth(rs.getString(3));
+				vo.setEmail(rs.getString(4));
+				vo.setTravelStyle(rs.getString(5));
+				cvo.setCountryId(rs.getString(6));
+				cvo.setCountryName(rs.getString(7));
 			}
 		}finally{
 			closeAll(rs, pstmt,con);
