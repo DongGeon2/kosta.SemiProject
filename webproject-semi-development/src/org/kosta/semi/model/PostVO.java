@@ -1,4 +1,4 @@
-package org.kosta.semi.model.vo;
+package org.kosta.semi.model;
 
 public class PostVO {
 	private String postNo;

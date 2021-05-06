@@ -5,10 +5,11 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.kosta.semi.controller.common.Controller;
+import org.kosta.semi.controller.Controller;
+import org.kosta.semi.model.PostVO;
 import org.kosta.semi.model.dao.PagingBean;
 import org.kosta.semi.model.dao.PostDAO;
-import org.kosta.semi.model.vo.PostVO;
+
 
 
 

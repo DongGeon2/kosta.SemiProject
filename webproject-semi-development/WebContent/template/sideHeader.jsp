@@ -56,7 +56,7 @@
 			 -->
 			<li class="nav-item"><a class="nav-link" href="#"> <i
 					class="fas fa-fw fa-user-plus"></i> <span>회원가입</span></a></li>
-			<li class="nav-item"><a class="nav-link" href="#"> <i
+			<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/login/login.jsp"> <i
 					class="fas fa-fw fa-sign-in-alt"></i> <span>로그인</span></a></li>
 
 			<!-- Nav Item - Pages Collapse Menu -->

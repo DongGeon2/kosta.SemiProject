@@ -1,4 +1,4 @@
-package org.kosta.semi.model.dao;
+package org.kosta.semi.model;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,7 +7,6 @@ import java.sql.SQLException;
 
 import javax.sql.DataSource;
 
-import org.kosta.semi.model.vo.MemberVO;
 
 public class MemberDAO {
 	/**
@@ -91,6 +90,61 @@ public class MemberDAO {
 		}
 		return vo;
 	}
+
+	/**
+	 * email로 회원 id 조회
+	 * @param email
+	 * @return email,id
+	 * @throws SQLException
+	 */
+	public MemberVO findIdbyEmail(String email) throws SQLException{
+		MemberVO vo=null;
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		try {
+			con=dataSource.getConnection();
+			String sql="select id from board_member where email=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1,email);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				vo=new MemberVO();
+				vo.setEmail(email);
+				vo.setId(rs.getString(1));
+			}
+		}finally {
+			closeAll(rs, pstmt, con);
+		}
+		return vo;
+	}
+	/**
+	 * email로 회원 password 조회
+	 * @param email
+	 * @return email,password
+	 * @throws SQLException
+	 */
+	public MemberVO findPasswordByEmail(String email) throws SQLException{
+		MemberVO vo=null;
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		try {
+			con=dataSource.getConnection();
+			String sql="select password from board_member where email=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, email);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				vo=new MemberVO();
+				vo.setEmail(email);
+				vo.setPassword(rs.getString(1));
+			}
+		}finally {
+			closeAll(rs, pstmt, con);
+		}
+		return vo;
+	}
 	
 	/**
 	 * 회원 가입
@@ -148,5 +202,4 @@ public class MemberDAO {
 			closeAll(pstmt,con);
 		}
 	}
-	
 }

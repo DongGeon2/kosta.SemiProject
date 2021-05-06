@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<!-- 
+	main-list.jsp
+	index의 전체 게시판 끌어오기
+ -->
 <div class="card shadow mb-4">
 	<div class="card-header py-3">
 		<h6 class="m-0 font-weight-bold text-primary">전체 나라별 게시판</h6>
@@ -31,6 +35,7 @@
 					</tr>
 				</thead>
 				<tbody>
+
 				 <c:forEach var="pvo" items="${requestScope.list}">
 				   <td>${pvo.postNo}</td>
 				   <td>${pvo.countryVO.countryName}</td>
@@ -48,6 +53,7 @@
 						<td>${pvo.timePosted}</td>
 						<td>${pvo.hits}</td>
 					</c:forEach>
+
 				</tbody>
 			</table>
 		</div>

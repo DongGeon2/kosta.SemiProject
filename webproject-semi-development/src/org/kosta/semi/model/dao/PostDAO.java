@@ -8,14 +8,17 @@ import java.util.ArrayList;
 
 import javax.sql.DataSource;
 
-import org.kosta.semi.model.vo.CountryVO;
-import org.kosta.semi.model.vo.MemberVO;
-import org.kosta.semi.model.vo.PostVO;
+import org.kosta.semi.model.CountryVO;
+import org.kosta.semi.model.DataSourceManager;
+import org.kosta.semi.model.MemberVO;
+import org.kosta.semi.model.PostVO;
+
 
 public class PostDAO {
 	private static PostDAO dao=new PostDAO();
 	private DataSource dataSource;
 	private PostDAO(){
+		//dataSource=DataSourceManager.getInstance().getDataSource();
 		dataSource=DataSourceManager.getInstance().getDataSource();
 	}
 	public static PostDAO getInstance(){		

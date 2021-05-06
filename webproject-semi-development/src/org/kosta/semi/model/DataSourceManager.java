@@ -1,4 +1,4 @@
-package org.kosta.semi.model.dao;
+package org.kosta.semi.model;
 
 import javax.sql.DataSource;
 
