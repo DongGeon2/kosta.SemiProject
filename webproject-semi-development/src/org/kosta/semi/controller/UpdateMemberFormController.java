@@ -11,6 +11,7 @@ public class UpdateMemberFormController implements Controller {
 
 	/**
 	 * password 입력 값을 확인하여 비밀번호가 일치시 UpdateMemberForm에 접근시킵니다.
+	 * @author CHENJAE
 	 */
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {

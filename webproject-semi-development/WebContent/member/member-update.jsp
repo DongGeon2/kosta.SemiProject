@@ -22,7 +22,8 @@
     <link href="${pageContext.request.contextPath}/css/sb-admin-2.min.css" rel="stylesheet">
 
 </head>
-
+<!--  * 회원정보 수정 폼
+	 * 수정 가능 정보 : 비밀번호, 이름, 생년월일, 여행스타일, 나라 -->
 <body class="bg-gradient-primary">
 
     <div class="container">
@@ -35,51 +36,39 @@
                     <div class="col-lg-7">
                         <div class="p-5">
                             <div class="text-center">
-                                <h1 class="h4 text-gray-900 mb-4">회원 정보 수정</h1>
+                                <h1 class="h4 text-gray-900 mb-4">${sessionScope.mvo.id}님 회원 정보 수정</h1>
                             </div>
-                            <form class="user">
+                            <form action="${pageContext.request.contextPath}/UpdateMemberController.do" method="post" class="user">
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="text" class="form-control form-control-user" id="exampleFirstName"
-                                            placeholder="First Name">
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <input type="text" class="form-control form-control-user" id="exampleLastName"
-                                            placeholder="Last Name">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <input type="email" class="form-control form-control-user" id="exampleInputEmail"
-                                        placeholder="Email Address">
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="password" class="form-control form-control-user"
-                                            id="exampleInputPassword" placeholder="Password">
+                                        <input type="text" class="form-control form-control-user" name="name"
+                                            value="${sessionScope.mvo.name}">
                                     </div>
                                     <div class="col-sm-6">
                                         <input type="password" class="form-control form-control-user"
-                                            id="exampleRepeatPassword" placeholder="Repeat Password">
+                                            name="password" placeholder="Password">
                                     </div>
                                 </div>
-                                <a href="login.html" class="btn btn-primary btn-user btn-block">
-                                    Register Account
-                                </a>
-                                <hr>
-                                <a href="index.html" class="btn btn-google btn-user btn-block">
-                                    <i class="fab fa-google fa-fw"></i> Register with Google
-                                </a>
-                                <a href="index.html" class="btn btn-facebook btn-user btn-block">
-                                    <i class="fab fa-facebook-f fa-fw"></i> Register with Facebook
-                                </a>
+                               <div class="form-group">
+                                    <input type="date" class="form-control form-control-user" name="birth"
+                                        value="${sessionScope.mvo.birth}">
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <input type="text" class="form-control form-control-user" name="travelStyle"
+                                            value="${sessionScope.mvo.travelStyle}">
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control form-control-user" name="countryID"
+                                            value="${sessionScope.mvo.countryVO.countryName}">
+                                    </div>
+                                </div> -->
+                                <div class="text-center">
+                                   <input type="submit" class="btn btn-primary" value="수정">
+                                </div>
                             </form>
                             <hr>
-                            <div class="text-center">
-                                <a class="small" href="forgot-password.html">Forgot Password?</a>
-                            </div>
-                            <div class="text-center">
-                                <a class="small" href="login.html">Already have an account? Login!</a>
-                            </div>
+                      
                         </div>
                     </div>
                 </div>
