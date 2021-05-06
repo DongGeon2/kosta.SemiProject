@@ -1,12 +1,11 @@
-package org.kosta.semi.controller.member;
+package org.kosta.semi.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.kosta.semi.controller.common.Controller;
-import org.kosta.semi.model.dao.MemberDAO;
-import org.kosta.semi.model.vo.MemberVO;
+import org.kosta.semi.model.MemberDAO;
+import org.kosta.semi.model.MemberVO;
 
 public class LoginController implements Controller {
 

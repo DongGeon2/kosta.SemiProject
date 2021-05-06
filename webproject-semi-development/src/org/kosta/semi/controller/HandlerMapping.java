@@ -1,4 +1,4 @@
-package org.kosta.semi.controller.common;
+package org.kosta.semi.controller;
 //singleton pattern
 //개별 컨트롤러 객체 생성을 전담하는 클래스(Factory 클래스)
 public class HandlerMapping {

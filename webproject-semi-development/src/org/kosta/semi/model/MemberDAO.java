@@ -1,4 +1,4 @@
-package org.kosta.semi.model.dao;
+package org.kosta.semi.model;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -6,8 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javax.sql.DataSource;
-
-import org.kosta.semi.model.vo.MemberVO;
 
 
 public class MemberDAO {

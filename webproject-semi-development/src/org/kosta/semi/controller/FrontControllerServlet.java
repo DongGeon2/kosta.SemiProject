@@ -1,4 +1,4 @@
-package org.kosta.semi.controller.common;
+package org.kosta.semi.controller;
 
 import java.io.IOException;
 
