@@ -54,12 +54,18 @@
 				로그인 X -> 회원가입, 로그인
 				로그인 O -> 로그아웃, 내정보 관리
 			 -->
+			<c:choose>
+			<c:when test="${sessionScope.mvo==null}">
 			<li class="nav-item"><a class="nav-link" href="#"> <i
 					class="fas fa-fw fa-user-plus"></i> <span>회원가입</span></a></li>
 			<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/login/login.jsp"> <i
 					class="fas fa-fw fa-sign-in-alt"></i> <span>로그인</span></a></li>
-
+			</c:when>
+			<c:otherwise>
+			
+			
 			<!-- Nav Item - Pages Collapse Menu -->
+			
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
 				data-toggle="collapse" data-target="#collapsePages"
 				aria-expanded="true" aria-controls="collapsePages"> <i
@@ -74,9 +80,10 @@
 						<!-- <a class="collapse-item" href="#">내가 쓴 댓글 보기</a>  -->
 					</div>
 				</div></li>
-			<li class="nav-item"><a class="nav-link" href="#"> <i
+			<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/LogoutController.do"> <i
 					class="fas fa-fw fa-sign-out-alt"></i> <span>로그아웃</span></a></li>
-
+			</c:otherwise>
+			</c:choose>
 			<!-- Divider -->
 			<hr class="sidebar-divider d-none d-md-block">
 

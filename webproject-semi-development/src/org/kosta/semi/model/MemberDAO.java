@@ -4,6 +4,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Iterator;
 
 import javax.sql.DataSource;
 
@@ -201,5 +204,48 @@ public class MemberDAO {
 		}finally{
 			closeAll(pstmt,con);
 		}
+	}
+	/**
+	 * 나라별 회원 수 조회
+	 * @return map
+	 * @throws SQLException
+	 */
+	public HashMap<String, Integer> getMemberCountByCountry() throws SQLException{
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		try {
+			con=dataSource.getConnection();
+			StringBuffer sql=new StringBuffer();
+			sql.append("SELECT c.country_name, COUNT(m.member_id) ");
+			sql.append("FROM member m ");
+			sql.append("LEFT OUTER ");
+			sql.append("JOIN country c ");
+			sql.append("ON m.country_id=c.country_id ");
+			sql.append("GROUP BY c.country_name");
+			pstmt=con.prepareStatement(sql.toString());
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+				if (rs.getString(1).equals("한국"))
+					continue;
+				map.put(rs.getString(1), rs.getInt(2));
+			}
+			/*여행중인 총 회원수를 구하기 위해 
+			 *새로운 메서드를 정의하는 대신
+			 *map.values의 총합을 구합니다.
+			 */
+			Collection values = map.values();
+			Iterator it = values.iterator();
+			int totalCount = 0;
+			while (it.hasNext()) {
+			Integer i = (Integer)it.next();
+			totalCount += i.intValue();
+			}
+			map.put("totalCount", totalCount);
+		}finally {
+			closeAll(rs, pstmt, con);
+		}
+		return map;
 	}
 }
