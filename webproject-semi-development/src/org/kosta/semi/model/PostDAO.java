@@ -43,7 +43,7 @@ FROM (SELECT row_number() over(ORDER BY post_no DESC) as rnum,  post_no,post_tit
 member_id, hits, country_id, category_name, to_char(time_posted, 'YYYY.MM.DD') as time_posted FROM post) p, country c
 WHERE p.country_id=c.country_id AND rnum BETWEEN 1 AND 5		
 	 */
-	public ArrayList<PostVO> getPostingAllList(PagingBean pagingBean) throws SQLException{
+	public ArrayList<PostVO> getAllPostingList(PagingBean pagingBean) throws SQLException{
 		ArrayList<PostVO> list = new ArrayList<PostVO>();
 		Connection con = null;
 		PreparedStatement pstmt = null;
