@@ -6,9 +6,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.kosta.semi.controller.Controller;
+import org.kosta.semi.model.PagingBean;
+import org.kosta.semi.model.PostDAO;
 import org.kosta.semi.model.PostVO;
-import org.kosta.semi.model.dao.PagingBean;
-import org.kosta.semi.model.dao.PostDAO;
+
+
 
 
 

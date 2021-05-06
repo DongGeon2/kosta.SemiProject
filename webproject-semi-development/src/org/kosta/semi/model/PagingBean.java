@@ -1,4 +1,4 @@
-package org.kosta.semi.model.dao;
+package org.kosta.semi.model;
 
 /**
  * 페이징 처리를 위한 비즈니스 계층의 클래스 PagingBean method 구현순서<br>
