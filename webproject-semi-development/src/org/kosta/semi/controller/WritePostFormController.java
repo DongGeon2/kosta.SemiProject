@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 public class WritePostFormController implements Controller{
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-<<<<<<< HEAD
 		//HttpSession session = request.getSession(false);
 		//if(session == null || session.getAttribute("mvo") == null ) {
 		//	return "redirect:index.jsp";
@@ -19,10 +18,6 @@ public class WritePostFormController implements Controller{
 		request.setAttribute("urlCountry", "/template/countryInfo.jsp");
 		request.setAttribute("url", "/board/post-write.jsp");
 		return "/template/layout.jsp";
-=======
-		// TODO Auto-generated method stub
-		return null;
->>>>>>> branch 'main' of https://github.com/DongGeon2/kosta.SemiProject.git
 	}
 
 }

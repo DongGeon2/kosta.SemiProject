@@ -39,7 +39,7 @@
 						post-write.jsp (게시물 등록하기)
 						<c:import url="${url}"></c:import>
 					--%>
-					<c:import url="/board/board-list.jsp"></c:import>
+					<c:import url="${url}"></c:import>
 					<!-- /.TABLE BOARD -->
 				</div>
 				<!-- /.container-fluid -->
