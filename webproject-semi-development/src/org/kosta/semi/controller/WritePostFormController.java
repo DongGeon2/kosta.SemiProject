@@ -2,18 +2,16 @@ package org.kosta.semi.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 /**
  * WritePostFormController
  * 글쓰기 BTN 클릭 -> 글쓰기 FORM으로 이동해주는 Controller
- * Login일때만 글쓰기 Write 가능하도록
- * Login 이 아닐 시 index.jsp 로 이동
  * @author SUE
  *
  */
 public class WritePostFormController implements Controller{
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+<<<<<<< HEAD
 		//HttpSession session = request.getSession(false);
 		//if(session == null || session.getAttribute("mvo") == null ) {
 		//	return "redirect:index.jsp";
@@ -21,6 +19,10 @@ public class WritePostFormController implements Controller{
 		request.setAttribute("urlCountry", "/template/countryInfo.jsp");
 		request.setAttribute("url", "/board/post-write.jsp");
 		return "/template/layout.jsp";
+=======
+		// TODO Auto-generated method stub
+		return null;
+>>>>>>> branch 'main' of https://github.com/DongGeon2/kosta.SemiProject.git
 	}
 
 }

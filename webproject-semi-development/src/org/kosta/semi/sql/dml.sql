@@ -52,6 +52,15 @@ LEFT OUTER
 JOIN country c 
 ON m.country_id=c.country_id 
 GROUP BY c.country_name;
+<<<<<<< HEAD
 		
 -- 사용 sql (게시글 등록)		
 INSERT INTO post VALUES(post_seq.nextval, '33', '정보', '프랑스 환전소 정보', 'java', sysdate, 0, '공항에서 환전 ㄴㄴ 봉쥬르마트안에 있는 환전소가 잘쳐줘요!');
+=======
+	
+
+select m.name,m.gender,m.birth,m.email,m.travel_style,c.country_id,c.country_name from member m, country c where m.country_id=c.country_id and member_id='java' and password='a'
+
+
+
+>>>>>>> branch 'main' of https://github.com/DongGeon2/kosta.SemiProject.git
