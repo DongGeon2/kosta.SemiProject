@@ -47,7 +47,7 @@ public class MemberDAO {
 		ResultSet rs=null;
 		try{
 			con=dataSource.getConnection();
-			String sql="select name from board_member where id=? and password=?";
+			String sql="select name from member where member_id=? and password=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, id);
 			pstmt.setString(2, password);
@@ -76,7 +76,7 @@ public class MemberDAO {
 		ResultSet rs=null;
 		try{
 			con=dataSource.getConnection();
-			String sql="select name from board_member where id=?";
+			String sql="select name from member where member_id=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, id);
 			rs=pstmt.executeQuery();
@@ -104,7 +104,7 @@ public class MemberDAO {
 		ResultSet rs=null;
 		try {
 			con=dataSource.getConnection();
-			String sql="select id from board_member where email=?";
+			String sql="select member_id from member where email=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1,email);
 			rs=pstmt.executeQuery();
@@ -131,7 +131,7 @@ public class MemberDAO {
 		ResultSet rs=null;
 		try {
 			con=dataSource.getConnection();
-			String sql="select password from board_member where email=?";
+			String sql="select password from member where email=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, email);
 			rs=pstmt.executeQuery();
