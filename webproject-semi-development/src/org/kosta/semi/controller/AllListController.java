@@ -25,11 +25,7 @@ public class AllListController implements Controller {
 		ArrayList<PostVO> list = PostDAO.getInstance().getAllPostingList(pagingBean);
 		request.setAttribute("list", list);
 		request.setAttribute("url", "/board/main-list.jsp");
-<<<<<<< HEAD
 		request.setAttribute("urlCountry", "/template/memberCount.jsp");
-=======
-		request.setAttribute("urlCountry", "/template/memberCount.jsp");
->>>>>>> branch 'main' of https://github.com/DongGeon2/kosta.SemiProject.git
 		return "/template/layout.jsp";
 	}
 }
