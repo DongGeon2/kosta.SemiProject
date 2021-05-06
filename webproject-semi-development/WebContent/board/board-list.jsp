@@ -5,9 +5,10 @@
 	board-list.jsp
 	나라별 게시판 list 불러오기
  -->
+<input type="hidden" name="country" value="${requestScope.list.countryVO.countryId}"></input>	
 <div class="card shadow mb-4">
 	<div class="card-header py-3">
-		<h6 class="m-0 font-weight-bold text-primary">프랑스 게시판</h6>
+		<h6 class="m-0 font-weight-bold text-primary">${requestScope.list.countryVO.countryId} 게시판</h6>
 	</div>
 	<div class="card-body">
 		<div class="table-responsive">
