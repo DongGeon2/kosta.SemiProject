@@ -8,11 +8,6 @@ import org.kosta.semi.model.PagingBean;
 import org.kosta.semi.model.PostDAO;
 import org.kosta.semi.model.PostVO;
 
-
-
-
-
-
 public class AllListController implements Controller {
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		int totalPostCount=PostDAO.getInstance().getTotalPostCount();
@@ -25,7 +20,6 @@ public class AllListController implements Controller {
 		}
 		
 		
-
 		request.setAttribute("pagingBean", pagingBean);
 		ArrayList<PostVO> list = PostDAO.getInstance().getAllPostingList(pagingBean);
 		request.setAttribute("list", list);
