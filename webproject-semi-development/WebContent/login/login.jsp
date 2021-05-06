@@ -21,7 +21,7 @@
 	rel="stylesheet">
 
 <!-- Custom styles for this template-->
-<link href="css/sb-admin-2.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/sb-admin-2.css" rel="stylesheet">
 <!-- Custom styles for this page -->
 <link href="vendor/datatables/dataTables.bootstrap4.min.css"
 	rel="stylesheet">
@@ -53,7 +53,9 @@
                                             <input type="password" class="form-control form-control-user"
                                                 name="password" placeholder="Password">
                                         </div>
-                                        <input type="submit" value="login">
+                                        <div class="text-center">
+                                        	<input type="submit" class="btn btn-primary" value="login">
+                                    	</div>
                                     </form>
                                     <hr>
                                     <!--todo 나중에 연결 -->
