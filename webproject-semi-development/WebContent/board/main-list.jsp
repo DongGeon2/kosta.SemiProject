@@ -44,14 +44,14 @@
 							<td><c:choose>
 									<c:when test="${sessionScope.mvo!=null}">
 										<a
-											href="${pageContext.request.contextPath}/PostDetailController.do?countryId=${pvo.countryVO.countryId}">${pvo.postTitle}
+											href="${pageContext.request.contextPath}/PostDetailController.do?countryId=${pvo.postNo}">${pvo.postTitle}
 										</a>
 									</c:when>
 									<c:otherwise>
 									${pvo.postTitle}
 					   			</c:otherwise>
 								</c:choose></td>
-							<td>${pvo.memberVO.name}</td>
+							<td>${pvo.memberVO.id}</td>
 							<td>${pvo.postTime}</td>
 							<td>${pvo.hits}</td>
 						</tr>
@@ -61,7 +61,6 @@
 			</table>
 		</div>
 		<!-- Pagination -->
-		${requestScope.pagingBean}-- pagingbean을 못받는 상태
 		<c:set var="pb" value="${requestScope.pagingBean}"></c:set>
 		<ul class="pagination justify-content-center" style="margin-top: 50px">
 			<c:if test="${pb.previousPageGroup}">
