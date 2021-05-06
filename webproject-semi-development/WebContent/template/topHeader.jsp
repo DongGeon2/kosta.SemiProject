@@ -54,11 +54,14 @@
 		<div class="topbar-divider d-none d-sm-block"></div>
 
 		<!-- Nav Item - User Information -->
+		<c:choose>
+		<c:when test="${sessionScope.mvo!=null}">
 		<li class="nav-item dropdown no-arrow"><a
 			class="nav-link dropdown-toggle" href="#" id="userDropdown"
 			role="button" data-toggle="dropdown" aria-haspopup="true"
 			aria-expanded="false"> <span
-				class="mr-2 d-none d-lg-inline text-gray-600 small">조수빈 님</span> <img
+				class="mr-2 d-none d-lg-inline text-gray-600 small">
+				${sessionScope.mvo.name}님</span> <img
 				class="img-profile rounded-circle" src="images/undraw_profile.svg"
 				alt="사용자 프로필 이미지">
 		</a> <!-- Dropdown - User Information -->
@@ -72,9 +75,14 @@
 				<a class="dropdown-item" href="#" data-toggle="modal"
 					data-target="#logoutModal"> <i
 					class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-					Logout
+					<a href="${pageContext.request.contextPath}/LogoutController.do">logout</a>
 				</a>
 			</div></li>
+		</c:when>
+		<c:otherwise>
+		로그인이 필요합니다
+		</c:otherwise>
+		</c:choose>	
 
 	</ul>
 
