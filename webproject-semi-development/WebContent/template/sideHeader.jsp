@@ -76,8 +76,7 @@
 						<h6 class="collapse-header">My Info</h6>
 						<a class="collapse-item" href="UpdateMemberPasswordController.do">내정보 수정</a> <a
 							class="collapse-item" href="MyPostListController.do?id=${sessionScope.mvo.id}">내가 쓴 글 보기</a>
-						<a class="collapse-item" href="#">내정보 수정</a> <a
-							class="collapse-item" href="MyPostListController.do?id=${sessionScope.mvo.id}">내가 쓴 글 보기</a>
+					
 
 						<!-- <a class="collapse-item" href="#">내가 쓴 댓글 보기</a>  -->
 					</div>
