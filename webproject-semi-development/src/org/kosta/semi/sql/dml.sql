@@ -46,7 +46,12 @@ SELECT p.post_no, c.country_name, p.category_name, p.post_title, p.member_id, p.
 FROM (SELECT row_number() over(ORDER BY post_no DESC) as rnum,  post_no,post_title , member_id, hits, country_id, category_name, to_char(time_posted, 'YYYY.MM.DD') as time_posted FROM post) p, country c
 WHERE p.country_id=c.country_id AND rnum BETWEEN 1 AND 5		
 		
-		
+SELECT c.country_name, COUNT(m.member_id)		
+FROM member m 
+LEFT OUTER 
+JOIN country c 
+ON m.country_id=c.country_id 
+GROUP BY c.country_name;
 		
 		
 		
