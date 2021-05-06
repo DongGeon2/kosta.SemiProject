@@ -24,10 +24,11 @@
 					<!-- Page Heading -->
 					<!-- Content Row -->
 						<c:import url="${urlCountry}"></c:import>
+					<c:import url="${urlCountry}"></c:import>	
 					<!-- MAIN 전체 count 받아오기 -->
 						<%-- <c:import url="/template/memberCount.jsp"></c:import>--%>
 					<!-- Country 별 Info 받아오기 -->
-						<%-- <c:import url="/template/countryInfo.jsp"></c:import>--%>
+						<%-- <c:import url="/template/countryInfo.jsp"></c:import> --%>
 					<!-- TABLE BOARD -->
 					<%-- 			
 						url 에 setAttribute 해서 넘겨주기
