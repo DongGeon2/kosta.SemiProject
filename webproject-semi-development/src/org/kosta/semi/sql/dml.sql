@@ -52,6 +52,9 @@ LEFT OUTER
 JOIN country c 
 ON m.country_id=c.country_id 
 GROUP BY c.country_name;
-		
-		
-		
+	
+
+select m.name,m.gender,m.birth,m.email,m.travel_style,c.country_id,c.country_name from member m, country c where m.country_id=c.country_id and member_id='java' and password='a'
+
+
+
