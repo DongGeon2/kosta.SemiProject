@@ -6,7 +6,7 @@
   </welcome-file-list>
   <servlet>
      <servlet-name>FrontControllerServlet</servlet-name>
-     <servlet-class>org.kosta.semi.controller.common.FrontControllerServlet</servlet-class>
+     <servlet-class>org.kosta.semi.controller.FrontControllerServlet</servlet-class>
   </servlet>
   <servlet-mapping>
      <servlet-name>FrontControllerServlet</servlet-name>
