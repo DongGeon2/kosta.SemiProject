@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
-<!-- metatag, title, css import -->
+	<!-- metatag, title, css import -->
 	<c:import url="/template/headerLink.jsp"></c:import>
 </head>
 <body id="page-top">
