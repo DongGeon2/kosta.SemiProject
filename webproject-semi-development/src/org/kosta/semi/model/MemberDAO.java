@@ -40,7 +40,7 @@ public class MemberDAO {
 	 * 회원정보로 로그인
 	 * @param id
 	 * @param password
-	 * @return MemberVO(id, name)
+	 * @return MemberVO-패스워드 제외한 모든 정보
 	 * @throws SQLException
 	 */
 	public MemberVO login(String id,String password) throws SQLException{
