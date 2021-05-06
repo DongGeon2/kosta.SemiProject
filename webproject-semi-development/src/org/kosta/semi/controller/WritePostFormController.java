@@ -12,13 +12,13 @@ import javax.servlet.http.HttpSession;
  *
  */
 public class WritePostFormController implements Controller{
-
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		HttpSession session = request.getSession(false);
-		if(session == null || session.getAttribute("mvo") == null ) {
-			return "redirect:index.jsp";
-		}
+		//HttpSession session = request.getSession(false);
+		//if(session == null || session.getAttribute("mvo") == null ) {
+		//	return "redirect:index.jsp";
+		//}
+		request.setAttribute("urlCountry", "/template/countryInfo.jsp");
 		request.setAttribute("url", "/board/post-write.jsp");
 		return "/template/layout.jsp";
 	}

@@ -53,5 +53,5 @@ JOIN country c
 ON m.country_id=c.country_id 
 GROUP BY c.country_name;
 		
-		
-		
+-- 사용 sql (게시글 등록)		
+INSERT INTO post VALUES(post_seq.nextval, '33', '정보', '프랑스 환전소 정보', 'java', sysdate, 0, '공항에서 환전 ㄴㄴ 봉쥬르마트안에 있는 환전소가 잘쳐줘요!');
