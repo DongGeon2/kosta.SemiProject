@@ -3,12 +3,12 @@ package org.kosta.semi.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 /**
- * WritePostController
- * 글쓰기 FORM 에서 글 작성 기능 Controller
+ * WritePostFormController
+ * 글쓰기 BTN 클릭 -> 글쓰기 FORM으로 이동해주는 Controller
  * @author SUE
  *
  */
-public class WritePostController implements Controller {
+public class PostDetailController implements Controller {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
