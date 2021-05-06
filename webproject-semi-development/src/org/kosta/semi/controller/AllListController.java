@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import org.kosta.semi.model.PagingBean;
 import org.kosta.semi.model.PostDAO;
 import org.kosta.semi.model.PostVO;
@@ -31,7 +30,7 @@ public class AllListController implements Controller {
 		ArrayList<PostVO> list = PostDAO.getInstance().getAllPostingList(pagingBean);
 		request.setAttribute("list", list);
 		request.setAttribute("url", "/board/main-list.jsp");
-
+		request.setAttribute("urlCountry", "/template/memberCount.jsp");
 		return "/template/layout.jsp";
 	}
 }

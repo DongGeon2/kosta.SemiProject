@@ -56,5 +56,7 @@ GROUP BY c.country_name;
 
 select m.name,m.gender,m.birth,m.email,m.travel_style,c.country_id,c.country_name from member m, country c where m.country_id=c.country_id and member_id='java' and password='a'
 
-
+SELECT p.post_no, c.country_name, p.category_name, p.post_title, p.member_id, p.time_posted, p.hits
+FROM (SELECT row_number() over(ORDER BY post_no DESC) as rnum,  post_no,post_title , member_id, hits, country_id, category_name, to_char(time_posted, 'YYYY.MM.DD') as time_posted FROM post) p, country c
+WHERE p.country_id=c.country_id AND c.country_id='44' AND rnum BETWEEN 1 AND 5 		
 
