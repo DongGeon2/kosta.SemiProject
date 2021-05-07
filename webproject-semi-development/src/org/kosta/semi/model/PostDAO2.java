@@ -91,11 +91,23 @@ public class PostDAO2 {
 			String sql = "UPDATE post SET hits=hits+1 WHERE post_no = ?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, postNo);
-			pstmt.executeQuery();
+			pstmt.executeUpdate();
 		}finally {
 			closeAll(pstmt,con);
 		}
 	}
 	
-	public void delete
+	public void deletePosting(String postNo) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			con=dataSource.getConnection();
+			String sql = "UPDATE post SET hits=hits+1 WHERE post_no = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, postNo);
+			pstmt.executeUpdate();
+		}finally {
+			closeAll(pstmt,con);
+		}
+	}
 }
