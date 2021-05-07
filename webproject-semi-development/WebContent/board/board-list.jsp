@@ -76,7 +76,7 @@
 					<c:otherwise>
 						<li><a
 							href="${pageContext.request.contextPath}/AllListController.do?pageNo=${page}">${page}</a></li>
-			`	</c:otherwise>
+				</c:otherwise>
 				</c:choose>
 			</c:forEach>
 			<c:if test="${pb.nextPageGroup}">
