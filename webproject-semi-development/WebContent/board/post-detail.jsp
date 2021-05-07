@@ -12,7 +12,16 @@
 	function MoveCountryBoardList() {
 		
 	}
-
+	function deletePost() {
+		if (confirm("게시글을 삭제하시겠습니까?")) {
+			document.deleteForm.submit();
+		}
+	}
+	function updatePost() {
+		if (confirm("게시글을 수정하시겠습니까?")) {
+			document.updateForm.submit();
+		}
+	}
 </script>
 <div class="card shadow mb-4">
 	<div class="card-header py-3">
@@ -58,6 +67,14 @@
 				<i class="fas fa-fw fa-pencil-alt"></i> 목록</button>
 				<!-- 내가 쓴 글만 수정 삭제 가능 -->
 				<c:if test="${requestScope.pvo.memberVO.id==sessionScope.mvo.id}">
+					<form name="deleteForm"
+						action="${pageContext.request.contextPath}/UpdateMemberController.do" method="post">
+						<input 	type="hidden" name="pageNo" value="${requestScope.pvo.no}">
+					</form>				
+					<form name="updateForm"
+						action="${pageContext.request.contextPath}/UpdateMemberController.do" method="post">
+						<input 	type="hidden" name="pageNo" value="${requestScope.pvo.no}">
+					</form>
 					<button type="button" class="btn btn-outline-primary">
 					<i class="fas fa-fw fa-pencil-alt"></i> 수정</button>
 					<button type="button" class="btn btn-outline-primary">
