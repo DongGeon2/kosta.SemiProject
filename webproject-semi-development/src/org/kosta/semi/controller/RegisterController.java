@@ -20,7 +20,6 @@ import org.kosta.semi.model.MemberVO;
 			String travelstyle = request.getParameter("travelstyle");
 			
 			String countryId = request.getParameter("countryId");
-			System.out.println(countryId);
 			CountryVO cvo = CountryDAO.getInstance().findCountryById(countryId);
 			String email = request.getParameter("email");
 			MemberVO mvo = new MemberVO(cvo, birth, gender, travelstyle, email, id, name, password);
