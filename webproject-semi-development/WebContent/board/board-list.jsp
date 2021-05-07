@@ -6,7 +6,7 @@
 	나라별 게시판 list 불러오기
  -->
 
-<input type="hidden" name="country" value="${requestScope.contry.countryId}"></input>	
+<input type="hidden" name="country" value="${requestScope.contry.countryId}"></input>
 
 <div class="card shadow mb-4">
 	<div class="card-header py-3">

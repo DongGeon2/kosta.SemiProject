@@ -6,6 +6,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.kosta.semi.model.CountryDAO;
+import org.kosta.semi.model.CountryVO;
 import org.kosta.semi.model.MemberVO;
 import org.kosta.semi.model.PostDAO2;
 import org.kosta.semi.model.PostVO;
@@ -26,14 +28,14 @@ public class PostDetailController implements Controller {
 		if (session == null || session.getAttribute("mvo") == null) {
 			return "redirect:index.jsp";
 		}
-		
 		String postNo = request.getParameter("postNo");		
 		MemberVO mvo = (MemberVO) session.getAttribute("mvo");
 		PostVO pvo = PostDAO2.getInstance().getPostingByNo(postNo);
-		
+		String countryName = pvo.getCountryVO().getCountryName();
+		//System.out.println("PVO : " + pvo);
 		// post 작성자 아이디와 로그인한 id 가 같을 때 조회수 count 안하기
 		if( mvo.getId().equals(pvo.getMemberVO().getId())) {
-			System.out.println("작성자가 글읽음");
+			//System.out.println("작성자가 글읽음");
 			// redirect:PostDetailNoHitsController.do 로 redirect 해서 hit update 방지
 			return "redirect:PostDetailNoHitsController.do?postNo="+pvo.getPostNo();
 		}
@@ -43,12 +45,13 @@ public class PostDetailController implements Controller {
 		@SuppressWarnings("unchecked")
 		ArrayList<String> noList = (ArrayList<String>) session.getAttribute("noList");
 		if (noList.contains(postNo) == false) {
-			System.out.println("page 새로 읽음");
+			//System.out.println("page 새로 읽음");
 			PostDAO2.getInstance().updateHit(postNo);
 			noList.add(postNo);
 		}
 		
 		request.setAttribute("pvo", pvo);
+		request.setAttribute("country", countryName);
 		request.setAttribute("urlCountry", "/template/countryInfo.jsp");
 		request.setAttribute("url", "/board/post-detail.jsp");
 		return "/template/layout.jsp";
