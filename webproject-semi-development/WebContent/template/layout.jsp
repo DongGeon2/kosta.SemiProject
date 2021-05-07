@@ -42,6 +42,7 @@
 						<c:import url="${url}"></c:import>
 					--%>
 					<c:import url="${url}"></c:import>
+	
 					<!-- /.TABLE BOARD -->
 				</div>
 				<!-- /.container-fluid -->

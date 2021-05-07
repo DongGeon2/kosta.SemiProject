@@ -94,9 +94,10 @@ WHERE p.country_id=c.country_id AND rnum BETWEEN 1 AND 5
 			sql.append(" member_id, hits, country_id, category_name, to_char(time_posted, 'YYYY.MM.DD') as time_posted FROM post) p, country c");
 			sql.append(" WHERE p.country_id=c.country_id AND rnum BETWEEN ? AND ? AND c.country_id=? ");
 			pstmt=con.prepareStatement(sql.toString());
-			pstmt.setInt(1, pagingBean.getStartRowNumber());
-			pstmt.setInt(2, pagingBean.getEndRowNumber());
-			pstmt.setString(3, countryId);
+			pstmt.setString(1, countryId);
+			pstmt.setInt(2, pagingBean.getStartRowNumber());
+			pstmt.setInt(3, pagingBean.getEndRowNumber());
+			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				PostVO vo = new PostVO();
 				vo.setPostNo(rs.getString(1));
