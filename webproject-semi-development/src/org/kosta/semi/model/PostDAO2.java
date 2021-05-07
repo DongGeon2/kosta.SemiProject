@@ -96,4 +96,6 @@ public class PostDAO2 {
 			closeAll(pstmt,con);
 		}
 	}
+	
+	public void delete
 }
