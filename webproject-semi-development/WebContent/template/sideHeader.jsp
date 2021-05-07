@@ -6,13 +6,13 @@
 			id="accordionSidebar">
 			<!-- Sidebar - Brand -->
 			<a class="sidebar-brand d-flex align-items-center justify-content-center"
-				href="${pageContext.request.contextPath}/index.jsphttps://github.com/StartBootstrap/startbootstrap-sb-admin-2/blob/master/register.html">
+				href="${pageContext.request.contextPath}/index.jsp">
 				<div class="sidebar-brand-icon rotate-n-15">
 					<i class="fas fa-map-marked"></i>
 				</div>
 				<div class="sidebar-brand-text mx-3">Korean Assemble!</div>
 			</a>
-
+			
 			<!-- Divider -->
 			<hr class="sidebar-divider my-0">
 
@@ -57,7 +57,7 @@
 			<c:when test="${sessionScope.mvo==null}">
 			<li class="nav-item"><a class="nav-link" href="#"> <i
 					class="fas fa-fw fa-user-plus"></i> <span>회원가입</span></a></li>
-			<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/login/login.jsp"> <i
+			<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/member/login.jsp"> <i
 					class="fas fa-fw fa-sign-in-alt"></i> <span>로그인</span></a></li>
 			</c:when>
 			<c:otherwise>
@@ -74,13 +74,10 @@
 					aria-labelledby="headingPages" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h6 class="collapse-header">My Info</h6>
-<<<<<<< HEAD
-						<a class="collapse-item" href="UpdateMemberFormController.do">내정보 수정</a> <a
-							class="collapse-item" href="MyPostListController.do">내가 쓴 글 보기</a>
-=======
-						<a class="collapse-item" href="#">내정보 수정</a> <a
+						<a class="collapse-item" href="UpdateMemberPasswordController.do">내정보 수정</a> <a
 							class="collapse-item" href="MyPostListController.do?id=${sessionScope.mvo.id}">내가 쓴 글 보기</a>
->>>>>>> branch 'main' of https://github.com/DongGeon2/kosta.SemiProject.git
+					
+
 						<!-- <a class="collapse-item" href="#">내가 쓴 댓글 보기</a>  -->
 					</div>
 				</div></li>
