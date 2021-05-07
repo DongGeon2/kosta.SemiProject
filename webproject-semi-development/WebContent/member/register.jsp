@@ -72,7 +72,8 @@
 								onsubmit="return checkRegForm()">
 								<div class="form-group">
 									<input type="text" class="form-control form-control-user"
-										name="name" placeholder="이름">
+										name="name" placeholder="이름" onkeypress="if(!(event.keyCode < 47 && event.keyCode > 58)) event.returnValue=false;">
+
 								</div>
 								<div class="form-group row">
 									<div class="col-sm-6 mb-3 mb-sm-0">
@@ -157,31 +158,31 @@
 									<div class="form-check-inline">
 										<label class="form-check-label" for="radio5"> <input
 											type="radio" class="form-check-input" id="radio5"
-											name="countryVO" value="한국" checked>한국
+											name="countryVO" value="82" checked>한국
 										</label>
 									</div>
 									<div class="form-check-inline">
 										<label class="form-check-label" for="radio6"> <input
 											type="radio" class="form-check-input" id="radio6"
-											name="countryVO" value="영국">영국
+											name="countryVO" value="44">영국
 										</label>
 									</div>
 									<div class="form-check-inline">
 										<label class="form-check-label" for="radio7"> <input
 											type="radio" class="form-check-input" id="radio7"
-											name="countryVO" value="독일">독일
+											name="countryVO" value="49">독일
 										</label>
 									</div>
 									<div class="form-check-inline">
 										<label class="form-check-label" for="radio8"> <input
 											type="radio" class="form-check-input" id="radio8"
-											name="countryVO" value="프랑스">프랑스
+											name="countryVO" value="33">프랑스
 										</label>
 									</div>
 									<div class="form-check-inline">
 										<label class="form-check-label" for="radio9"> <input
 											type="radio" class="form-check-input" id="radio9"
-											name="countryVO" value="이탈리아">이탈리아
+											name="countryVO" value="39">이탈리아
 										</label>
 									</div> 
 								</div>
