@@ -7,22 +7,6 @@
 	필요한것 : 
 		카테고리(분류), 글제목, 글내용
  -->
-<script>
-	// 나라별 목록 게시판으로 이동
-	function MoveCountryBoardList() {
-		
-	}
-	function deletePost() {
-		if (confirm("게시글을 삭제하시겠습니까?")) {
-			document.deleteForm.submit();
-		}
-	}
-	function updatePost() {
-		if (confirm("게시글을 수정하시겠습니까?")) {
-			document.updateForm.submit();
-		}
-	}
-</script>
 <div class="card shadow mb-4">
 	<div class="card-header py-3">
 		<h6 class="m-0 font-weight-bold text-primary">${requestScope.countryName} 게시판</h6>
@@ -69,11 +53,11 @@
 				<c:if test="${requestScope.pvo.memberVO.id==sessionScope.mvo.id}">
 					<form name="deleteForm"
 						action="${pageContext.request.contextPath}/UpdateMemberController.do" method="post">
-						<input 	type="hidden" name="pageNo" value="${requestScope.pvo.no}">
+						<input 	type="hidden" name="pageNo" value="${requestScope.pvo.postNo}">
 					</form>				
 					<form name="updateForm"
 						action="${pageContext.request.contextPath}/UpdateMemberController.do" method="post">
-						<input 	type="hidden" name="pageNo" value="${requestScope.pvo.no}">
+						<input 	type="hidden" name="pageNo" value="${requestScope.pvo.postNo}">
 					</form>
 					<button type="button" class="btn btn-outline-primary">
 					<i class="fas fa-fw fa-pencil-alt"></i> 수정</button>
