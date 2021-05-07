@@ -21,6 +21,7 @@
 		}
 		if (cf.id.value != cf.flag.value) {
 			alert("인증받은 아이디가 아닙니다\n아이디 중복확인을 하세요");
+			i
 			return false;
 		}
 	}
@@ -31,7 +32,7 @@
 			alert("아이디를 입력하세요!");
 		} else {
 			//1. 팝업url?id=data , 2. 별칭 , 3. 팝업옵션 
-			window.open("IdCheckController.do?id=" + id, "mypopup",
+			window.open("../IdCheckController.do?id=" + id, "mypopup",
 					"width=450,height=250,top=150,left=400");
 		}
 	}
@@ -71,12 +72,12 @@
 								onsubmit="return checkRegForm()">
 								<div class="form-group">
 									<input type="text" class="form-control form-control-user"
-										id="name" placeholder="이름">
+										name="name" placeholder="이름">
 								</div>
 								<div class="form-group row">
 									<div class="col-sm-6 mb-3 mb-sm-0">
 										<input type="text" class="form-control form-control-user"
-											id="id" placeholder="ID">
+											name="id" placeholder="ID">
 									</div>
 									<div class="col-sm-6">
 										<input type="button" class="form-control form-control-user"
@@ -95,7 +96,7 @@
 								</div>
 								<div class="form-group">
 									<input type="email" class="form-control form-control-user"
-										id="email" placeholder="이메일 주소">
+										name="email" placeholder="이메일 주소">
 								</div>
 								<div class="container">
 									<p>생일을 선택해주세요 (ex.1993-08-22)</p>
@@ -103,7 +104,7 @@
 
 								<div class="form-group">
 									<input type="date" class="form-control form-control-user"
-										id="birth" placeholder="생년월일">
+										name="birth" placeholder="생년월일" value="date">
 								</div>
 								<div class="container">
 									<p>성별</p>
@@ -127,25 +128,25 @@
 									<div class="form-check-inline">
 										<label class="form-check-label" for="radio1"> <input
 											type="radio" class="form-check-input" id="radio1"
-											name="travelstyle" value="option1" checked>사진
+											name="travelstyle" value="사진" checked>사진
 										</label>
 									</div>
 									<div class="form-check-inline">
 										<label class="form-check-label" for="radio2"> <input
 											type="radio" class="form-check-input" id="radio2"
-											name="travelstyle" value="option2">맛집
+											name="travelstyle" value="맛집">맛집
 										</label>
 									</div>
 									<div class="form-check-inline">
 										<label class="form-check-label" for="radio3"> <input
 											type="radio" class="form-check-input" id="radio3"
-											name="travelstyle" value="option3">뚜벅이
+											name="travelstyle" value="뚜벅이">뚜벅이
 										</label>
 									</div>
 									<div class="form-check-inline">
 										<label class="form-check-label" for="radio4"> <input
 											type="radio" class="form-check-input" id="radio4"
-											name="travelstyle" value="option4">리무진
+											name="travelstyle" value="리무진">리무진
 										</label>
 									</div>
 								</div>
@@ -154,46 +155,52 @@
 								<div class="container">
 									<p>현재국가</p>
 									<div class="form-check-inline">
-										<label class="form-check-label" for="radio1"> <input
-											type="radio" class="form-check-input" id="radio1"
-											name="country" value="option1" checked>한국
-										</label>
-									</div>
-									<div class="form-check-inline">
-										<label class="form-check-label" for="radio2"> <input
-											type="radio" class="form-check-input" id="radio2"
-											name="country" value="option2">영국
-										</label>
-									</div>
-									<div class="form-check-inline">
-										<label class="form-check-label" for="radio3"> <input
-											type="radio" class="form-check-input" id="radio3"
-											name="country" value="option3">독일
-										</label>
-									</div>
-									<div class="form-check-inline">
-										<label class="form-check-label" for="radio4"> <input
-											type="radio" class="form-check-input" id="radio4"
-											name="country" value="option4">프랑스
-										</label>
-									</div>
-									<div class="form-check-inline">
 										<label class="form-check-label" for="radio5"> <input
 											type="radio" class="form-check-input" id="radio5"
-											name="country" value="option5">이탈리아
+											name="countryVO" value="한국" checked>한국
 										</label>
 									</div>
+									<div class="form-check-inline">
+										<label class="form-check-label" for="radio6"> <input
+											type="radio" class="form-check-input" id="radio6"
+											name="countryVO" value="영국">영국
+										</label>
+									</div>
+									<div class="form-check-inline">
+										<label class="form-check-label" for="radio7"> <input
+											type="radio" class="form-check-input" id="radio7"
+											name="countryVO" value="독일">독일
+										</label>
+									</div>
+									<div class="form-check-inline">
+										<label class="form-check-label" for="radio8"> <input
+											type="radio" class="form-check-input" id="radio8"
+											name="countryVO" value="프랑스">프랑스
+										</label>
+									</div>
+									<div class="form-check-inline">
+										<label class="form-check-label" for="radio9"> <input
+											type="radio" class="form-check-input" id="radio9"
+											name="countryVO" value="이탈리아">이탈리아
+										</label>
+									</div> 
+								</div>
+
+								<div class="text-center">
+									<input type="submit" class="btn btn-primary" value="함께 여행하기">
 								</div>
 							</form>
-							&nbsp; <a href="RegisterController.do"
-								class="btn btn-primary btn-user btn-block"> 함께 여행하기 </a>
 							<hr>
 
 							<div class="text-center">
-								<a class="small" href="#">아이디 찾기</a>
+								<a class="small"
+									href="${pageContext.request.contextPath}/member/findMyId.jsp">아이디
+									찾기</a>
 							</div>
 							<div class="text-center">
-								<a class="small" href="#">비밀번호 찾기</a>
+								<a class="small"
+									href="${pageContext.request.contextPath}/member/findMyPassword.jsp">비밀번호
+									찾기</a>
 							</div>
 						</div>
 					</div>

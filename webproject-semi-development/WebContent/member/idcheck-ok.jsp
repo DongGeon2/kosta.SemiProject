@@ -14,7 +14,8 @@
 	}	
 </script>
 </head>
-<body bgcolor="yellow" onunload="openPopup()">
+<%--나중에 이미지로 교체 id ok --%>
+<body bgcolor="blue" onunload="openPopup()">
 <%=request.getParameter("id") %> 아이디 사용가능 <br><br>
 <input type="button" value="확인" onclick="openPopup()">
 </body>

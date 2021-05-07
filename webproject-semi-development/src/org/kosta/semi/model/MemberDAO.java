@@ -269,7 +269,7 @@ public class MemberDAO {
 		boolean flag = false;
 		try {
 			con=dataSource.getConnection();
-			String sql="select count(*) from member where id=?";
+			String sql="select count(*) from member where member_id=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, id);
 			rs=pstmt.executeQuery();

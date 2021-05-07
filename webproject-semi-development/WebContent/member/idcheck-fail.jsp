@@ -14,7 +14,8 @@
 	}
 </script>
 </head>
-<body bgcolor="orange" onunload="closePopup()">
+<%--나중에 이미지로 교체 id fail --%>
+<body bgcolor="blue" onunload="closePopup()">
 <%=request.getParameter("id") %>아이디는 사용불가<br><br>
 <input type="button" value="확인" onclick="closePopup()">
 </body>
