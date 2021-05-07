@@ -222,4 +222,18 @@ WHERE p.country_id=c.country_id AND rnum BETWEEN 1 AND 5
 		}
 		return totalCount;
 	}
+	public void updatePosting(PostVO vo) throws SQLException{
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		try{
+			con=dataSource.getConnection();
+			pstmt=con.prepareStatement("update board set title=?,content=? where no=?");
+			pstmt.setString(1, vo.getPostTitle());
+			pstmt.setString(2, vo.getPostContent());
+			pstmt.setString(3, vo.getPostNo());	
+			pstmt.executeUpdate();			
+		}finally{
+			closeAll(pstmt,con);
+		}
+	}
 }

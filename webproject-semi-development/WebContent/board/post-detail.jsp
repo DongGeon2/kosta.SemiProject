@@ -7,13 +7,6 @@
 	필요한것 : 
 		카테고리(분류), 글제목, 글내용
  -->
-<script>
-	// 나라별 목록 게시판으로 이동
-	function MoveCountryBoardList() {
-		
-	}
-
-</script>
 <div class="card shadow mb-4">
 	<div class="card-header py-3">
 		<h6 class="m-0 font-weight-bold text-primary">${requestScope.countryName} 게시판</h6>
@@ -58,6 +51,14 @@
 				<i class="fas fa-fw fa-pencil-alt"></i> 목록</button>
 				<!-- 내가 쓴 글만 수정 삭제 가능 -->
 				<c:if test="${requestScope.pvo.memberVO.id==sessionScope.mvo.id}">
+				<form name="deleteForm"
+						action="${pageContext.request.contextPath}/UpdateMemberController.do" method="post">
+						<input 	type="hidden" name="pageNo" value="${requestScope.pvo.postNo}">
+					</form>				
+					<form name="updateForm"
+						action="${pageContext.request.contextPath}/UpdateMemberController.do" method="post">
+						<input 	type="hidden" name="pageNo" value="${requestScope.pvo.postNo}">
+					</form>		
 					<button type="button" class="btn btn-outline-primary">
 					<i class="fas fa-fw fa-pencil-alt"></i> 수정</button>
 					<button type="button" class="btn btn-outline-primary">
