@@ -23,8 +23,7 @@ import org.kosta.semi.model.MemberVO;
 			CountryVO cvo = CountryDAO.getInstance().findCountryById(countryId);
 			String email = request.getParameter("email");
 			MemberVO mvo = new MemberVO(cvo, birth, gender, travelstyle, email, id, name, password);
-	
-			System.out.println(mvo);
+
 			MemberDAO.getInstance().registerMember(mvo);
 			
 			return "redirect:index.jsp";
