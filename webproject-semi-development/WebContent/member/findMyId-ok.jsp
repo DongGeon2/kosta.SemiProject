@@ -53,7 +53,9 @@
 									<div class="text-center">
 										<a class="small"
 											href="${pageContext.request.contextPath}/member/login.jsp">로그인</a>&nbsp;&nbsp;
-										<a class="small" href="">비밀번호 찾기</a>
+										<a class="small"
+											href="${pageContext.request.contextPath}/member/findMyPassword.jsp">비밀번호 찾기</a>&nbsp;&nbsp;
+										<a class="small" href="${pageContext.request.contextPath}/index.jsp"">Home</a>
 									</div>
 								</div>
 							</div>

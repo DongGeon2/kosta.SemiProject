@@ -43,25 +43,17 @@
 							<div class="col-lg-12">
 								<div class="p-5">
 									<div class="text-center">
-										<h1 class="h4 text-gray-900 mb-4">아이디 찾기</h1>
-										<form
-											action="${pageContext.request.contextPath}/FindMyIdController.do"
-											method="post" class="user">
+										<h1 class="h4 text-gray-900 mb-4">비밀번호 찾기</h1>
 											<div class="form-group">
-												<input type="text" class="form-control form-control-user"
-													name="email" placeholder="Email"> <input
-													type="submit" class="btn btn-primary" value="확인">
+												<h4>${requestScope.findMVO.password}</h4>
 											</div>
-										</form>
 									</div>
 									<hr>
 									<!--todo 나중에 연결 -->
 									<div class="text-center">
 										<a class="small"
 											href="${pageContext.request.contextPath}/member/login.jsp">로그인</a>&nbsp;&nbsp;
-										<a class="small" href="${pageContext.request.contextPath}/member/findMyPassword.jsp">비밀번호 찾기</a>&nbsp;&nbsp; <a
-											class="small" href="">회원가입</a></a>&nbsp;&nbsp;
-										<a class="small" href="${pageContext.request.contextPath}/index.jsp"">Home</a>
+										<a class="small" href="${pageContext.request.contextPath}/index.jsp">Home</a>
 									</div>
 								</div>
 							</div>

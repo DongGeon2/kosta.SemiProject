@@ -43,13 +43,16 @@
 							<div class="col-lg-12">
 								<div class="p-5">
 									<div class="text-center">
-										<h1 class="h4 text-gray-900 mb-4">아이디 찾기</h1>
+										<h1 class="h4 text-gray-900 mb-4">패스워드 찾기</h1>
 										<form
-											action="${pageContext.request.contextPath}/FindMyIdController.do"
+											action="${pageContext.request.contextPath}/FindMyPasswordController.do"
 											method="post" class="user">
 											<div class="form-group">
 												<input type="text" class="form-control form-control-user"
-													name="email" placeholder="Email"> <input
+													name="email" placeholder="Email"> 
+												<input type="text" class="form-control form-control-user"
+													name="id" placeholder="ID"> 
+													<input
 													type="submit" class="btn btn-primary" value="확인">
 											</div>
 										</form>
@@ -59,7 +62,7 @@
 									<div class="text-center">
 										<a class="small"
 											href="${pageContext.request.contextPath}/member/login.jsp">로그인</a>&nbsp;&nbsp;
-										<a class="small" href="${pageContext.request.contextPath}/member/findMyPassword.jsp">비밀번호 찾기</a>&nbsp;&nbsp; <a
+										<a class="small" href="${pageContext.request.contextPath}/member/findMyId.jsp"">아이디 찾기</a>&nbsp;&nbsp; <a
 											class="small" href="">회원가입</a></a>&nbsp;&nbsp;
 										<a class="small" href="${pageContext.request.contextPath}/index.jsp"">Home</a>
 									</div>
