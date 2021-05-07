@@ -37,10 +37,10 @@
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h6 class="collapse-header">Country</h6>
-						<a class="collapse-item" href="${pageContext.request.contextPath}/IndividualListBycountryController.do?countryId=33&name=프랑스">프랑스</a> 
-						<a class="collapse-item"href="${pageContext.request.contextPath}/IndividualListBycountryController.do?countryId=39&name=이탈리아">이탈리아</a> 
-						<a class="collapse-item" href="${pageContext.request.contextPath}/IndividualListBycountryController.do?countryId=44&name=영국">영국</a> 
-						<a class="collapse-item" href="${pageContext.request.contextPath}/IndividualListBycountryController.do?countryId=49&name=독일">독일</a>
+						<a class="collapse-item" href="${pageContext.request.contextPath}/IndividualListBycountryController.do?countryId=33">프랑스</a> 
+						<a class="collapse-item"href="${pageContext.request.contextPath}/IndividualListBycountryController.do?countryId=39">이탈리아</a> 
+						<a class="collapse-item" href="${pageContext.request.contextPath}/IndividualListBycountryController.do?countryId=44">영국</a> 
+						<a class="collapse-item" href="${pageContext.request.contextPath}/IndividualListBycountryController.do?countryId=49">독일</a>
 					</div>
 				</div></li>
 
