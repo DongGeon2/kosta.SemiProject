@@ -58,7 +58,7 @@
 					<form name="updateForm"
 						action="${pageContext.request.contextPath}/UpdateMemberController.do" method="post">
 						<input 	type="hidden" name="pageNo" value="${requestScope.pvo.postNo}">
-					</form>		
+					</form>
 					<button type="button" class="btn btn-outline-primary">
 					<i class="fas fa-fw fa-pencil-alt"></i> 수정</button>
 					<button type="button" class="btn btn-outline-primary">
