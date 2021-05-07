@@ -36,6 +36,16 @@
 					</tr>
 				</thead>
 				<tbody>
+<<<<<<< HEAD
+				<c:forEach var="pvo" items="${requestScope.list }">
+					<tr>
+						<td>${pvo.postNo }</td>
+						<td>${pvo.catergory }</td>
+						<td class="left"><a href="#">${pvo.postTitle }</a></td>
+						<td>${pvo.memberVO.id }</td>
+						<td>${pvo.postTime }</td>
+						<td>${pvo.hits }</td>
+=======
 						<c:forEach var="pvo" items="${requestScope.list}">
 						<tr>
 							<td>${pvo.postNo}</td>
@@ -53,8 +63,13 @@
 							<td>${pvo.memberVO.id}</td>
 							<td>${pvo.postTime}</td>
 							<td>${pvo.hits}</td>
+>>>>>>> branch 'main' of https://github.com/DongGeon2/kosta.SemiProject.git
 					</tr>
+<<<<<<< HEAD
+			</c:forEach>
+=======
 					</c:forEach>
+>>>>>>> branch 'main' of https://github.com/DongGeon2/kosta.SemiProject.git
 				</tbody>
 			</table>
 			<div class="btnWrap">
