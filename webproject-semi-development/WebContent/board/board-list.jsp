@@ -34,46 +34,16 @@
 					</tr>
 				</thead>
 				<tbody>
+				<c:forEach var="pvo" items="${requestScope.list }">
 					<tr>
-						<td>1</td>
-						<td>정보</td>
-						<td class="left"><a href="#">프랑스환전소</a></td>
-						<td>java</td>
-						<td>2021.05.04</td>
-						<td>0</td>
+						<td>${pvo.postNo }</td>
+						<td>${pvo.catergory }</td>
+						<td class="left"><a href="#">${pvo.postTitle }</a></td>
+						<td>${pvo.memberVO.id }</td>
+						<td>${pvo.postTime }</td>
+						<td>${pvo.hits }</td>
 					</tr>
-					<tr>
-						<td>1</td>
-						<td>정보</td>
-						<td class="left"><a href="#">프랑스환전소</a></td>
-						<td>java</td>
-						<td>2021.05.04</td>
-						<td>0</td>
-					</tr>
-					<tr>
-						<td>1</td>
-						<td>정보</td>
-						<td class="left"><a href="#">프랑스환전소</a></td>
-						<td>java</td>
-						<td>2021.05.04</td>
-						<td>0</td>
-					</tr>
-					<tr>
-						<td>1</td>
-						<td>정보</td>
-						<td class="left"><a href="#">프랑스환전소</a></td>
-						<td>java</td>
-						<td>2021.05.04</td>
-						<td>0</td>
-					</tr>
-					<tr>
-						<td>1</td>
-						<td>정보</td>
-						<td class="left"><a href="#">프랑스환전소</a></td>
-						<td>java</td>
-						<td>2021.05.04</td>
-						<td>0</td>
-					</tr>
+			</c:forEach>
 				</tbody>
 			</table>
 			<div class="btnWrap">

@@ -23,7 +23,9 @@
 				<div class="container-fluid">
 					<!-- Page Heading -->
 					<!-- Content Row -->
+					<c:if test="${urlCountry!=null}">
 						<c:import url="${urlCountry}"></c:import>
+						</c:if>
 					<!-- MAIN 전체 count 받아오기 -->
 						<%-- <c:import url="/template/memberCount.jsp"></c:import> --%>
 					<!-- Country 별 Info 받아오기 -->
