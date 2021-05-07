@@ -260,4 +260,25 @@ public class MemberDAO {
 		}
 		return map;
 	}
+	
+	public boolean idcheck(String id) throws SQLException {
+		MemberVO vo=null;
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		boolean flag = false;
+		try {
+			con=dataSource.getConnection();
+			String sql="select count(*) from member where id=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs=pstmt.executeQuery();
+			if(rs.next() && rs.getInt(1)>0) {
+				flag = true;
+			}
+		}finally {
+			closeAll(rs, pstmt, con);
+		}
+		return flag;
+	}
 }
