@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.kosta.semi.model.CountryDAO;
 import org.kosta.semi.model.MemberVO;
 import org.kosta.semi.model.PagingBean;
 import org.kosta.semi.model.PostDAO;
@@ -48,6 +49,7 @@ public class MyPostListController implements Controller {
 			list = PostDAO.getInstance().getMyPostingList(pagingBean, id);
 			//System.out.println(list);
 			request.setAttribute("list", list);
+			request.setAttribute("country", "내가 쓴 글");
 			request.setAttribute("url", "/board/board-list.jsp");		
 			return "/template/layout.jsp";
 		}

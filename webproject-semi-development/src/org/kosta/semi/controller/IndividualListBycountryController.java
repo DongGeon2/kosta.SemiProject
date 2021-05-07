@@ -30,12 +30,12 @@ public class IndividualListBycountryController implements Controller {
 			pagingBean=new PagingBean(totalPostCount,Integer.parseInt(pageNo));
 		}	
 		request.setAttribute("pagingBean", pagingBean);
-		ArrayList<PostVO>list = PostDAO.getInstance().getPostingList(pagingBean, countryId);
+		ArrayList<PostVO>list = PostDAO.getInstance().getPostingListByCountry(pagingBean, countryId);
 		System.out.println(list.toString());
 		request.setAttribute("list", list);
 		request.setAttribute("url", "/board/board-list.jsp");
 		request.setAttribute("urlCountry", "/template/countryInfo.jsp");
-		request.setAttribute("contry", CountryDAO.getInstance().findCountryById(countryId));
+		request.setAttribute("country", CountryDAO.getInstance().findCountryById(countryId).getCountryName());
 		return "/template/layout.jsp";
 	}
 }
