@@ -97,5 +97,7 @@ public class PostDAO2 {
 		}
 	}
 	
-	public void delete
+	public void delete() {
+		
+	}
 }
