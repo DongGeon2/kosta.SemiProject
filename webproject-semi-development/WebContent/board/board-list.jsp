@@ -5,10 +5,12 @@
 	board-list.jsp
 	나라별 게시판 list 불러오기
  -->
-<input type="hidden" name="country" value="${requestScope.list.countryVO.countryId}"></input>	
+
+<input type="hidden" name="country" value="${requestScope.contry.countryId}"></input>	
+
 <div class="card shadow mb-4">
 	<div class="card-header py-3">
-		<h6 class="m-0 font-weight-bold text-primary">${requestScope.list.countryVO.countryId} 게시판</h6>
+		<h6 class="m-0 font-weight-bold text-primary">${requestScope.contry.countryName} 게시판</h6>
 	</div>
 	<div class="card-body">
 		<div class="table-responsive">
@@ -34,46 +36,25 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td>1</td>
-						<td>정보</td>
-						<td class="left"><a href="#">프랑스환전소</a></td>
-						<td>java</td>
-						<td>2021.05.04</td>
-						<td>0</td>
+						<c:forEach var="pvo" items="${requestScope.list}">
+						<tr>
+							<td>${pvo.postNo}</td>
+							<td>${pvo.catergory}</td>
+							<td><c:choose>
+									<c:when test="${sessionScope.mvo!=null}">
+										<a
+											href="${pageContext.request.contextPath}/PostDetailController.do?postNo=${pvo.postNo}">${pvo.postTitle}
+										</a>
+									</c:when>
+									<c:otherwise>
+									${pvo.postTitle}
+					   			</c:otherwise>
+								</c:choose></td>
+							<td>${pvo.memberVO.id}</td>
+							<td>${pvo.postTime}</td>
+							<td>${pvo.hits}</td>
 					</tr>
-					<tr>
-						<td>1</td>
-						<td>정보</td>
-						<td class="left"><a href="#">프랑스환전소</a></td>
-						<td>java</td>
-						<td>2021.05.04</td>
-						<td>0</td>
-					</tr>
-					<tr>
-						<td>1</td>
-						<td>정보</td>
-						<td class="left"><a href="#">프랑스환전소</a></td>
-						<td>java</td>
-						<td>2021.05.04</td>
-						<td>0</td>
-					</tr>
-					<tr>
-						<td>1</td>
-						<td>정보</td>
-						<td class="left"><a href="#">프랑스환전소</a></td>
-						<td>java</td>
-						<td>2021.05.04</td>
-						<td>0</td>
-					</tr>
-					<tr>
-						<td>1</td>
-						<td>정보</td>
-						<td class="left"><a href="#">프랑스환전소</a></td>
-						<td>java</td>
-						<td>2021.05.04</td>
-						<td>0</td>
-					</tr>
+					</c:forEach>
 				</tbody>
 			</table>
 			<div class="btnWrap">
@@ -81,13 +62,30 @@
 			</div>
 		</div>
 		<!-- Pagination -->
+		<c:set var="pb" value="${requestScope.pagingBean}"></c:set>
 		<ul class="pagination justify-content-center" style="margin-top: 50px">
-			<li class="page-item"><a class="page-link" href="#">Previous</a></li>
-			<li class="page-item"><a class="page-link" href="#">1</a></li>
-			<li class="page-item active"><a class="page-link" href="#">2</a></li>
-			<li class="page-item"><a class="page-link" href="#">3</a></li>
-			<li class="page-item"><a class="page-link" href="#">Next</a></li>
+			<c:if test="${pb.previousPageGroup}">
+				<li class="page-item"><a
+					href="${pageContext.request.contextPath}/AllListController.do?pageNo=${pb.startPageOfPageGroup-1}">&laquo;</a></li>
+			</c:if>
+			<c:forEach var="page" begin="${pb.startPageOfPageGroup}"
+				end="${pb.endPageOfPageGroup}">
+				<c:choose>
+					<c:when test="">
+						<li class="page-item active"><a class="page-link"
+							href="${pageContext.request.contextPath}/AllListController.do?pageNo=${page}">${page}</a></li>
+					</c:when>
+					<c:otherwise>
+						<li><a
+							href="${pageContext.request.contextPath}/AllListController.do?pageNo=${page}">${page}</a></li>
+			`	</c:otherwise>
+				</c:choose>
+			</c:forEach>
+			<c:if test="${pb.nextPageGroup}">
+				<li><a
+					href="${pageContext.request.contextPath}/AllListController.do?pageNo=${pb.endPageOfPageGroup+1}">&raquo;</a></li>
+			</c:if>
 		</ul>
 		<!-- /.Pagination -->
 	</div>
-</div>
+	</div>
