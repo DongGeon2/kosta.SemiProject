@@ -51,7 +51,7 @@
 				<i class="fas fa-fw fa-pencil-alt"></i> 목록</button>
 				<!-- 내가 쓴 글만 수정 삭제 가능 -->
 				<c:if test="${requestScope.pvo.memberVO.id==sessionScope.mvo.id}">
-				<form name="deleteForm"
+				<	<form name="deleteForm"
 						action="${pageContext.request.contextPath}/UpdateMemberController.do" method="post">
 						<input 	type="hidden" name="pageNo" value="${requestScope.pvo.postNo}">
 					</form>				
