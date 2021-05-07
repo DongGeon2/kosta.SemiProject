@@ -19,7 +19,7 @@ public class LoginController implements Controller {
 			session.setAttribute("mvo", mvo);	
 			return "redirect:index.jsp";
 		} else {			
-			return "redirect:login/login-fail.jsp";		
+			return "redirect:member/login-fail.jsp";		
 		}
 	}
 
