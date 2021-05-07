@@ -62,7 +62,7 @@
 			aria-expanded="false"> <span
 				class="mr-2 d-none d-lg-inline text-gray-600 small">
 				${sessionScope.mvo.name}님</span> <img
-				class="img-profile rounded-circle" src="images/undraw_profile.svg"
+				class="img-profile rounded-circle" src="images/circle_flag/${sessionScope.mvo.countryVO.countryId}.svg"
 				alt="사용자 프로필 이미지">
 		</a> <!-- Dropdown - User Information -->
 			<div
