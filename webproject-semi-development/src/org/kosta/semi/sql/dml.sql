@@ -23,8 +23,14 @@ INSERT INTO post VALUES(post_seq.nextval, '33', '정보', '프랑스 환전소 �
 INSERT INTO post VALUES(post_seq.nextval, '39', '동행', '이탈리아에서 한식을 외치다', 'spring',  sysdate, 0,'파스타 피자 질렸어요 내일 저녁 김치찌개에 소주 한잔 하실분? ');
 INSERT INTO post VALUES( post_seq.nextval, '44', '후기', '영국 맛집 플랫아이언 추천!', 'mvc', sysdate,  0,'영국 음식 맛없기로 유명하지만 스테이크가 맛없기는 힘들죠 가성비에 후식 아이스크림까지 완전추천입니다!');
 INSERT INTO post VALUES(post_seq.nextval, '49', '후기', '독일 히틀러호텔 비추ㅠ', 'francfranc', sysdate, 0, '독일 히틀러호텔 거르세요 베드버그 나옴 ㅠ');
+INSERT INTO post VALUES(post_seq.nextval, '39', '동행', 'dfsf', 'singleton',  sysdate, 0,'czcz? ');
+INSERT INTO post VALUES(post_seq.nextval, '39', '동행', '12345', 'spring',  sysdate, 0,'12345 ');
 ----postcomment-----
+delete from post where post_no='22';
+delete from post where post_no='23';
+delete from post where post_no='24';
 
+DELETE FROM member WHERE id='jsp'
 
 SELECT p.post_no, c.country_name, p.category_name,p.post_title,p.member_id, to_char(time_posted, 'YYYY.MM.DD') as time_posted, p.hits 
 FROM post p, country c WHERE p.country_id=c.country_id
@@ -60,5 +66,17 @@ INSERT INTO post VALUES(post_seq.nextval, '33', '정보', '프랑스 환전소 �
 select m.name,m.gender,m.birth,m.email,m.travel_style,c.country_id,c.country_name from member m, country c where m.country_id=c.country_id and member_id='java' and password='a'
 
 SELECT p.post_no, c.country_name, p.category_name, p.post_title, p.member_id, p.time_posted, p.hits
-FROM (SELECT row_number() over(ORDER BY post_no DESC) as rnum,  post_no,post_title , member_id, hits, country_id, category_name, to_char(time_posted, 'YYYY.MM.DD') as time_posted FROM post) p, country c
-WHERE p.country_id=c.country_id AND c.country_id='44' AND rnum BETWEEN 1 AND 5 		
+FROM (SELECT row_number() over(ORDER BY post_no DESC) as rnum,  post_no,post_title , member_id, hits, 
+country_id, category_name, to_char(time_posted, 'YYYY.MM.DD') as time_posted FROM post WHERE country_id=39 ) p, country c
+WHERE p.country_id=c.country_id AND rnum BETWEEN 1 AND 3
+
+SELECT row_number() over(ORDER BY post_no DESC) as rnum,  post_no,post_title , member_id, hits, country_id, category_name, to_char(time_posted, 'YYYY.MM.DD') as time_posted FROM post
+
+
+
+
+
+
+
+
+
