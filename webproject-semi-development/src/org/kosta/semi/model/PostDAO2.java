@@ -77,7 +77,11 @@ public class PostDAO2 {
 		}
 		return pvo;
 	}
-	
+	/**
+	 * 조회수 UPDATE 
+	 * @param postNo
+	 * @throws SQLException
+	 */
 	public void updateHit(String postNo) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
