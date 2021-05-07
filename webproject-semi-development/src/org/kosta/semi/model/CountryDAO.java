@@ -33,6 +33,12 @@ public class CountryDAO {
 			con.close();
 	}
 	
+	/**
+	 * ID로 나라에 대한 모든 정보를 찾아옵니다
+	 * @param id
+	 * @return CountryVO
+	 * @throws SQLException
+	 */
 	public CountryVO findCountryById(String id) throws SQLException{
 		CountryVO vo=null;
 		Connection con=null;
