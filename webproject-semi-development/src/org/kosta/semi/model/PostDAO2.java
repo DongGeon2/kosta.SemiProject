@@ -36,9 +36,6 @@ public class PostDAO2 {
 	 * @param postNo
 	 * @return
 	 * @throws SQLException
-	 * SELECT p.post_no, p.hits,p.member_id, p.category_name, to_char(time_posted, 'YYYY.MM.DD') as time_posted, p.post_title, p.content, m.country_id
-FROM  post p, member m, country c
-WHERE p.member_id = m.member_id AND p.country_id = c.country_id  AND p.post_no = '2';
 	 */
 	public PostVO getPostingByNo(String postNo) throws SQLException {
 		Connection con = null;
@@ -79,5 +76,19 @@ WHERE p.member_id = m.member_id AND p.country_id = c.country_id  AND p.post_no =
 			closeAll(rs,pstmt,con);
 		}
 		return pvo;
+	}
+	
+	public void updateHit(String postNo) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			con=dataSource.getConnection();
+			String sql = "UPDATE post SET hits=hits+1 WHERE post_no = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, postNo);
+			pstmt.executeQuery();
+		}finally {
+			closeAll(pstmt,con);
+		}
 	}
 }
