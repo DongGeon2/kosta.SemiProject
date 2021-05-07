@@ -133,21 +133,22 @@ public class MemberDAO {
 		return vo;
 	}
 	/**
-	 * email로 회원 password 조회
-	 * @param email
+	 * email과 id로 회원 password 조회
+	 * @param email, id
 	 * @return email,password
 	 * @throws SQLException
 	 */
-	public MemberVO findPasswordByEmail(String email) throws SQLException{
+	public MemberVO findPasswordByEmail(String email, String id) throws SQLException{
 		MemberVO vo=null;
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		try {
 			con=dataSource.getConnection();
-			String sql="select password from member where email=?";
+			String sql="select password from member where email=? and member_id=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, email);
+			pstmt.setString(2, id);
 			rs=pstmt.executeQuery();
 			if(rs.next()) {
 				vo=new MemberVO();

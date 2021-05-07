@@ -8,8 +8,9 @@ INSERT INTO country VALUES('33', '프랑스', sysdate, '불어','유로');
 INSERT INTO country VALUES('39', '이탈리아', sysdate, '이탈리아어','유로');
 INSERT INTO country VALUES('44', '영국', sysdate, '영어','파운드');
 INSERT INTO country VALUES('49', '독일', sysdate, '독일어','유로');
+INSERT INTO country VALUES('82', '한국', sysdate, '한국어','원');
 ----manager-----
-INSERT INTO manager VALUES('managerKim', 'a','주커피');W
+INSERT INTO manager VALUES('managerKim', 'a','주커피');
 ----member-----
 INSERT INTO member VALUES('java','a','최인재','m','19950929','a@ab.c','사진','33');
 INSERT INTO member VALUES('spring','a','김지은','f','19930316','b@ab.c','맛집','39');
