@@ -47,7 +47,7 @@ public class PostDAO2 {
 			StringBuilder sql=new StringBuilder();
 			sql.append("SELECT p.post_no, p.hits,p.member_id, p.category_name, ");	
 			sql.append("to_char(time_posted, 'YYYY.MM.DD') as time_posted, ");	
-			sql.append("p.post_title, p.content, m.country_id, c.country_name ");	
+			sql.append("p.post_title, p.content, p.country_id, c.country_name ");	
 			sql.append("FROM  post p, member m, country c ");	
 			sql.append("WHERE p.member_id = m.member_id AND p.country_id = c.country_id  AND p.post_no = ?");	
 			pstmt=con.prepareStatement(sql.toString());
@@ -63,9 +63,10 @@ public class PostDAO2 {
 				pvo.setMemberVO(mvo);
 				
 				CountryVO cvo = new CountryVO();
-				cvo.setCountryId("country_id");
-				cvo.setCountryName("country_name");
+				cvo.setCountryId(rs.getString("country_id"));
+				cvo.setCountryName(rs.getString("country_name"));
 				pvo.setCountryVO(cvo);
+				mvo.setCountryVO(cvo);
 				
 				pvo.setCatergory(rs.getString("category_name"));
 				pvo.setPostTime(rs.getString("time_posted"));
@@ -77,7 +78,11 @@ public class PostDAO2 {
 		}
 		return pvo;
 	}
-	
+	/**
+	 * 조회수 UPDATE 
+	 * @param postNo
+	 * @throws SQLException
+	 */
 	public void updateHit(String postNo) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;

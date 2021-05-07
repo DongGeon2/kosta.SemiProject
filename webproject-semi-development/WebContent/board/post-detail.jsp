@@ -7,9 +7,16 @@
 	필요한것 : 
 		카테고리(분류), 글제목, 글내용
  -->
+<script>
+	// 나라별 목록 게시판으로 이동
+	function MoveCountryBoardList() {
+		
+	}
+
+</script>
 <div class="card shadow mb-4">
 	<div class="card-header py-3">
-		<h6 class="m-0 font-weight-bold text-primary">${pvo.countryVO.countryName} 게시판</h6>
+		<h6 class="m-0 font-weight-bold text-primary">${requestScope.country} 게시판</h6>
 	</div>
 	<div class="card-body">
 		<div class="table-responsive">
@@ -47,8 +54,9 @@
 			</table>
 			<div class="btnWrap">
 				<!-- 모든 사용자는 목록 btn을 볼 수 있다. -->
-				<button type="button" class="btn btn-outline-primary">
+				<button type="button" class="btn btn-outline-primary" onclick="MoveCountryBoardList()">
 				<i class="fas fa-fw fa-pencil-alt"></i> 목록</button>
+				<!-- 내가 쓴 글만 수정 삭제 가능 -->
 				<c:if test="${requestScope.pvo.memberVO.id==sessionScope.mvo.id}">
 					<button type="button" class="btn btn-outline-primary">
 					<i class="fas fa-fw fa-pencil-alt"></i> 수정</button>
