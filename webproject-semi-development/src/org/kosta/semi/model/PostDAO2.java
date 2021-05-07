@@ -66,6 +66,7 @@ public class PostDAO2 {
 				cvo.setCountryId(rs.getString("country_id"));
 				cvo.setCountryName(rs.getString("country_name"));
 				pvo.setCountryVO(cvo);
+				mvo.setCountryVO(cvo);
 				
 				pvo.setCatergory(rs.getString("category_name"));
 				pvo.setPostTime(rs.getString("time_posted"));
