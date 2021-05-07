@@ -30,8 +30,53 @@ public class PostDAO2 {
 		if(con!=null)
 			con.close();
 	}
-	public PostVO getPostingByNo(String postNo) {
-		// TODO Auto-generated method stub
-		return null;
+	/**
+	 * getPostingByNo
+	 * 상세 글 보기 (post-detail.jsp) 와 연동
+	 * @param postNo
+	 * @return
+	 * @throws SQLException
+	 * SELECT p.post_no, p.hits,p.member_id, p.category_name, to_char(time_posted, 'YYYY.MM.DD') as time_posted, p.post_title, p.content, m.country_id
+FROM  post p, member m, country c
+WHERE p.member_id = m.member_id AND p.country_id = c.country_id  AND p.post_no = '2';
+	 */
+	public PostVO getPostingByNo(String postNo) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		PostVO pvo = null;
+		try{
+			con=dataSource.getConnection();
+			StringBuilder sql=new StringBuilder();
+			sql.append("SELECT p.post_no, p.hits,p.member_id, p.category_name, ");	
+			sql.append("to_char(time_posted, 'YYYY.MM.DD') as time_posted, ");	
+			sql.append("p.post_title, p.content, m.country_id ");	
+			sql.append("FROM  post p, member m, country c ");	
+			sql.append("WHERE p.member_id = m.member_id AND p.country_id = c.country_id  AND p.post_no = ?");	
+			pstmt=con.prepareStatement(sql.toString());
+			pstmt.setInt(1, Integer.parseInt(postNo));
+			rs=pstmt.executeQuery();		
+			if(rs.next()){
+				pvo=new PostVO();
+				pvo.setPostNo(postNo);
+				pvo.setHits(rs.getInt("hits"));
+				
+				MemberVO mvo=new MemberVO();
+				mvo.setId(rs.getString("member_id"));
+				pvo.setMemberVO(mvo);
+				
+				CountryVO cvo = new CountryVO();
+				cvo.setCountryId("country_id");
+				pvo.setCountryVO(cvo);
+				
+				pvo.setCatergory(rs.getString("category_name"));
+				pvo.setPostTime(rs.getString("time_posted"));
+				pvo.setPostTitle(rs.getString("post_title"));
+				pvo.setPostContent(rs.getString("content"));
+			}			
+		}finally{
+			closeAll(rs,pstmt,con);
+		}
+		return pvo;
 	}
 }
