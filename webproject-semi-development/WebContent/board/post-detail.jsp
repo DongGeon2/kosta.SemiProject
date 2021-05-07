@@ -88,11 +88,7 @@
 				</button>
 				<!-- 내가 쓴 글만 수정 삭제 가능 -->
 				<c:if test="${requestScope.pvo.memberVO.id==sessionScope.mvo.id}">
-<<<<<<< HEAD
-						<button type="button" class="btn btn-outline-primary" onclick="updatePost()">
-=======
 					<button type="button" class="btn btn-outline-primary" onclick="updatePost()">
->>>>>>> branch 'main' of https://github.com/DongGeon2/kosta.SemiProject.git
 						<i class="fas fa-fw fa-pencil-alt"></i> 수정
 					</button>
 					<button type="button" class="btn btn-outline-primary" onclick="deletePost()">
