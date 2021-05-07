@@ -36,10 +36,107 @@
                     <div class="col-lg-7">
                         <div class="p-5">
                             <div class="text-center">
-                                <h1 class="h4 text-gray-900 mb-4">${sessionScope.mvo.id}님 회원 정보 수정</h1>
+                                <h1 class="h4 text-gray-900 mb-4">회원정보 수정</h1>
                             </div>
                             <form action="${pageContext.request.contextPath}/UpdateMemberController.do" method="post" class="user">
                                 <div class="form-group row">
+									<div class="col-sm-6 mb-3 mb-sm-0">
+										<h3>ID : ${sessionScope.mvo.id}</h3>
+										<!-- <input type="text" class="form-control form-control-user"
+											id="id" placeholder="ID"> -->
+									</div>
+									<div class="col-sm-6">
+										<input type="text" class="form-control form-control-user"
+											name="name" value="${sessionScope.mvo.name}">
+									</div>
+								</div>
+								<div class="form-group row">
+									<div class="col-sm-6 mb-3 mb-sm-0">
+										<input type="password" class="form-control form-control-user"
+											name="password" placeholder="Password">
+									</div>
+									<div class="col-sm-6">
+										<input type="password" class="form-control form-control-user"
+											name="confirmPassword"placeho lder="Password 확인">
+									</div>
+								</div>
+								<div class="form-group">
+									<h3>Email : ${sessionScope.mvo.email}</h3>
+									<!-- <input type="email" class="form-control form-control-user"
+										id="email" placeholder="이메일 주소"> -->
+								</div>
+								
+								<div class="form-group">
+									<input type="date" class="form-control form-control-user"
+										name="birth" placeholder="생년월일">
+								</div>
+								<div class="container">
+									<p>여행스타일</p>
+									<div class="form-check-inline">
+										<label class="form-check-label" for="radio1"> <input
+											type="radio" class="form-check-input" id="radio1"
+											name="travelstyle" value="사진" checked>사진
+										</label>
+									</div>
+									<div class="form-check-inline">
+										<label class="form-check-label" for="radio2"> <input
+											type="radio" class="form-check-input" id="radio2"
+											name="travelstyle" value="맛집">맛집
+										</label>
+									</div>
+									<div class="form-check-inline">
+										<label class="form-check-label" for="radio3"> <input
+											type="radio" class="form-check-input" id="radio3"
+											name="travelstyle" value="뚜벅이">뚜벅이
+										</label>
+									</div>
+									<div class="form-check-inline">
+										<label class="form-check-label" for="radio4"> <input
+											type="radio" class="form-check-input" id="radio4"
+											name="travelstyle" value="리무진">리무진
+										</label>
+									</div>
+								</div>
+								&nbsp;
+								<form>
+									<div class="container">
+										<p>현재국가</p>
+										<div class="form-check-inline">
+											<label class="form-check-label" for="radio1"> <input
+												type="radio" class="form-check-input" id="radio1"
+												name="country" value="82" checked>한국
+											</label>
+										</div>
+										<div class="form-check-inline">
+											<label class="form-check-label" for="radio2"> <input
+												type="radio" class="form-check-input" id="radio2"
+												name="country" value="44">영국
+											</label>
+										</div>
+										<div class="form-check-inline">
+											<label class="form-check-label" for="radio3"> <input
+												type="radio" class="form-check-input" id="radio3"
+												name="country" value="49">독일
+											</label>
+										</div>
+										<div class="form-check-inline">
+											<label class="form-check-label" for="radio4"> <input
+												type="radio" class="form-check-input" id="radio4"
+												name="country" value="33">프랑스
+											</label>
+										</div>
+										<div class="form-check-inline">
+											<label class="form-check-label" for="radio5"> <input
+												type="radio" class="form-check-input" id="radio5"
+												name="country" value="39">이탈리아
+											</label>
+										</div>
+									</div>
+									<div class="text-center">
+                                        	<input type="submit" class="btn btn-primary" value="수정">
+                                    </div>
+								</form>
+                                <%-- <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                         <input type="text" class="form-control form-control-user" name="name"
                                             value="${sessionScope.mvo.name}">
@@ -65,7 +162,7 @@
                                 </div> -->
                                 <div class="text-center">
                                    <input type="submit" class="btn btn-primary" value="수정">
-                                </div>
+                                </div> --%>
                             </form>
                             <hr>
                       
