@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.kosta.semi.model.MemberVO;
 import org.kosta.semi.model.PostDAO2;
 import org.kosta.semi.model.PostVO;
 /**
@@ -24,12 +25,16 @@ public class PostDetailNoHitsController implements Controller {
 		if (session == null || session.getAttribute("mvo") == null) {
 			return "redirect:index.jsp";
 		}
-		// 개별 게시물 조회
-		String postNo = request.getParameter("postNo");
+		String postNo = request.getParameter("postNo");		
 		PostVO pvo = PostDAO2.getInstance().getPostingByNo(postNo);
+		String countryName = pvo.getCountryVO().getCountryName();
+		
+		// 개별 게시물 조회
 		request.setAttribute("pvo", pvo);
+		request.setAttribute("country", countryName);
 		request.setAttribute("urlCountry", "/template/countryInfo.jsp");
 		request.setAttribute("url", "/board/post-detail.jsp");
+		request.setAttribute("countryName",pvo.getCountryVO().getCountryName());
 		return "/template/layout.jsp";
 	}
 

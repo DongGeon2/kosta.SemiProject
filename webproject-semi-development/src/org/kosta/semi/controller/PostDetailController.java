@@ -32,7 +32,7 @@ public class PostDetailController implements Controller {
 		MemberVO mvo = (MemberVO) session.getAttribute("mvo");
 		PostVO pvo = PostDAO2.getInstance().getPostingByNo(postNo);
 		String countryName = pvo.getCountryVO().getCountryName();
-		System.out.println("PVO : " + pvo);
+		
 		// post 작성자 아이디와 로그인한 id 가 같을 때 조회수 count 안하기
 		if( mvo.getId().equals(pvo.getMemberVO().getId())) {
 			//System.out.println("작성자가 글읽음");
@@ -53,6 +53,7 @@ public class PostDetailController implements Controller {
 		request.setAttribute("country", countryName);
 		request.setAttribute("urlCountry", "/template/countryInfo.jsp");
 		request.setAttribute("url", "/board/post-detail.jsp");
+		request.setAttribute("countryName",pvo.getCountryVO().getCountryName());
 		return "/template/layout.jsp";
 	}
 
