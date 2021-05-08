@@ -15,25 +15,31 @@ public class SearchController implements Controller {
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("SearchController 접근");
 		String keyWord = request.getParameter("keyWord");
-		System.out.println(keyWord);
-		//String column = request.getParameter("column");
-		//System.out.println(column);
+		String column = request.getParameter("column");
+		String country_id = request.getParameter("country_id");
+		// test
+		System.out.println("keyWord: " + keyWord);
+		System.out.println("column: " + column);
+		System.out.println("country_id: " + country_id);
 		
-		int totalPostCount=PostDAO.getInstance().getSearchByKeyWordTotalPostCount(keyWord);
-		String pageNo=request.getParameter("pageNo");
+		int totalPostCount = PostDAO.getInstance().getSearchByKeyWordTotalPostCount(country_id, column, keyWord);
+		//test
+		System.out.println("totalPostCount: "+totalPostCount);
+
+		String pageNo = request.getParameter("pageNo");
 		PagingBean pagingBean = null;
-		if(pageNo==null) {
-			pagingBean=new PagingBean(totalPostCount);
-			System.out.println("pB 시작넘버: "+pagingBean.getStartRowNumber());
-			System.out.println("pB 끝넘버: "+pagingBean.getEndRowNumber());
+		if (pageNo == null) {
+			pagingBean = new PagingBean(totalPostCount);
+			System.out.println("pB 시작넘버: " + pagingBean.getStartRowNumber());
+			System.out.println("pB 끝넘버: " + pagingBean.getEndRowNumber());
 		} else {
-			pagingBean=new PagingBean(totalPostCount,Integer.parseInt(pageNo));
+			pagingBean = new PagingBean(totalPostCount, Integer.parseInt(pageNo));
 		}
 		request.setAttribute("pagingBean", pagingBean);
-		
+
 		ArrayList<PostVO> resultList = new ArrayList<PostVO>();
-		resultList = PostDAO.getInstance().searchByKeyWord(pagingBean, keyWord);
-		request.setAttribute("list",resultList);
+		resultList = PostDAO.getInstance().searchByKeyWord(pagingBean, country_id, column, keyWord);
+		request.setAttribute("list", resultList);
 		request.setAttribute("url", "/board/main-list.jsp");
 		return "/template/layout.jsp";
 	}
