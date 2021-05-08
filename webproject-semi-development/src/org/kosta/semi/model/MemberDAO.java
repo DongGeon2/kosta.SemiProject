@@ -70,6 +70,7 @@ public class MemberDAO {
 	            vo.setTravelStyle(rs.getString(5));
 	            cvo.setCountryId(rs.getString(6));
 	            cvo.setCountryName(rs.getString(7));
+	            vo.setCountryVO(cvo);
 	         }
 	      }finally{
 	         closeAll(rs, pstmt,con);
@@ -259,5 +260,26 @@ public class MemberDAO {
 			closeAll(rs, pstmt, con);
 		}
 		return map;
+	}
+	
+	public boolean idcheck(String id) throws SQLException {
+		MemberVO vo=null;
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		boolean flag = false;
+		try {
+			con=dataSource.getConnection();
+			String sql="select count(*) from member where member_id=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs=pstmt.executeQuery();
+			if(rs.next() && rs.getInt(1)>0) {
+				flag = true;
+			}
+		}finally {
+			closeAll(rs, pstmt, con);
+		}
+		return flag;
 	}
 }

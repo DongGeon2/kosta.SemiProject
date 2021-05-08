@@ -77,10 +77,9 @@
 						value="${requestScope.pvo.postNo}">
 				</form>
 				<form name="updateForm"
-					action="${pageContext.request.contextPath}/UpdateMemberController.do"
+					action="${pageContext.request.contextPath}/UpdatePostFormController.do"
 					method="post">
-					<input type="hidden" name="pageNo"
-						value="${requestScope.pvo.postNo}">
+					<input type="hidden" name="postNo" value="${requestScope.pvo.postNo}">
 				</form>
 				<!-- 모든 사용자는 목록 btn을 볼 수 있다. -->
 				<button type="button" class="btn btn-outline-primary" onclick="MoveList()">

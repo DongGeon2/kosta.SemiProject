@@ -133,7 +133,7 @@ WHERE p.country_id=c.country_id AND rnum BETWEEN 1 AND 5
 			con=dataSource.getConnection();
 			StringBuilder sql = new StringBuilder();
 			sql.append("SELECT ROWNUM, x.* ");
-			sql.append("FROM (SELECT p.post_no, c.country_name, p.category_name, p.post_title, p.member_id, p.time_posted, p.hits ");
+			sql.append("FROM (SELECT p.post_no, c.country_name, p.category_name, p.post_title, p.member_id, to_char(p.time_posted, 'YYYY.MM.DD') as time_posted , p.hits ");
 			sql.append("FROM post p, country c ");
 			sql.append("WHERE p.country_id=c.country_id AND p.member_id=? ");
 			sql.append("ORDER BY p.post_no) x ");
@@ -162,7 +162,6 @@ WHERE p.country_id=c.country_id AND rnum BETWEEN 1 AND 5
 		} finally {
 			closeAll(rs, pstmt, con);
 		}
-		System.out.println("list: "+list);
 		return list;
 	}
 	
@@ -235,5 +234,78 @@ WHERE p.country_id=c.country_id AND rnum BETWEEN 1 AND 5
 		}finally{
 			closeAll(pstmt,con);
 		}
+	}
+	/**
+	 * 특정 칼럼(column)에 특정 문자열(keyWord) 을 포함하는 로우(게시물) 검색
+	 * getAllPostingList()활용
+	 * @author 지은
+	 * @param keyWord
+	 * @return resultList
+	 * @throws SQLException 
+	 */
+	//제목으로 검색했을때 결과 목록
+	//매개변수 pagingBean, column 추가해서 구현해야
+	public ArrayList<PostVO> searchByKeyWord(PagingBean pagingBean, String keyWord) throws SQLException {
+		System.out.println("PostDAO 메서드searchByKeyWord접근");
+		ArrayList<PostVO> resultList = new ArrayList<PostVO>();
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			con=dataSource.getConnection();
+			StringBuilder sql = new StringBuilder();
+			sql.append("SELECT ROWNUM, x.* ");
+			sql.append("FROM (SELECT p.post_no, c.country_name, p.category_name, p.post_title, p.member_id, to_char(p.time_posted, 'YYYY.MM.DD') as time_posted, p.hits ");
+			sql.append("FROM post p, country c ");
+			sql.append("WHERE p.country_id=c.country_id ");
+			sql.append("AND post_title LIKE '%' || ? || '%' ");
+			sql.append("ORDER BY p.post_no) x ");
+			sql.append("WHERE ROWNUM BETWEEN ? AND ? ");
+			pstmt=con.prepareStatement(sql.toString());
+			pstmt.setString(1, keyWord);
+			pstmt.setInt(2, pagingBean.getStartRowNumber());
+			pstmt.setInt(3, pagingBean.getEndRowNumber());
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				PostVO vo = new PostVO();
+				vo.setPostNo(rs.getString(1));
+				vo.setPostTitle(rs.getString(5));
+				vo.setPostContent(null);
+				vo.setHits(rs.getInt(8));
+				vo.setPostTime(rs.getString(7));
+				MemberVO mvo = new MemberVO();
+				mvo.setId(rs.getString(6));		
+				vo.setMemberVO(mvo);
+				CountryVO cvo = new CountryVO();
+				cvo.setCountryName(rs.getString(3));
+				vo.setCountryVO(cvo);
+				vo.setCatergory(rs.getString(4));
+				resultList.add(vo);
+			}
+		} finally {
+			closeAll(rs, pstmt, con);
+		}
+		return resultList;
+	}
+	//제목으로 검색결과 게시물수
+	public int getSearchByKeyWordTotalPostCount(String keyWord) throws SQLException{
+		System.out.println("PostDAO - getMyTotalPostCount()메서드 접근");
+		int totalCount=0;
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		try {
+			con=dataSource.getConnection();
+			String sql="SELECT COUNT(*) FROM post WHERE post_title LIKE '%' || ? || '%' ";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, keyWord);
+			rs=pstmt.executeQuery();
+			if(rs.next())
+				totalCount=rs.getInt(1);
+		}finally {
+			closeAll(rs, pstmt, con);
+		}
+		System.out.println("totalCount: " +totalCount);
+		return totalCount;
 	}
 }

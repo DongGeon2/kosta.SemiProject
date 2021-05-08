@@ -17,6 +17,8 @@ public class UpdatePostFormController implements Controller {
 			return "redirect:index.jsp";
 		}
 		PostVO vo = PostDAO2.getInstance().getPostingByNo(request.getParameter("postNo"));
+		System.out.println("************");
+		System.out.println(vo);
 		request.setAttribute("pvo", vo);
 		request.setAttribute("url", "/board/post-update.jsp");
 		return "/template/layout.jsp";

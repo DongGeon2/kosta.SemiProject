@@ -11,7 +11,6 @@ public class MemberCountController implements Controller {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("MemberCountController 접근");
 		HashMap<String, Integer> map = MemberDAO.getInstance().getMemberCountByCountry();
 		request.setAttribute("countryMap", map);
 		return "/template/memberCount.jsp";

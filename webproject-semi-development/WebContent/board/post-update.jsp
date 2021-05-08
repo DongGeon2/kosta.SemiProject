@@ -12,13 +12,15 @@
 		<h6 class="m-0 font-weight-bold text-primary">프랑스 게시판</h6>
 	</div>
 	<div class="card-body">
-		<form action="post" action="">
+		<form method="post" action="${pageContext.request.contextPath}/UpdatePostController.do">
+		<input type="hidden" name="no" value="${pvo.postNo}"></input>		
 			<div class="form-group">
 				<label for="catergory">분류</label> 
 				<select class="form-control" id="catergory" name="catergory">
-					<option selected>정보</option>
-					<option>동행</option>
-					<option>후기</option>
+					<option selected>분류를 선택해주세요</option>
+					<option value="정보" >정보</option>
+					<option value="동행" >동행</option>
+					<option value="후기" >후기</option>
 				</select>
 			</div>
 			<div class="form-group">
