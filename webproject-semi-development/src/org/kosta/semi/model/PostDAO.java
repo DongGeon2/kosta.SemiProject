@@ -139,7 +139,6 @@ public class PostDAO {
 	 **/
 	public ArrayList<PostVO> getMyPostingList(PagingBean pagingBean, String id) throws SQLException {
 		// 서브쿼리 작성후 ROWNUM 사용
-		System.out.println("PostDAO - getMyPostingList()메서드 접근");
 		ArrayList<PostVO> list = new ArrayList<PostVO>();
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -209,7 +208,6 @@ public class PostDAO {
 	 * @throws SQLException
 	 **/
 	public int getMyTotalPostCount(String id) throws SQLException {
-		System.out.println("PostDAO - getMyTotalPostCount()메서드 접근");
 		int totalCount = 0;
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -225,7 +223,6 @@ public class PostDAO {
 		} finally {
 			closeAll(rs, pstmt, con);
 		}
-		System.out.println("totalCount: " + totalCount);
 		return totalCount;
 	}
 
