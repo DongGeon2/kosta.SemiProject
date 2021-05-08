@@ -73,13 +73,3 @@ country_id, category_name, to_char(time_posted, 'YYYY.MM.DD') as time_posted FRO
 WHERE p.country_id=c.country_id AND rnum BETWEEN 1 AND 3
 
 SELECT row_number() over(ORDER BY post_no DESC) as rnum,  post_no,post_title , member_id, hits, country_id, category_name, to_char(time_posted, 'YYYY.MM.DD') as time_posted FROM post
-
-
-
-
-
-
-
-
-
->>>>>>> branch 'main' of https://github.com/DongGeon2/kosta.SemiProject.git
