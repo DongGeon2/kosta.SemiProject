@@ -20,8 +20,6 @@ public class IndividualListBycountryController implements Controller {
 		PagingBean pagingBean = null;
 		if(pageNo==null) {
 			pagingBean=new PagingBean(totalPostCount);
-			System.out.println(pagingBean.getStartRowNumber());
-			System.out.println(pagingBean.getEndRowNumber());
 		} else {
 			pagingBean=new PagingBean(totalPostCount,Integer.parseInt(pageNo));
 		}	
