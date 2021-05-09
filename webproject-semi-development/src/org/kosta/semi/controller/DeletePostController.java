@@ -18,11 +18,13 @@ public class DeletePostController implements Controller {
 		}
 		// pageNo -> postNo 수정해야함
 		String postNo = request.getParameter("pageNo");	
+		PostVO pvo = PostDAO2.getInstance().getPostingByNo(postNo);
 		System.out.println(postNo);
-		//PostVO pvo = PostDAO2.getInstance().getPostingByNo(postNo);
+		
+		String countryId = pvo.getCountryVO().getCountryId();
 		PostDAO2.getInstance().deletePosting( Integer.parseInt(postNo));
-		//String countryName = pvo.getCountryVO().getCountryName();
-		return "redirect:AllListController.do";
+		// 삭제된 게시글의 나라 게시판으로 이동
+		return "redirect:IndividualListBycountryController.do?countryId=" + countryId;
 	}
 
 }
