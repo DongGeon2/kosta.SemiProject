@@ -13,7 +13,7 @@
 	<!-- Earnings (Monthly) Card Example -->
 	<div class="col-xl-3 col-md-6 mb-4">
 		<div class="card border-left-primary shadow h-100 py-2">
-	<div class="card-body" OnClick="location.href ='IndividualListBycountryController.do?countryId=33'" style="cursor:pointer;">
+	<div class="card-body" OnClick="location.href ='IndividualListBycountryController.do?countryId=33'" style="cursor:pointer;" title="클릭시 해당 게시판으로 이동합니다.">
 				<div class="row no-gutters align-items-center">
 					<div class="col mr-2">
 						<div
@@ -34,7 +34,7 @@
 	<!-- Earnings (Monthly) Card Example -->
 	<div class="col-xl-3 col-md-6 mb-4">
 		<div class="card border-left-success shadow h-100 py-2">
-			<div class="card-body" OnClick="location.href ='IndividualListBycountryController.do?countryId=39'" style="cursor:pointer;">
+			<div class="card-body" OnClick="location.href ='IndividualListBycountryController.do?countryId=39'" style="cursor:pointer;" title="클릭시 해당 게시판으로 이동합니다.">
 				<div class="row no-gutters align-items-center">
 					<div class="col mr-2">
 						<div
@@ -55,7 +55,7 @@
 	<!-- Earnings (Monthly) Card Example -->
 	<div class="col-xl-3 col-md-6 mb-4">
 		<div class="card border-left-info shadow h-100 py-2">
-			<div class="card-body" OnClick="location.href ='IndividualListBycountryController.do?countryId=44'" style="cursor:pointer;">
+			<div class="card-body" OnClick="location.href ='IndividualListBycountryController.do?countryId=44'" style="cursor:pointer;" title="클릭시 해당 게시판으로 이동합니다.">
 				<div class="row no-gutters align-items-center">
 					<div class="col mr-2">
 						<div
@@ -80,7 +80,7 @@
 	<!-- Pending Requests Card Example -->
 	<div class="col-xl-3 col-md-6 mb-4">
 		<div class="card border-left-warning shadow h-100 py-2">
-			<div class="card-body" OnClick="location.href ='IndividualListBycountryController.do?countryId=49'" style="cursor:pointer;">
+			<div class="card-body" OnClick="location.href ='IndividualListBycountryController.do?countryId=49'" style="cursor:pointer;" title="클릭시 해당 게시판으로 이동합니다.">
 				<div class="row no-gutters align-items-center">
 					<div class="col mr-2">
 						<div

@@ -75,8 +75,7 @@
 							href="${pageContext.request.contextPath}/AllListController.do?pageNo=${page}">${page}</a></li>
 					</c:when>
 					<c:otherwise>
-						<li><a
-							href="${pageContext.request.contextPath}/AllListController.do?pageNo=${page}">${page}</a></li>
+						<li><a class="page-link" href="${pageContext.request.contextPath}/AllListController.do?pageNo=${page}">${page}</a></li>
 				</c:otherwise>
 				</c:choose>
 			</c:forEach>
