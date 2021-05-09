@@ -38,7 +38,7 @@
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h6 class="collapse-header">Country</h6>
 						<a class="collapse-item" href="${pageContext.request.contextPath}/IndividualListBycountryController.do?countryId=33">프랑스</a> 
-						<a class="collapse-item"href="${pageContext.request.contextPath}/IndividualListBycountryController.do?countryId=39">이탈리아</a> 
+						<a class="collapse-item" href="${pageContext.request.contextPath}/IndividualListBycountryController.do?countryId=39">이탈리아</a> 
 						<a class="collapse-item" href="${pageContext.request.contextPath}/IndividualListBycountryController.do?countryId=44">영국</a> 
 						<a class="collapse-item" href="${pageContext.request.contextPath}/IndividualListBycountryController.do?countryId=49">독일</a>
 					</div>

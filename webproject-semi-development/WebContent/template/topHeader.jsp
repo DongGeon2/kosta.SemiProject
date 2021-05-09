@@ -12,16 +12,16 @@
 
 	<!-- Topbar Search -->
 	<form action="SearchController.do" name="searchForm"
-		class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+		class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search searchForm">
 		<div class="input-group">
-		<select name="country_id" required="required">
+			<select class="form-control" name="country_id" required="required">
 				<option value="all" selected="selected">-모든국가-</option>
 				<option value="33" >프랑스</option>
 				<option value="39">이탈리아</option>
 				<option value="44">영국</option>
 				<option value="49">독일</option>
 			</select>	
-			<select name="column" required="required" >
+			<select class="form-control" name="column" required="required" >
 				<option value="(p.content||p.post_title)" selected="selected">제목+내용</option>
 				<option value="p.content">내용</option>
 				<option value="p.post_title">제목</option>
