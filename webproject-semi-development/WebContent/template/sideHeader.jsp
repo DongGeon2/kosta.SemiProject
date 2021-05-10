@@ -86,7 +86,7 @@
 					aria-labelledby="headingPages" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h6 class="collapse-header">회원 관리</h6>
-						<a class="collapse-item" href="#">회원 조회</a>
+						<a class="collapse-item" href="${pageContext.request.contextPath}/MemberListController.do">회원 조회</a>
 					
 
 						<!-- <a class="collapse-item" href="#">내가 쓴 댓글 보기</a>  -->
