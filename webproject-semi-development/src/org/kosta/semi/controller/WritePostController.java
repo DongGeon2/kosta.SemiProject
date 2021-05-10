@@ -57,7 +57,7 @@ public class WritePostController implements Controller {
 			String countryName = multi.getParameter("countryname");
 			System.out.println(countryName);
 			
-			CountryVO cvo = CountryDAO.getInstance().findCountryId(countryName);
+			CountryVO cvo = CountryDAO.getInstance().findCountryName(countryName);
 			System.out.println(cvo.getCountryId());
 			
 			PostVO pvo = new PostVO();
