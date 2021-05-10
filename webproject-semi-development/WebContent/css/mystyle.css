@@ -25,3 +25,11 @@ pre {
 	color:#858796;
 	text-align: initial;
 }
+
+.searchForm select{
+	font-size:0.8rem;
+}
+
+.searchForm input{
+	border:1px solid #d1d3e2 !important;
+}

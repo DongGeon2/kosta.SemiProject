@@ -90,21 +90,25 @@ public class PostDAO2 {
 			con=dataSource.getConnection();
 			String sql = "UPDATE post SET hits=hits+1 WHERE post_no = ?";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, postNo);
+			pstmt.setInt(1, Integer.parseInt(postNo));
 			pstmt.executeUpdate();
 		}finally {
 			closeAll(pstmt,con);
 		}
 	}
-	
-	public void deletePosting(String postNo) throws SQLException {
+	/**
+	 * 게시글 DELETE
+	 * @param postNo
+	 * @throws SQLException
+	 */
+	public void deletePosting(int postNo) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		try {
 			con=dataSource.getConnection();
-			String sql = "UPDATE post SET hits=hits+1 WHERE post_no = ?";
+			String sql = "DELETE from post WHERE post_no = ?";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, postNo);
+			pstmt.setInt(1, postNo);
 			pstmt.executeUpdate();
 		}finally {
 			closeAll(pstmt,con);

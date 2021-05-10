@@ -8,10 +8,12 @@ import javax.servlet.http.HttpServletResponse;
 import org.kosta.semi.model.MemberDAO;
 
 public class MemberCountController implements Controller {
-
+	/**
+	 * index화면의 상단 콘텐츠에 들어갈 나라별 회원 수를 띄워주는 controller
+	 * @author 지은
+	 */
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("MemberCountController 접근");
 		HashMap<String, Integer> map = MemberDAO.getInstance().getMemberCountByCountry();
 		request.setAttribute("countryMap", map);
 		return "/template/memberCount.jsp";

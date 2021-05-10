@@ -30,6 +30,7 @@ public class PostDetailController implements Controller {
 		}
 		String postNo = request.getParameter("postNo");		
 		MemberVO mvo = (MemberVO) session.getAttribute("mvo");
+<<<<<<< HEAD
 		PostVO pvo = PostDAO2.getInstance().getPostingByNo(postNo);		
 		// post 작성자 아이디와 로그인한 id 가 같을 때 조회수 count 안하기
 		if( mvo.getId().equals(pvo.getMemberVO().getId())) {
@@ -37,6 +38,9 @@ public class PostDetailController implements Controller {
 			// redirect:PostDetailNoHitsController.do 로 redirect 해서 hit update 방지
 			return "redirect:PostDetailNoHitsController.do?postNo="+pvo.getPostNo();
 		}
+=======
+		
+>>>>>>> branch 'main' of https://github.com/DongGeon2/kosta.SemiProject.git
 		/*
 		 * 읽은 게시물을 다시 읽었을 때 조회수 증가를 방지하기 위해 noList에 게시글번호가 존재하지 않으면 조회수를 증가시킨다.
 		 */
@@ -47,6 +51,17 @@ public class PostDetailController implements Controller {
 			PostDAO2.getInstance().updateHit(postNo);
 			noList.add(postNo);
 		}
+		
+		PostVO pvo = PostDAO2.getInstance().getPostingByNo(postNo);
+		String countryName = pvo.getCountryVO().getCountryName();
+		
+		// post 작성자 아이디와 로그인한 id 가 같을 때 조회수 count 안하기
+		if( mvo.getId().equals(pvo.getMemberVO().getId())) {
+			//System.out.println("작성자가 글읽음");
+			// redirect:PostDetailNoHitsController.do 로 redirect 해서 hit update 방지
+			return "redirect:PostDetailNoHitsController.do?postNo="+pvo.getPostNo();
+		}
+		
 		request.setAttribute("pvo", pvo);
 		String countryName = pvo.getCountryVO().getCountryName();
 		request.setAttribute("countryName", countryName);

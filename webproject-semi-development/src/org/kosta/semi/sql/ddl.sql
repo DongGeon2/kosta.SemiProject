@@ -6,6 +6,7 @@ DROP TABLE post;
 DROP TABLE postcomment;
 
 SELECT * FROM MEMBER;
+select * from POST;
 
 --1번
 CREATE TABLE country(
@@ -56,9 +57,12 @@ CREATE TABLE manager(
    password VARCHAR2(100) not null,
    name VARCHAR2(100) not null
 )
+<<<<<<< HEAD
 SELECT count(*)
 FROM member m , country c
 WHERE m.country_id=c.country_id AND country_name='이탈리아';
+=======
+>>>>>>> branch 'main' of https://github.com/DongGeon2/kosta.SemiProject.git
 
 -------------------------------fileDB
 drop table filedb;

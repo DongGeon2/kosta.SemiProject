@@ -70,6 +70,7 @@ public class MemberDAO {
 	            vo.setTravelStyle(rs.getString(5));
 	            cvo.setCountryId(rs.getString(6));
 	            cvo.setCountryName(rs.getString(7));
+	            vo.setCountryVO(cvo);
 	         }
 	      }finally{
 	         closeAll(rs, pstmt,con);

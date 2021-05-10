@@ -9,32 +9,45 @@
  -->
 <div class="card shadow mb-4">
 	<div class="card-header py-3">
-		<h6 class="m-0 font-weight-bold text-primary">프랑스 게시판</h6>
+		<h6 class="m-0 font-weight-bold text-primary">전체 게시판</h6>
 	</div>
 	<div class="card-body">
-		<form action="post" action="">
+		<form method="post" action="WritePostController.do" enctype="multipart/form-data">
 			<div class="form-group">
+				<%-- <c:choose>
+					<c:when test="${sessionScope.mvo!=null }">
+						현재 글을쓰면 ${sessionScope.mvo.countryVO.countryName } 게시판으로 글이 올라갑니다.<br><br>
+					</c:when>
+				</c:choose>  --%>
 				<label for="catergory">분류</label> 
 				<select class="form-control" id="catergory" name="catergory">
 					<option selected>정보</option>
 					<option>동행</option>
 					<option>후기</option>
 				</select>
+				<label for="catergory">나라</label>
+				<select class="form-control" name="countryname">
+					<option selected>영국</option>
+					<option >이탈리아</option>
+					<option >독일</option>
+					<option >프랑스</option>
+				</select>
 			</div>
 			<div class="form-group">
-				<label for="postTitle">제목</label> <input type="text"
-					class="form-control" placeholder="제목을 입력해 주세요" id="postTitle">
+				<label for="postTitle">제목</label>
+				<input type="text" class="form-control" placeholder="제목을 입력해 주세요" name="postTitle">
 			</div>
 			<div class="form-group">
 				<label for="postContent">내용</label>
-				<textarea class="form-control" rows="10" id="postContent" placeholder="내용을 입력해 주세요"></textarea>
+				<textarea class="form-control" rows="10" name="postContent" placeholder="내용을 입력해 주세요"></textarea>
+			</div>
+			<input type="file" name="filename">
+			<div class="btnWrap">
+				<button type="submit" class="btn btn-outline-primary">
+				<i class="fas fa-fw fa-pencil-alt"></i>등록</button>
+				<button type="reset" class="btn btn-outline-primary">
+				<i class="fas fa-fw fa-times"></i> 취소</button>
 			</div>
 		</form>
-		<div class="btnWrap">
-			<button type="button" class="btn btn-outline-primary">
-			<i class="fas fa-fw fa-pencil-alt"></i>등록</button>
-			<button type="button" class="btn btn-outline-primary">
-			<i class="fas fa-fw fa-times"></i> 취소</button>
-		</div>
 	</div>
 </div>

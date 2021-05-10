@@ -156,33 +156,33 @@
 								<div class="container">
 									<p>현재국가</p>
 									<div class="form-check-inline">
+										<label class="form-check-label" for="radio1"> <input
+											type="radio" class="form-check-input" id="radio1"
+											name="countryId" value="82" checked>한국
+										</label>
+									</div>
+									<div class="form-check-inline">
+										<label class="form-check-label" for="radio2"> <input
+											type="radio" class="form-check-input" id="radio2"
+											name="countryId" value="44">영국
+										</label>
+									</div>
+									<div class="form-check-inline">
+										<label class="form-check-label" for="radio3"> <input
+											type="radio" class="form-check-input" id="radio3"
+											name="countryId" value="49">독일
+										</label>
+									</div>
+									<div class="form-check-inline">
+										<label class="form-check-label" for="radio4"> <input
+											type="radio" class="form-check-input" id="radio4"
+											name="countryId" value="33">프랑스
+										</label>
+									</div>
+									<div class="form-check-inline">
 										<label class="form-check-label" for="radio5"> <input
 											type="radio" class="form-check-input" id="radio5"
-											name="countryVO" value="82" checked>한국
-										</label>
-									</div>
-									<div class="form-check-inline">
-										<label class="form-check-label" for="radio6"> <input
-											type="radio" class="form-check-input" id="radio6"
-											name="countryVO" value="44">영국
-										</label>
-									</div>
-									<div class="form-check-inline">
-										<label class="form-check-label" for="radio7"> <input
-											type="radio" class="form-check-input" id="radio7"
-											name="countryVO" value="49">독일
-										</label>
-									</div>
-									<div class="form-check-inline">
-										<label class="form-check-label" for="radio8"> <input
-											type="radio" class="form-check-input" id="radio8"
-											name="countryVO" value="33">프랑스
-										</label>
-									</div>
-									<div class="form-check-inline">
-										<label class="form-check-label" for="radio9"> <input
-											type="radio" class="form-check-input" id="radio9"
-											name="countryVO" value="39">이탈리아
+											name="countryId" value="39">이탈리아
 										</label>
 									</div> 
 								</div>
