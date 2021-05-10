@@ -16,7 +16,7 @@ public class CommentDAO {
 	}
 	public static CommentDAO getInstance(){		
 		return dao;
-	}	
+	}
 	public void closeAll(PreparedStatement pstmt,
 			Connection con) throws SQLException{
 		closeAll(null,pstmt,con);
@@ -30,17 +30,24 @@ public class CommentDAO {
 		if(con!=null)
 			con.close();
 	}
-	public void commentPosting(CommentVO vo, String member_id, String commentContent ) throws SQLException {
+	/**
+	 * 
+	 * @param cvo
+	 * @param member_id
+	 * @param commentContent
+	 * @throws SQLException
+	 */
+	public void commentPosting(CommentVO cvo, String member_id, String commentContent ) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
 			con=dataSource.getConnection();
 			StringBuilder sql = new StringBuilder();
-			sql.append(" INSERT INTO postcomment (comment_no, post_no, member_id content ,time_commented )  ");
+			sql.append(" INSERT INTO postcomment (comment_no, post_no, member_id, content ,time_commented )  ");
 			sql.append(" VALUES(postcomment_seq.nextval, ?, ?, ?, sysdate) ");
 			pstmt=con.prepareStatement(sql.toString());
-			pstmt.setString(1, vo.getPostVO().getPostNo());
+			pstmt.setString(1, cvo.getPostVO().getPostNo());
 			pstmt.setString(2, member_id);
 			pstmt.setString(3, commentContent);
 			pstmt.executeUpdate();
@@ -49,7 +56,7 @@ public class CommentDAO {
 			pstmt=con.prepareStatement(sql2);
 			rs=pstmt.executeQuery();
 			if(rs.next()) {
-			 vo.setCommentNo(rs.getString(1));
+				cvo.setCommentNo(rs.getString(1));
 			}
 		} finally {
 			closeAll(rs, pstmt, con);

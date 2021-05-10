@@ -33,3 +33,8 @@ pre {
 .searchForm input{
 	border:1px solid #d1d3e2 !important;
 }
+
+.commentWrap {
+	border:1px solid #e3e6f0;
+	border-radius:10px;
+}

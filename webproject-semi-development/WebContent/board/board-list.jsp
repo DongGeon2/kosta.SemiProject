@@ -5,10 +5,17 @@
 	board-list.jsp
 	나라별 게시판 list 불러오기
  -->
-
+<script>
+	function deletePost() {
+		if (confirm("게시글을 삭제하시겠습니까?")) {
+			document.deleteForm.submit();
+		}
+	}
+</script>
 <div class="card shadow mb-4">
 	<div class="card-header py-3">
-		<h6 class="m-0 font-weight-bold text-primary">${requestScope.countryName} 게시판</h6>
+		<h6 class="m-0 font-weight-bold text-primary">${requestScope.countryName}
+			게시판</h6>
 	</div>
 	<div class="card-body">
 		<div class="table-responsive">
@@ -20,6 +27,9 @@
 					<col width="15%" />
 					<col width="15%" />
 					<col width="10%" />
+					<c:if test="${requestScope.pvo.memberVO.id==sessionScope.mvo.id}">
+						<col width="10%" />
+					</c:if>
 				</colgroup>
 				<thead class="bg-gray-200">
 					<tr>
@@ -31,10 +41,14 @@
 						<th>작성자</th>
 						<th>작성일</th>
 						<th>조회수</th>
+						<c:if test="${requestScope.pvo.memberVO.id==sessionScope.mvo.id}">
+							<th>삭제</th>
+						</c:if>
+
 					</tr>
 				</thead>
 				<tbody>
-						<c:forEach var="pvo" items="${requestScope.list}">
+					<c:forEach var="pvo" items="${requestScope.list}">
 						<tr>
 							<td>${pvo.postNo}</td>
 							<td>${pvo.catergory}</td>
@@ -51,19 +65,38 @@
 							<td>${pvo.memberVO.id}</td>
 							<td>${pvo.postTime}</td>
 							<td>${pvo.hits}</td>
-					</tr>
+							<c:if test="${requestScope.pvo.memberVO.id==sessionScope.mvo.id}">
+								<td>
+									<button type="button" class="btn btn-outline-primary btn-sm"
+										onclick="deletePost()">
+										<i class="fas fa-fw fa-times"></i> 삭제
+									</button>
+								</td>
+								<form name="deleteForm"
+										action="${pageContext.request.contextPath}/DeletePostController.do"
+										method="post">
+										<input type="hidden" name="pageNo" value="${pvo.postNo}">
+									</form>
+							</c:if>
+
+
+						</tr>
 					</c:forEach>
 				</tbody>
 			</table>
 			<div class="btnWrap">
-				<button type="button" class="btn btn btn-outline-secondary btn-sm"><i class="fas fa-fw fa-pencil-alt"></i> 글쓰기</button>
+				<button type="button" class="btn btn btn-outline-secondary btn-sm">
+					<i class="fas fa-fw fa-pencil-alt"></i> 글쓰기
+				</button>
 			</div>
+
 		</div>
 		<!-- Pagination -->
 		<c:set var="pb" value="${requestScope.pagingBean}"></c:set>
 		<ul class="pagination justify-content-center" style="margin-top: 50px">
 			<c:if test="${pb.previousPageGroup}">
-				<li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/AllListController.do?pageNo=${pb.startPageOfPageGroup-1}">&laquo;</a></li>
+				<li class="page-item"><a class="page-link"
+					href="${pageContext.request.contextPath}/AllListController.do?pageNo=${pb.startPageOfPageGroup-1}">&laquo;</a></li>
 			</c:if>
 			<c:forEach var="page" begin="${pb.startPageOfPageGroup}"
 				end="${pb.endPageOfPageGroup}">
@@ -73,14 +106,16 @@
 							href="${pageContext.request.contextPath}/AllListController.do?pageNo=${page}">${page}</a></li>
 					</c:when>
 					<c:otherwise>
-						<li><a class="page-link" href="${pageContext.request.contextPath}/AllListController.do?pageNo=${page}">${page}</a></li>
-				</c:otherwise>
+						<li><a class="page-link"
+							href="${pageContext.request.contextPath}/AllListController.do?pageNo=${page}">${page}</a></li>
+					</c:otherwise>
 				</c:choose>
 			</c:forEach>
 			<c:if test="${pb.nextPageGroup}">
-				<li><a class="page-link" href="${pageContext.request.contextPath}/AllListController.do?pageNo=${pb.endPageOfPageGroup+1}">&raquo;</a></li>
+				<li><a class="page-link"
+					href="${pageContext.request.contextPath}/AllListController.do?pageNo=${pb.endPageOfPageGroup+1}">&raquo;</a></li>
 			</c:if>
 		</ul>
 		<!-- /.Pagination -->
 	</div>
-	</div>
+</div>
