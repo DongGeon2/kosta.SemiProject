@@ -22,12 +22,12 @@ public class SearchController implements Controller {
 		String column = request.getParameter("column");
 		String country_id = request.getParameter("country_id");
 		int totalPostCount = PostDAO.getInstance().getSearchByKeyWordTotalPostCount(country_id, column, keyWord);
-		/* test
+		
 		System.out.println("keyWord: " + keyWord);
 		System.out.println("column: " + column);
 		System.out.println("country_id: " + country_id);
 		System.out.println("totalPostCount: "+totalPostCount);
-		*/
+		
 		String pageNo = request.getParameter("pageNo");
 		PagingBean pagingBean = null;
 		if (pageNo == null) {

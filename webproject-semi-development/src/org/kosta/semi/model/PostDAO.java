@@ -347,7 +347,7 @@ public class PostDAO {
 			sql.append("WHERE ");
 			// country_id가 all(모든나라에 대해 검색)일경우 country_id WHERE절 제외
 			if (!country_id.equals("all"))
-				sql.append("p.country_id= ? AND");
+				sql.append("p.country_id= ? AND ");
 			sql.append(column + " LIKE '%' || ? || '%' ");
 			pstmt = con.prepareStatement(sql.toString());
 			if (!country_id.equals("all")) {

@@ -21,14 +21,14 @@
 				<option value="44">영국</option>
 				<option value="49">독일</option>
 			</select>	
-			<%--
+			
 			<select  class="form-control" name="column" required="required" >
 				<option value="(p.content||p.post_title)" selected="selected">제목+내용</option>
 				<option value="p.content">내용</option>
 				<option value="p.post_title">제목</option>
 				<option value="p.member_id">작성자id</option>
 			</select>
-			 --%>
+			 
 			<input type="text" name="keyWord" class="form-control bg-light border-0 small"
 				placeholder="Search for..." aria-label="Search"
 				aria-describedby="basic-addon2">
