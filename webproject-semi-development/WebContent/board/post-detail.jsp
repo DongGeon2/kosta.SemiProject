@@ -23,6 +23,12 @@
 			document.updateForm.submit();
 		}
 	}
+	function commentPost() {
+		if (confirm("댓글을 등록하시겠습니까?")) {
+			document.updateForm.submit();
+		}
+		
+	}
 </script>
 <div class="card shadow mb-4">
 	<div class="card-header py-3">
@@ -94,7 +100,65 @@
 						<i class="fas fa-fw fa-times"></i> 삭제
 					</button>
 				</c:if>
+				<hr>
+				<!-- 댓글 리스트를 불러오기  -->
+				<c:if test="${requestScope.commentList !=null}">
+					<c:forEach var="comment" items="${requestScope.commentList}">
+					<tr>
+					<!-- ID, 작성날짜 -->					
+					<td width="150">
+						<div>
+							${comment.member_id}<br>
+							<font size="2" color="lightgray">${comment.time_commented}</font>
+						</div>
+					</td>
+					<!-- 본문내용 -->
+					<td width="550">
+						<div class="text_wrapper">
+							${comment.content}
+						</div>
+					</td>
+					<!-- 댓글 작성자만 수정 가능 -->
+					<td width="100">
+					 <div id="btn" style="text-align: center;">
+						<c:if test="${requestScope.pvo.memberVO.id==sessionScope.mvo.id}">
+							<a href="#">[수정]</a><br>
+							<a 	href="#">[삭제]</a>
+						</c:if>
+					 </div>
+					</td>
+					</tr>	
 
+					</c:forEach>
+				</c:if>
+				<!-- 로그인 시 댓글 작성 가능 -->
+				<c:if test="${requestScope.pvo.memberVO.id==sessionScope.mvo.id}">
+				<tr bgcolor="#F5F5F5">
+				<form name="commentForm" action="${pageContext.request.contextPath}/WriteCommentFormController.do"
+					method="post" >
+				<input type="hidden" name="comment_no" value="${requestScope.pvo.postNo}">	
+				<input type="hidden" name="member_id" value="${sessionScope.mvo.id}">
+				
+				<!-- 아이디 -->
+				<td width="150">
+					<div>
+						${sessionScope.mvo.id}
+					</div>			
+				</td>
+				<!-- 본문작성 -->
+				<td width="450">
+					<div>
+						<textarea name="commentContent" rows="4" cols="70"></textarea>
+					</div>			
+				</td>
+	
+				<!-- 댓글등록버튼 -->
+					<button type="button" class="btn btn-outline-primary" onclick="commentPost()">
+					<i class="fas fa-fw fa-pencil-alt"></i>등록
+				</td>
+				</form>
+				</tr>
+				</c:if>
 			</div>
 		</div>
 	</div>

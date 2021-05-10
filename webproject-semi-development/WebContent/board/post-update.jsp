@@ -12,8 +12,8 @@
 		<h6 class="m-0 font-weight-bold text-primary">프랑스 게시판</h6>
 	</div>
 	<div class="card-body">
-		<form method="post" action="${pageContext.request.contextPath}/UpdatePostController.do">
-		<input type="hidden" name="no" value="${pvo.postNo}"></input>		
+		<form method="post" action="${pageContext.request.contextPath}/UpdatePostController.do" method="post">
+		<input type="hidden" name="postNo" value="${pvo.postNo}"></input>		
 			<div class="form-group">
 				<label for="catergory">분류</label> 
 				<select class="form-control" id="catergory" name="catergory">
@@ -24,19 +24,23 @@
 				</select>
 			</div>
 			<div class="form-group">
-				<label for="postTitle">제목</label> <input type="text"
-					class="form-control" placeholder="제목을 입력해 주세요" id="postTitle">
+				<label for="postTitle">제목</label> 
+				 <input type="text" class="form-control" name="postTitle" value="${pvo.postTitle}" required="required">
+				<!-- <input type="text"
+					class="form-control" placeholder="제목을 입력해 주세요" id="postTitle"> -->
 			</div>
 			<div class="form-group">
-				<label for="postContent">내용</label>
-				<textarea class="form-control" rows="10" id="postContent" placeholder="내용을 입력해 주세요"></textarea>
+				<textarea class="form-control" rows="10" name="postContent" required="required"">${pvo.postContent}</textarea>
+				<!-- <label for="postContent">내용</label>
+				<textarea class="form-control" rows="10" id="postContent" placeholder="내용을 입력해 주세요"></textarea> -->
 			</div>
-		</form>
+		
 		<div class="btnWrap">
-			<button type="button" class="btn btn-outline-primary">
+			<button type="submit" class="btn btn-outline-primary">
 			<i class="fas fa-fw fa-pencil-alt"></i> 수정</button>
-			<button type="button" class="btn btn-outline-primary">
+			<button type="reset" class="btn btn-outline-primary">
 			<i class="fas fa-fw fa-times"></i> 취소</button>
 		</div>
+		</form>
 	</div>
 </div>

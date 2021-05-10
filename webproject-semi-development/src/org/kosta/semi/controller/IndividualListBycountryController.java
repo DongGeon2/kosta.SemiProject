@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.kosta.semi.model.CountryDAO;
+import org.kosta.semi.model.CountryVO;
 import org.kosta.semi.model.PagingBean;
 import org.kosta.semi.model.PostDAO;
 import org.kosta.semi.model.PostVO;
@@ -20,8 +21,6 @@ public class IndividualListBycountryController implements Controller {
 		PagingBean pagingBean = null;
 		if(pageNo==null) {
 			pagingBean=new PagingBean(totalPostCount);
-			System.out.println(pagingBean.getStartRowNumber());
-			System.out.println(pagingBean.getEndRowNumber());
 		} else {
 			pagingBean=new PagingBean(totalPostCount,Integer.parseInt(pageNo));
 		}	
@@ -30,7 +29,12 @@ public class IndividualListBycountryController implements Controller {
 		request.setAttribute("list", list);
 		request.setAttribute("url", "/board/board-list.jsp");
 		request.setAttribute("urlCountry", "/template/countryInfo.jsp");
-		request.setAttribute("country", CountryDAO.getInstance().findCountryById(countryId).getCountryName());
+		String countryName = CountryDAO.getInstance().findCountryById(countryId).getCountryName();
+		CountryVO country = CountryDAO.getInstance().findCountryById(countryId);
+		System.out.println(countryName);
+		request.setAttribute("country", country);
+		request.setAttribute("countryName", countryName);
+		request.setAttribute("count", CountryDAO.getInstance().findMemberCountByCountryname(countryName));
 		return "/template/layout.jsp";
 	}
 }

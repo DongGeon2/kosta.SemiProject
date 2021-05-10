@@ -8,17 +8,17 @@ import java.sql.SQLException;
 import javax.sql.DataSource;
 
 public class CountryDAO {
-	/**
-	 * CountryDAO에서는 나라정보관리에 관한 모든 메서드를 정의합니다
-	 */
-	private static CountryDAO dao=new CountryDAO();
+	private static CountryDAO instance = new CountryDAO();
 	private DataSource dataSource;
-	private CountryDAO(){
-		dataSource=DataSourceManager.getInstance().getDataSource();
+	
+	public CountryDAO() {
+		dataSource = DataSourceManager.getInstance().getDataSource();
 	}
-	public static CountryDAO getInstance(){		
-		return dao;
-	}	
+	
+	public static CountryDAO getInstance() {
+		return instance;
+	}
+	
 	public void closeAll(PreparedStatement pstmt,
 			Connection con) throws SQLException{
 		closeAll(null,pstmt,con);
@@ -32,7 +32,28 @@ public class CountryDAO {
 		if(con!=null)
 			con.close();
 	}
-	
+
+	public CountryVO findCountryName(String countryName) throws SQLException {
+		CountryVO cvo = null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			con = dataSource.getConnection();
+			String sql = "SELECT country_id FROM country WHERE country_name=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, countryName);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				cvo = new CountryVO();
+				cvo.setCountryId(rs.getString(1));
+			}
+			
+		}finally {
+			closeAll(rs, pstmt, con);
+		}
+		return cvo;
+	}
 	/**
 	 * ID로 나라에 대한 모든 정보를 찾아옵니다
 	 * @param id
@@ -63,5 +84,24 @@ public class CountryDAO {
 		}
 		return vo;
 		
+	}
+	public int findMemberCountByCountryname(String countryName) throws SQLException {
+		int count = 0;
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		try {
+			con=dataSource.getConnection();
+			String sql =" SELECT count(*) FROM member m , country c  WHERE m.country_id=c.country_id AND country_name=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, countryName);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				count = rs.getInt(1);
+			}
+		} finally {
+			closeAll(rs, pstmt, con);
+		}
+		return count;
 	}
 }

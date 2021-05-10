@@ -25,16 +25,16 @@ public class PostDetailNoHitsController implements Controller {
 		if (session == null || session.getAttribute("mvo") == null) {
 			return "redirect:index.jsp";
 		}
-		String postNo = request.getParameter("postNo");		
+		String postNo = request.getParameter("postNo");
+		System.out.println(postNo);
 		PostVO pvo = PostDAO2.getInstance().getPostingByNo(postNo);
-		String countryName = pvo.getCountryVO().getCountryName();
 		
 		// 개별 게시물 조회
 		request.setAttribute("pvo", pvo);
-		request.setAttribute("country", countryName);
+		String countryName = pvo.getCountryVO().getCountryName();
+		request.setAttribute("countryName", countryName);
 		request.setAttribute("urlCountry", "/template/countryInfo.jsp");
 		request.setAttribute("url", "/board/post-detail.jsp");
-		request.setAttribute("countryName",pvo.getCountryVO().getCountryName());
 		return "/template/layout.jsp";
 	}
 

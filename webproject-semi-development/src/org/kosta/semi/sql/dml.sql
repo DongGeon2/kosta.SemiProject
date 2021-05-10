@@ -27,6 +27,9 @@ INSERT INTO post VALUES(post_seq.nextval, '49', '후기', '독일 히틀러호�
 INSERT INTO post VALUES(post_seq.nextval, '39', '동행', 'dfsf', 'singleton',  sysdate, 0,'czcz? ');
 INSERT INTO post VALUES(post_seq.nextval, '39', '동행', '12345', 'spring',  sysdate, 0,'12345 ');
 ----postcomment-----
+CREATE SEQUENCE postcomment_seq;
+INSERT INTO POSTCOMMENT VALUES(postcomment_seq.nextval, post_no, member_id, content, sysdate)
+--------------------------
 delete from post where post_no='22';
 delete from post where post_no='23';
 delete from post where post_no='24';
@@ -74,6 +77,11 @@ WHERE p.country_id=c.country_id AND rnum BETWEEN 1 AND 3
 
 SELECT row_number() over(ORDER BY post_no DESC) as rnum,  post_no,post_title , member_id, hits, country_id, category_name, to_char(time_posted, 'YYYY.MM.DD') as time_posted FROM post
 
+--commentPosting sql 작성중-- 
+INSERT INTO POSTCOMMENT VALUES(postcomment_seq.nextval, post_no, member_id, content, sysdate)
+
+SELECT postcomment_seq.currval from dual;
+------------------------
 
 
 
@@ -81,5 +89,3 @@ SELECT row_number() over(ORDER BY post_no DESC) as rnum,  post_no,post_title , m
 
 
 
-
->>>>>>> branch 'main' of https://github.com/DongGeon2/kosta.SemiProject.git
