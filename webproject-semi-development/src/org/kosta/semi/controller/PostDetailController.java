@@ -10,6 +10,7 @@ import org.kosta.semi.model.CountryDAO;
 import org.kosta.semi.model.CountryVO;
 import org.kosta.semi.model.MemberVO;
 import org.kosta.semi.model.PostDAO2;
+import org.kosta.semi.model.PostDAO3;
 import org.kosta.semi.model.PostVO;
 
 /**
@@ -44,6 +45,7 @@ public class PostDetailController implements Controller {
 		
 		PostVO pvo = PostDAO2.getInstance().getPostingByNo(postNo);
 		String countryName = pvo.getCountryVO().getCountryName();
+		ArrayList<String> time = PostDAO3.getInstance().getSysdateAndLocalTime(postNo);
 		
 		// post 작성자 아이디와 로그인한 id 가 같을 때 조회수 count 안하기
 		if( mvo.getId().equals(pvo.getMemberVO().getId())) {
@@ -52,6 +54,7 @@ public class PostDetailController implements Controller {
 			return "redirect:PostDetailNoHitsController.do?postNo="+pvo.getPostNo();
 		}
 		request.setAttribute("pvo", pvo);
+		request.setAttribute("time", time);
 		request.setAttribute("countryName", countryName);
 		request.setAttribute("urlCountry", "/template/countryInfo.jsp");
 		request.setAttribute("url", "/board/post-detail.jsp");

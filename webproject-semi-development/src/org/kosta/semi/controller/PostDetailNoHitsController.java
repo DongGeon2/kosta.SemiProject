@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 
 import org.kosta.semi.model.MemberVO;
 import org.kosta.semi.model.PostDAO2;
+import org.kosta.semi.model.PostDAO3;
 import org.kosta.semi.model.PostVO;
 /**
  * 조회수 UPDATE 안되는 PostDetail View 기능
@@ -28,11 +29,14 @@ public class PostDetailNoHitsController implements Controller {
 		String postNo = request.getParameter("postNo");
 		System.out.println(postNo);
 		PostVO pvo = PostDAO2.getInstance().getPostingByNo(postNo);
+		ArrayList<String> time = PostDAO3.getInstance().getSysdateAndLocalTime(postNo);
 		
 		// 개별 게시물 조회
 		request.setAttribute("pvo", pvo);
 		String countryName = pvo.getCountryVO().getCountryName();
 		request.setAttribute("countryName", countryName);
+		//시간정보(작성시간)
+		request.setAttribute("time", time);
 		request.setAttribute("urlCountry", "/template/countryInfo.jsp");
 		request.setAttribute("url", "/board/post-detail.jsp");
 		return "/template/layout.jsp";

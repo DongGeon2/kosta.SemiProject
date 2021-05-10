@@ -56,9 +56,11 @@
 				</tr>
 				<tr>
 					<th class="table-active">분류</th>
-					<td colspan="3">${pvo.catergory}</td>
-					<th class="table-active">작성일</th>
-					<td>${pvo.postTime}</td>
+					<td>${pvo.catergory}</td>
+					<th class="table-active">작성시간(한국)</th>
+					<td>${time[0]}</td>
+					<th class="table-active">작성시간(로컬)</th>
+					<td>${time[2]}</td>
 				</tr>
 				<tr>
 					<th class="table-active">제목</th>
