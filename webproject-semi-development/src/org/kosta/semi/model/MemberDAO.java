@@ -261,9 +261,13 @@ public class MemberDAO {
 		}
 		return map;
 	}
-	
+	/**
+	 * id 중복 확인을 합니다
+	 * @param id
+	 * @return
+	 * @throws SQLException
+	 */
 	public boolean idcheck(String id) throws SQLException {
-		MemberVO vo=null;
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
@@ -282,4 +286,57 @@ public class MemberDAO {
 		}
 		return flag;
 	}
+	
+	/**
+	 * email 중복 확인을 합니다
+	 * @param email
+	 * @return
+	 * @throws SQLException
+	 */
+	public boolean emailCheck(String email) throws SQLException {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		boolean flag = false;
+		try {
+			con=dataSource.getConnection();
+			String sql="select count(*) from member where email=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, email);
+			rs=pstmt.executeQuery();
+			if(rs.next() && rs.getInt(1)>0) {
+				flag = true;
+			}
+		}finally {
+			closeAll(rs, pstmt, con);
+		}
+		return flag;
+	}
+	
+	
+	/**
+	 * 회원 나라 수정
+	 * 수정 가능 정보 : 나라
+	 * @param 
+	 * @throws SQLException
+	 */
+	public void UpdateMemberCountry(String memberId, String countryId) throws SQLException {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		try{
+			con=dataSource.getConnection();
+			StringBuffer sql = new StringBuffer();
+			sql.append("UPDATE member set ");
+			sql.append("country_id=? ");
+			sql.append("where member_id = ?");
+			pstmt=con.prepareStatement(sql.toString());
+			pstmt.setString(1, countryId);
+			pstmt.setString(2, memberId);
+			pstmt.executeUpdate();
+		}finally{
+			closeAll(pstmt,con);
+		}
+	}
+	
+	
 }
