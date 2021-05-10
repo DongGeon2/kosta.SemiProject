@@ -6,12 +6,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.kosta.semi.model.CountryDAO;
 import org.kosta.semi.model.MemberVO;
 import org.kosta.semi.model.PagingBean;
 import org.kosta.semi.model.PostDAO;
 import org.kosta.semi.model.PostVO;
 
 public class MyPostListController implements Controller {
+	/**
+	 * 세션 정보에서 mvo의 id를 받아와 회원이 쓴 글 목록을 가져오는 controller
+	 * 세션 만료 및 로그아웃시에는 index화면으로 보냅니다
+	 * @author 지은
+	 */
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -19,10 +25,18 @@ public class MyPostListController implements Controller {
 		ArrayList<PostVO> list = new ArrayList<PostVO>();
 		String id = request.getParameter("id");
 		MemberVO mvo = null;
-		if (session.getAttribute("mvo") != null) 
+		//로그인확인
+		if (session.getAttribute("mvo") != null) {
 			mvo = (MemberVO) session.getAttribute("mvo");
-		// 본인만 작성글 리스트 보게 하고 싶으면 id와 sessionScope.mvo.id같다는 제약 걸어주기
-		if (id.equals(mvo.getId())) {
+		}else { //세션 만료 및 로그아웃시 index로이동
+			return "redirect:AllListController.do";
+		}
+		
+		// 본인만 본인의 작성글 리스트 보게 하고 싶으면 id와 sessionScope.mvo.id같다는 조건 걸어주기
+		if (!id.equals(mvo.getId())) {//다른회원의 조회글 쿼리스트링으로 접근시
+			System.out.println("현재 타회원의 내가쓴글보기는 접근 불가합니다");
+			return "redirect:AllListController.do";//수정할까? : 위내용의 팝업 띄우고 전체목록 또는 본인글쓰기목록으로
+		}else {
 			int totalPostCount=PostDAO.getInstance().getMyTotalPostCount(id);
 			String pageNo=request.getParameter("pageNo");
 			PagingBean pagingBean = null;
@@ -33,38 +47,14 @@ public class MyPostListController implements Controller {
 			}
 			request.setAttribute("pagingBean", pagingBean);
 			list = PostDAO.getInstance().getMyPostingList(pagingBean, id);
-		// 다른 회원의 조회글 쿼리스트링으로 접근할시
-			} else if (id != null) {
-				System.out.println("현재 타회원의 내가쓴글보기는 접근 불가합니다");
-				return "error.jsp"; //수정 : 위내용의 팝업 띄우고 전체목록 또는 본인글쓰기목록으로
-		//세션만료시
-			} else { 
-				System.out.println("세션만료등의 이유로 전체 게시판으로 이동");
-				//list=PostDAO.getInstance().getAllPostingList(null);	
-				return "redirect:AllListController.do";
-			}
+			//System.out.println(list);
 			request.setAttribute("list", list);
-			request.setAttribute("url", "/board/list.jsp");		
+			request.setAttribute("country", "내가 쓴 글");
+			request.setAttribute("url", "/board/board-list.jsp");		
 			return "/template/layout.jsp";
-			/*
-			 * 
-			 * System.out.println("*List-C 실행");
-			 * 
-			 * 
-			 * String id = request.getParameter("id"); MemberVO mvo = null;
-			 * if(session.getAttribute("mvo")!=null) { mvo =
-			 * (MemberVO)session.getAttribute("mvo");
-			 * 
-			 * //본인만 작성글 리스트 보게 하고 싶으면 id와 sessionScope.mvo.id같다는 제약 걸어주기 if
-			 * (id.equals(mvo.getId())) {
-			 * list=BoardDAO.getInstance().getPostingListById(id); //다른 회원의 조회글 쿼리스트링으로 접근할시
-			 * }else if (id!=null) { System.out.println("현재 타회원의 내가쓴글보기는 접근 불가합니다"); return
-			 * "error.jsp"; } else { System.out.println("전체목록보기");
-			 * list=BoardDAO.getInstance().getPostingList(); } request.setAttribute("list",
-			 * list); request.setAttribute("url", "/board/list.jsp"); return
-			 * "/template/layout.jsp"; }
-			 */
 		}
 
+		}
 	}
+	
 

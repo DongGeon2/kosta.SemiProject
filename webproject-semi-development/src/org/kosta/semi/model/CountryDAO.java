@@ -33,7 +33,7 @@ public class CountryDAO {
 			con.close();
 	}
 
-	public CountryVO findCountryId(String countryName) throws SQLException {
+	public CountryVO findCountryName(String countryName) throws SQLException {
 		CountryVO cvo = null;
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -54,6 +54,36 @@ public class CountryDAO {
 		}
 		return cvo;
 	}
-	
+	/**
+	 * ID로 나라에 대한 모든 정보를 찾아옵니다
+	 * @param id
+	 * @return CountryVO
+	 * @throws SQLException
+	 */
+	public CountryVO findCountryById(String id) throws SQLException{
+		CountryVO vo=null;
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		try{
+			con=dataSource.getConnection();
+			String sql="select country_name,country_time,language,currency from country where country_id=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs=pstmt.executeQuery();
+			if(rs.next()){
+				vo=new CountryVO();
+				vo.setCountryId(id);
+				vo.setCountryName(rs.getString(1));
+				vo.setCountryTime(rs.getString(2));
+				vo.setLanguage(rs.getString(3));
+				vo.setCurrency(rs.getString(4));
+			}
+		}finally{
+			closeAll(rs, pstmt,con);
+		}
+		return vo;
+		
+	}
 	
 }

@@ -364,6 +364,7 @@ public class PostDAO {
 		}
 		return totalCount;
 	}
+<<<<<<< HEAD
 
 	
 	public void writeContent(PostVO pvo) throws SQLException {
@@ -395,4 +396,6 @@ public class PostDAO {
 			closeAll(rs, pstmt, con);
 		}
 	}
+=======
+>>>>>>> branch 'main' of https://github.com/DongGeon2/kosta.SemiProject.git
 }

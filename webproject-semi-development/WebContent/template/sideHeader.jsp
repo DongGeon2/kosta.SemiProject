@@ -37,9 +37,10 @@
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h6 class="collapse-header">Country</h6>
-						<a class="collapse-item" href="#">프랑스</a> <a class="collapse-item"
-							href="#">이탈리아</a> <a class="collapse-item" href="#">영국</a> <a
-							class="collapse-item" href="#">독일</a>
+						<a class="collapse-item" href="${pageContext.request.contextPath}/IndividualListBycountryController.do?countryId=33">프랑스</a> 
+						<a class="collapse-item" href="${pageContext.request.contextPath}/IndividualListBycountryController.do?countryId=39">이탈리아</a> 
+						<a class="collapse-item" href="${pageContext.request.contextPath}/IndividualListBycountryController.do?countryId=44">영국</a> 
+						<a class="collapse-item" href="${pageContext.request.contextPath}/IndividualListBycountryController.do?countryId=49">독일</a>
 					</div>
 				</div></li>
 
@@ -55,7 +56,7 @@
 			 -->
 			<c:choose>
 			<c:when test="${sessionScope.mvo==null}">
-			<li class="nav-item"><a class="nav-link" href="#"> <i
+			<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/member/register.jsp"> <i
 					class="fas fa-fw fa-user-plus"></i> <span>회원가입</span></a></li>
 			<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/member/login.jsp"> <i
 					class="fas fa-fw fa-sign-in-alt"></i> <span>로그인</span></a></li>
@@ -75,7 +76,7 @@
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h6 class="collapse-header">My Info</h6>
 						<a class="collapse-item" href="UpdateMemberPasswordController.do">내정보 수정</a> <a
-							class="collapse-item" href="MyPostListController.do?id=${sessionScope.mvo.id}">내가 쓴 글 보기</a>
+							class="collapse-item" href="${pageContext.request.contextPath}/MyPostListController.do?id=${sessionScope.mvo.id}">내가 쓴 글 보기</a>
 					
 
 						<!-- <a class="collapse-item" href="#">내가 쓴 댓글 보기</a>  -->

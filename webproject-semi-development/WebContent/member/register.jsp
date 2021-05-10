@@ -12,6 +12,33 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
+<script type="text/javascript">
+	function checkRegForm() {
+		let cf = document.registerForm;
+		if (cf.password.value != cf.confirmPassword.value) {
+			alert("비밀번호와 확인란이 일치하지 않습니다");
+			return false;
+		}
+		if (cf.id.value != cf.flag.value) {
+			alert("인증받은 아이디가 아닙니다\n아이디 중복확인을 하세요");
+			i
+			return false;
+		}
+	}
+	function checkId() {
+		// id 입력여부 체크 
+		let id = document.registerForm.id.value;
+		if (id == "") {
+			alert("아이디를 입력하세요!");
+		} else {
+			//1. 팝업url?id=data , 2. 별칭 , 3. 팝업옵션 
+			window.open("../IdCheckController.do?id=" + id, "mypopup",
+					"width=450,height=250,top=150,left=400");
+		}
+	}
+</script>
+
+
 <title>한국인 모여라, 회원가입</title>
 <!-- Custom fonts for this template-->
 <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
@@ -23,6 +50,7 @@
 <!-- Custom styles for this template-->
 <link href="${pageContext.request.contextPath}/css/sb-admin-2.min.css"
 	rel="stylesheet">
+
 
 </head>
 <%-- 회원가입 : 이름, id, password, password확인, 이메일, 생년월일, 성별, 여행스타일, 현재국가--%>
@@ -39,15 +67,22 @@
 							<div class="text-center">
 								<h1 class="h4 text-gray-900 mb-4">회원가입</h1>
 							</div>
-							<form class="user" method="post" action="${pageContext.request.contextPath}/RegisterController.do">
+							<form class="user" name="registerForm" method="post"
+								action="${pageContext.request.contextPath}/RegisterController.do"
+								onsubmit="return checkRegForm()">
+								<div class="form-group">
+									<input type="text" class="form-control form-control-user"
+										name="name" placeholder="이름" onkeypress="if(!(event.keyCode < 47 && event.keyCode > 58)) event.returnValue=false;">
+
+								</div>
 								<div class="form-group row">
 									<div class="col-sm-6 mb-3 mb-sm-0">
 										<input type="text" class="form-control form-control-user"
-											id="name" placeholder="이름">
+											name="id" placeholder="ID">
 									</div>
 									<div class="col-sm-6">
-										<input type="text" class="form-control form-control-user"
-											id="id" placeholder="ID">
+										<input type="button" class="form-control form-control-user"
+											value="중복확인" onclick="checkId()">
 									</div>
 								</div>
 								<div class="form-group row">
@@ -57,17 +92,20 @@
 									</div>
 									<div class="col-sm-6">
 										<input type="password" class="form-control form-control-user"
-											name="password" placeholder="Password 확인">
+											name="confirmPassword" placeholder="Password 확인">
 									</div>
 								</div>
 								<div class="form-group">
 									<input type="email" class="form-control form-control-user"
-										id="email" placeholder="이메일 주소">
+										name="email" placeholder="이메일 주소">
 								</div>
-								
+								<div class="container">
+									<p>생일을 선택해주세요 (ex.1993-08-22)</p>
+								</div>
+
 								<div class="form-group">
 									<input type="date" class="form-control form-control-user"
-										id="birth" placeholder="생년월일">
+										name="birth" placeholder="생년월일" value="date">
 								</div>
 								<div class="container">
 									<p>성별</p>
@@ -85,85 +123,92 @@
 									</div>
 								</div>
 								&nbsp;
+
 								<div class="container">
 									<p>여행스타일</p>
 									<div class="form-check-inline">
 										<label class="form-check-label" for="radio1"> <input
 											type="radio" class="form-check-input" id="radio1"
-											name="travelstyle" value="option1" checked>사진
+											name="travelstyle" value="사진" checked>사진
 										</label>
 									</div>
 									<div class="form-check-inline">
 										<label class="form-check-label" for="radio2"> <input
 											type="radio" class="form-check-input" id="radio2"
-											name="travelstyle" value="option2">맛집
+											name="travelstyle" value="맛집">맛집
 										</label>
 									</div>
 									<div class="form-check-inline">
 										<label class="form-check-label" for="radio3"> <input
 											type="radio" class="form-check-input" id="radio3"
-											name="travelstyle" value="option3">뚜벅이
+											name="travelstyle" value="뚜벅이">뚜벅이
 										</label>
 									</div>
 									<div class="form-check-inline">
 										<label class="form-check-label" for="radio4"> <input
 											type="radio" class="form-check-input" id="radio4"
-											name="travelstyle" value="option4">리무진
+											name="travelstyle" value="리무진">리무진
 										</label>
 									</div>
 								</div>
 								&nbsp;
-								<form>
-									<div class="container">
-										<p>현재국가</p>
-										<div class="form-check-inline">
-											<label class="form-check-label" for="radio1"> <input
-												type="radio" class="form-check-input" id="radio1"
-												name="country" value="option1" checked>한국
-											</label>
-										</div>
-										<div class="form-check-inline">
-											<label class="form-check-label" for="radio2"> <input
-												type="radio" class="form-check-input" id="radio2"
-												name="country" value="option2">영국
-											</label>
-										</div>
-										<div class="form-check-inline">
-											<label class="form-check-label" for="radio3"> <input
-												type="radio" class="form-check-input" id="radio3"
-												name="country" value="option3">독일
-											</label>
-										</div>
-										<div class="form-check-inline">
-											<label class="form-check-label" for="radio4"> <input
-												type="radio" class="form-check-input" id="radio4"
-												name="country" value="option4">프랑스
-											</label>
-										</div>
-										<div class="form-check-inline">
-											<label class="form-check-label" for="radio5"> <input
-												type="radio" class="form-check-input" id="radio5"
-												name="country" value="option5">이탈리아
-											</label>
-										</div>
+
+								<div class="container">
+									<p>현재국가</p>
+									<div class="form-check-inline">
+										<label class="form-check-label" for="radio1"> <input
+											type="radio" class="form-check-input" id="radio1"
+											name="countryId" value="82" checked>한국
+										</label>
 									</div>
-								</form>
-						<a href="RegisterController.do" class="btn btn-primary btn-user btn-block">
-							함께 여행하기 </a>
-						<hr>
-						</form>
-						<div class="text-center">
-							<a class="small" href="#">아이디 찾기</a>
-						</div>
-						<div class="text-center">
-							<a class="small" href="#">비밀번호 찾기</a>
+									<div class="form-check-inline">
+										<label class="form-check-label" for="radio2"> <input
+											type="radio" class="form-check-input" id="radio2"
+											name="countryId" value="44">영국
+										</label>
+									</div>
+									<div class="form-check-inline">
+										<label class="form-check-label" for="radio3"> <input
+											type="radio" class="form-check-input" id="radio3"
+											name="countryId" value="49">독일
+										</label>
+									</div>
+									<div class="form-check-inline">
+										<label class="form-check-label" for="radio4"> <input
+											type="radio" class="form-check-input" id="radio4"
+											name="countryId" value="33">프랑스
+										</label>
+									</div>
+									<div class="form-check-inline">
+										<label class="form-check-label" for="radio5"> <input
+											type="radio" class="form-check-input" id="radio5"
+											name="countryId" value="39">이탈리아
+										</label>
+									</div> 
+								</div>
+
+								<div class="text-center">
+									<input type="submit" class="btn btn-primary" value="함께 여행하기">
+								</div>
+							</form>
+							<hr>
+
+							<div class="text-center">
+								<a class="small"
+									href="${pageContext.request.contextPath}/member/findMyId.jsp">아이디
+									찾기</a>
+							</div>
+							<div class="text-center">
+								<a class="small"
+									href="${pageContext.request.contextPath}/member/findMyPassword.jsp">비밀번호
+									찾기</a>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-
 	<!-- Bootstrap core JavaScript-->
 	<script src="vendor/jquery/jquery.min.js"></script>
 	<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

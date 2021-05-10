@@ -23,7 +23,9 @@
 				<div class="container-fluid">
 					<!-- Page Heading -->
 					<!-- Content Row -->
+					<c:if test="${urlCountry!=null}">
 						<c:import url="${urlCountry}"></c:import>
+					</c:if>
 					<!-- MAIN 전체 count 받아오기 -->
 						<%-- <c:import url="/template/memberCount.jsp"></c:import> --%>
 					<!-- Country 별 Info 받아오기 -->
@@ -40,6 +42,7 @@
 						<c:import url="${url}"></c:import>
 					--%>
 					<c:import url="${url}"></c:import>
+	
 					<!-- /.TABLE BOARD -->
 				</div>
 				<!-- /.container-fluid -->
@@ -55,10 +58,6 @@
 
 	</div>
 	<!-- End of Page Wrapper -->
-	<!-- Scroll to Top Button-->
-	<a class="scroll-to-top rounded" href="#page-top"> <i
-		class="fas fa-angle-up"></i>
-	</a>
 	<!-- scriptLink import -->
 	<c:import url="/template/scriptLink.jsp"></c:import>
 </body>
