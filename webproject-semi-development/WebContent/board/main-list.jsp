@@ -44,7 +44,7 @@
 							<td><c:choose>
 									<c:when test="${sessionScope.mvo!=null}">
 										<a
-											href="${pageContext.request.contextPath}/PostDetailController.do?countryId=${pvo.postNo}">${pvo.postTitle}
+											href="${pageContext.request.contextPath}/PostDetailController.do?postNo=${pvo.postNo}">${pvo.postTitle}
 										</a>
 									</c:when>
 									<c:otherwise>
@@ -59,6 +59,15 @@
 
 				</tbody>
 			</table>
+		</div>
+		<div class="btnWrap">
+			<c:choose>
+				<c:when test="${sessionScope.mvo!=null}">
+					<form action="WritePostFormController.do" method="post">
+						<button type="submit" class="btn btn btn-outline-secondary btn-sm" ><i class="fas fa-fw fa-pencil-alt"></i> 글쓰기</button>
+					</form>
+				</c:when>
+			</c:choose>
 		</div>
 		<!-- Pagination -->
 		<c:set var="pb" value="${requestScope.pagingBean}"></c:set>
@@ -75,9 +84,8 @@
 							href="${pageContext.request.contextPath}/AllListController.do?pageNo=${page}">${page}</a></li>
 					</c:when>
 					<c:otherwise>
-						<li><a
-							href="${pageContext.request.contextPath}/AllListController.do?pageNo=${page}">${page}</a></li>
-			`	</c:otherwise>
+						<li><a class="page-link" href="${pageContext.request.contextPath}/AllListController.do?pageNo=${page}">${page}</a></li>
+				</c:otherwise>
 				</c:choose>
 			</c:forEach>
 			<c:if test="${pb.nextPageGroup}">
