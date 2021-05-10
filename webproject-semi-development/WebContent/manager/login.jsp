@@ -11,7 +11,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>Korean Assemble! 한국인 모여라</title>
+<title>한국인 모여라 관리자 모드</title>
 
 <!-- Custom fonts for this template-->
 <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
@@ -42,9 +42,9 @@
                             <div class="col-lg-6">
                                 <div class="p-5">
                                     <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">한국인 모여라</h1>
+                                        <h1 class="h4 text-gray-900 mb-4">관리자 모드</h1>
                                     </div>
-                                    <form action="${pageContext.request.contextPath}/LoginController.do" method="post" class="user">
+                                    <form action="${pageContext.request.contextPath}/ManagerLoginController.do" method="post" class="user">
                                         <div class="form-group">
                                             <input type="text" class="form-control form-control-user"
                                                 name="id" placeholder="ID">
@@ -60,14 +60,7 @@
                                     <hr>
                                     <!--todo 나중에 연결 -->
                                     <div class="text-center">
-                                     <a class="small" href="${pageContext.request.contextPath}/member/findMyId.jsp">아이디 찾기</a>&nbsp;&nbsp;
-                                     <a class="small" href="${pageContext.request.contextPath}/member/findMyPassword.jsp">비밀번호 찾기</a>&nbsp;&nbsp;
-                                     <a class="small" href="${pageContext.request.contextPath}/member/register.jsp">회원가입</a></a>&nbsp;&nbsp;
 										<a class="small" href="${pageContext.request.contextPath}/index.jsp"">Home</a>
-                                    </div>
-                                    <hr>
-                                    <div class="text-right">
-                                    <a class="small" href="${pageContext.request.contextPath}/manager/login.jsp"">관리자</a>
                                     </div>
                                 </div>
                             </div>

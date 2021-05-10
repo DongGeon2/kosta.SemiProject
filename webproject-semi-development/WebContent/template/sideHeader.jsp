@@ -47,25 +47,13 @@
 			<!-- Divider -->
 			<hr class="sidebar-divider">
 
+			<c:choose>
+			<c:when test="${sessionScope.mvo!=null}">
+			<!-- 회원 로그인 -->
+			<!-- Nav Item - Pages Collapse Menu -->
 			<!-- Heading -->
 			<div class="sidebar-heading">Member</div>
 			<!-- Nav Item  -->
-			<!-- 
-				로그인 X -> 회원가입, 로그인
-				로그인 O -> 로그아웃, 내정보 관리
-			 -->
-			<c:choose>
-			<c:when test="${sessionScope.mvo==null}">
-			<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/member/register.jsp"> <i
-					class="fas fa-fw fa-user-plus"></i> <span>회원가입</span></a></li>
-			<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/member/login.jsp"> <i
-					class="fas fa-fw fa-sign-in-alt"></i> <span>로그인</span></a></li>
-			</c:when>
-			<c:otherwise>
-			
-			
-			<!-- Nav Item - Pages Collapse Menu -->
-			
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
 				data-toggle="collapse" data-target="#collapsePages"
 				aria-expanded="true" aria-controls="collapsePages"> <i
@@ -84,6 +72,35 @@
 				</div></li>
 			<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/LogoutController.do"> <i
 					class="fas fa-fw fa-sign-out-alt"></i> <span>로그아웃</span></a></li>
+			</c:when>
+			<c:when test="${sessionScope.mgvo!=null}">
+			<!-- manager 로그인 -->
+			<!-- Heading -->
+			<div class="sidebar-heading">Manager</div>
+			<li class="nav-item"><a class="nav-link collapsed" href="#"
+				data-toggle="collapse" data-target="#collapsePages"
+				aria-expanded="true" aria-controls="collapsePages"> <i
+					class="fas fa-fw fa-user"></i> <span>사이트 관리</span>
+			</a>
+				<div id="collapsePages" class="collapse"
+					aria-labelledby="headingPages" data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+						<h6 class="collapse-header">회원 관리</h6>
+						<a class="collapse-item" href="#">회원 조회</a>
+					
+
+						<!-- <a class="collapse-item" href="#">내가 쓴 댓글 보기</a>  -->
+					</div>
+				</div></li>
+			<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/LogoutController.do"> <i
+					class="fas fa-fw fa-sign-out-alt"></i> <span>로그아웃</span></a></li>
+			</c:when>
+			<c:otherwise>
+			<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/member/register.jsp"> <i
+					class="fas fa-fw fa-user-plus"></i> <span>회원가입</span></a></li>
+			<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/member/login.jsp"> <i
+					class="fas fa-fw fa-sign-in-alt"></i> <span>로그인</span></a></li>
+			
 			</c:otherwise>
 			</c:choose>
 			<!-- Divider -->

@@ -84,13 +84,37 @@
 				class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
 				aria-labelledby="userDropdown">
 				<a class="dropdown-item" href="#"> <i
-					class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> Mypage
+					class="fa-sm fa-fw mr-2 text-gray-400"></i> 대한민국
 				</a>
 				<div class="dropdown-divider"></div>
-				<a class="dropdown-item" href="${pageContext.request.contextPath}/LogoutController.do"> <i
-					class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i> logout
+				<a class="dropdown-item" href="#"> <i
+					class="fa-sm fa-fw mr-2 text-gray-400"></i> 프랑스
+				</a>
+				<div class="dropdown-divider"></div>
+				<a class="dropdown-item" href="#"> <i
+					class="fa-sm fa-fw mr-2 text-gray-400"></i> 이탈리아
+				</a>
+				<div class="dropdown-divider"></div>
+				<a class="dropdown-item" href="#"> <i
+					class="fa-sm fa-fw mr-2 text-gray-400"></i> 영국
+				</a>
+				<div class="dropdown-divider"></div>
+				<a class="dropdown-item" href="#"> <i
+					class="fa-sm fa-fw mr-2 text-gray-400"></i> 독일
 				</a>
 			</div></li>
+		</c:when>
+		<c:when test="${sessionScope.mgvo!=null}">
+			<li class="nav-item dropdown no-arrow"><a
+			class="nav-link dropdown-toggle" href="#" id="userDropdown"
+			role="button" data-toggle="dropdown" aria-haspopup="true"
+			aria-expanded="false"> <span
+				class="mr-2 d-none d-lg-inline text-gray-600 small">
+				${sessionScope.mgvo.name}님</span> <img
+				class="img-profile rounded-circle" src="images/circle_flag/manager.svg"
+				alt="사용자 프로필 이미지">
+		</a> <!-- Dropdown - User Information -->
+			</li>
 		</c:when>
 		<c:otherwise>
 		<span class="mr-2 d-none d-lg-inline text-gray-600 small">로그인이 필요합니다</span>
