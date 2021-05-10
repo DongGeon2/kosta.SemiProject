@@ -22,7 +22,7 @@
 <!-- Custom styles for this template-->
 <link href="${pageContext.request.contextPath}/css/sb-admin-2.css" rel="stylesheet">
 <!-- Custom styles for this page -->
-<link href=" ${pageContext.request.contextPath}/vendor/datatables/dataTables.bootstrap4.min.css"
-	rel="stylesheet">
+<%-- <link href=" ${pageContext.request.contextPath}/vendor/datatables/dataTables.bootstrap4.min.css"
+	rel="stylesheet"> --%>
 <!-- semiProject styles -->
 <link href="${pageContext.request.contextPath}/css/mystyle.css" rel="stylesheet">
