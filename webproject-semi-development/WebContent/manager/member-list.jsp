@@ -18,6 +18,10 @@
 	</div>
 	<div class="card-body">
 		<div class="table-responsive">
+		
+		<form action="${pageContext.request.contextPath}/DeleteMemberController.do"
+							onsubmit="return deleteMember()"	method="post">
+		
 			<table class="table table-bordered table-hover">
 				<colgroup>
 					<col width="20%" />
@@ -47,21 +51,25 @@
 							<td>${mvo.travelStyle}</td>
 							<td>${mvo.countryVO.countryName}</td>
 							<td>
-								<button type="button" class="btn btn-outline-primary btn-sm"
-									onclick="deletePost()">
-									<i class="fas fa-fw fa-times"></i> 삭제
-								</button>
-							</td>
-							<form name="deleteForm"
-								action="${pageContext.request.contextPath}/DeleteMemberController.do"
+								<input type="checkbox" name="deleteId" value="${mvo.id}">
+							
+								<%-- <form name="deleteForm"
+								action="${pageContext.request.contextPath}/DeleteMemberController.do?id=${mvo.id}"
 								method="post">
 								<input type="hidden" name="id" value="${mvo.id}">
-							</form>
+								<button type="button" class="btn btn-outline-primary btn-sm">
+									<i class="fas fa-fw fa-times"></i> 삭제
+								</button>
+							</form> --%>
+							</td>
 						</tr>
 					</c:forEach>
 				</tbody>
 			</table>
+			<hr>
+			<input type = "submit" value="삭제">
 			
+			</form>
 		</div>
 		<!-- Pagination -->
 		<c:set var="pb" value="${requestScope.pagingBean}"></c:set>
