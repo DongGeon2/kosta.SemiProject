@@ -84,9 +84,30 @@ public class MemberVO {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
+	
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
+	public int getPoint() {
+		return point;
+	}
+
+	public void setPoint(int point) {
+		this.point = point;
+	}
+
 	@Override
 	public String toString() {
 		return "MemberVO [countryVO=" + countryVO + ", birth=" + birth + ", gender=" + gender + ", travelStyle="
-				+ travelStyle + ", email=" + email + ", id=" + id + ", name=" + name + ", password=" + password + "]";
+				+ travelStyle + ", email=" + email + ", id=" + id + ", name=" + name + ", password=" + password
+				+ ", state=" + state + ", point=" + point + "]";
 	}
+
+	
 }
