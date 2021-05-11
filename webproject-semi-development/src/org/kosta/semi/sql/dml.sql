@@ -68,7 +68,6 @@ GROUP BY c.country_name;
 -- 사용 sql (게시글 등록)		
 INSERT INTO post VALUES(post_seq.nextval, '33', '정보', '프랑스 환전소 정보', 'java', sysdate, 0, '공항에서 환전 ㄴㄴ 봉쥬르마트안에 있는 환전소가 잘쳐줘요!');
 
-
 select m.name,m.gender,m.birth,m.email,m.travel_style,c.country_id,c.country_name from member m, country c where m.country_id=c.country_id and member_id='java' and password='a'
 
 SELECT p.post_no, c.country_name, p.category_name, p.post_title, p.member_id, p.time_posted, p.hits
@@ -78,7 +77,6 @@ country_id, category_name, to_char(time_posted, 'YYYY.MM.DD') as time_posted FRO
 WHERE p.country_id=c.country_id AND rnum BETWEEN 1 AND 3
 
 SELECT row_number() over(ORDER BY post_no DESC) as rnum,  post_no,post_title , member_id, hits, country_id, category_name, to_char(time_posted, 'YYYY.MM.DD') as time_posted FROM post
-<<<<<<< HEAD
 
 --commentPosting sql 작성중-- 
 INSERT INTO POSTCOMMENT VALUES(postcomment_seq.nextval, post_no, member_id, content, sysdate)
@@ -86,11 +84,3 @@ INSERT INTO POSTCOMMENT VALUES(postcomment_seq.nextval, post_no, member_id, cont
 SELECT postcomment_seq.currval from dual;
 ------------------------
 
-
-
-SELECT c.country_name, COUNT(m.member_id) FROM member m LEFT OUTER JOIN country c ON m.country_id=c.country_id WHERE m.state>0 GROUP BY c.country_name
-
-UPDATE member set point = point + 10 where member_id = 'java'
-SELECT * from member where member_id = 'java'
-=======
->>>>>>> branch 'main' of https://github.com/DongGeon2/kosta.SemiProject.git
