@@ -70,7 +70,7 @@ create table filedb(
 	post_no number not null,
 	org_name varchar2(100) not null,
 	file_name varchar2(100) not null,
-	file_path varchar2(200) not null,
+	file_path varchar2(100) not null,
 	file_size varchar2(100) not null,
 	fdate date not null,
 	constraint fk_filedb_post foreign key(post_no) references post(post_no)
@@ -98,4 +98,8 @@ ALTER TABLE member MODIFY ( state NUMBER DEFAULT 1 ) ;
 
 -- !!삭제한 모든 회원 되살리기!!
 UPDATE member SET state=1 ;
- 
+
+-- member table 포인트 추가
+ALTER TABLE member ADD ( point NUMBER ) ;
+UPDATE member SET point=0 ;
+ALTER TABLE member MODIFY ( point NUMBER DEFAULT 0 ) ;
