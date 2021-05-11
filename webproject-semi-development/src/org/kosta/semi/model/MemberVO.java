@@ -9,10 +9,13 @@ public class MemberVO {
 	private String id;
 	private String name;
 	private String password;
+	private String state;
+	private int point;
 	public MemberVO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+
 	public MemberVO(CountryVO countryVO, String birth, String gender, String travelStyle, String email, String id,
 			String name, String password) {
 		super();
@@ -25,6 +28,14 @@ public class MemberVO {
 		this.name = name;
 		this.password = password;
 	}
+	
+	public MemberVO(CountryVO countryVO, String birth, String gender, String travelStyle, String email, String id,
+			String name, String password, String state, int point) {
+		this(countryVO, birth, gender, travelStyle, email, id, name, password);
+		this.state = state;
+		this.point = point;
+	}
+	
 	public CountryVO getCountryVO() {
 		return countryVO;
 	}
