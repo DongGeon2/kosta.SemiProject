@@ -17,7 +17,6 @@ public class ChangeCountryController implements Controller {
 		if(session==null||session.getAttribute("mvo")==null){
 			return "redirect:index.jsp";
 		}
-		System.out.println("Change Countroller 작동");
 		String id = request.getParameter("cid");
 		MemberVO mvo = (MemberVO)session.getAttribute("mvo");
 		MemberDAO.getInstance().UpdateMemberCountry(mvo.getId(), id);
