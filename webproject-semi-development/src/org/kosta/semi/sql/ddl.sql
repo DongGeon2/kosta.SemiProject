@@ -102,6 +102,28 @@ UPDATE member SET state=1 ;
 -- member table 포인트 추가
 ALTER TABLE member ADD ( point NUMBER ) ;
 UPDATE member SET point=0 ;
+
+ALTER TABLE member MODIFY ( point NUMBER DEFAULT 0 ) ;
+
+---------------------------------------------------likedb추가
+drop table likedb;
+drop sequence like_seq;
+
+create sequence like_seq;
+
+create table likedb(
+	like_id varchar2(100) primary key,
+	post_no number not null,
+	file_id varchar2(100) not null,
+	like_count varchar2(100) not null,
+	constraint fk_likedb_post foreign key(post_no) references post(post_no),
+	constraint fk_likedb_filedb foreign key(file_id) references filedb(file_id)
+)
+------------comment-----------------------------
+SELECT member_id, time_commented , content  FROM postcomment  
+WHERE post_no=42 order by time_commented DESC
+
+
 ALTER TABLE member MODIFY ( point NUMBER DEFAULT 0 );
 
 ---------------------------------------------------likedb추가
