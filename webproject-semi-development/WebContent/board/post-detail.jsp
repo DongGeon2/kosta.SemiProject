@@ -58,7 +58,7 @@
 					<th class="table-active">분류</th>
 					<td colspan="3">${pvo.catergory}</td>
 					<th class="table-active">작성일</th>
-					<td>${pvo.postTime}</td>
+					<td>${time[0]}</td>
 				</tr>
 				<tr>
 				<c:set var="fvo" value="${requestScope.fvo }"></c:set>
@@ -78,7 +78,7 @@
 					<td colspan="6" class="cotentWrap"><pre>${pvo.postContent}</pre></td>
 				</tr>
 				<tr>
-					<td colspan="6">좋아요 ${requestScope.pvo. }</td>
+					<td colspan="6">좋아요 ${requestScope.pvo }</td>
 					
 				</tr>
 			</table>

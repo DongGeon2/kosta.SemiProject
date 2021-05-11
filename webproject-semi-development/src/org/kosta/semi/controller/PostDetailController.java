@@ -6,6 +6,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.kosta.semi.model.CountryDAO;
+import org.kosta.semi.model.CountryVO;
 import org.kosta.semi.model.FileDAO;
 import org.kosta.semi.model.FileVO;
 import org.kosta.semi.model.MemberVO;
@@ -60,6 +62,11 @@ public class PostDetailController implements Controller {
 			fileName=new String(fileName.getBytes("UTF-8"),"8859_1");
 			System.out.println("게시글번호, 파일이름: "+postNo+","+fileName);
 		}
+		
+		String countryId = request.getParameter("countryId");
+		System.out.println("");
+		System.out.println("나라 아이디:" +countryId);
+		CountryVO country = CountryDAO.getInstance().findCountryById(countryId);
 		
 		//한국과 해당게시판의 나라별 시간
 		ArrayList<String> time = PostDAO.getInstance().getSysdateAndLocalTime(postNo);

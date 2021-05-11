@@ -75,7 +75,7 @@ public class WritePostController implements Controller {
 			 * 바로 redirect를 통해 PostDetailController로 이동
 			 */
 			if(filename == null || filename == "") {
-				return "redirect:PostDetailController.do?postNo="+pvo.getPostNo();
+				return "redirect:PostDetailController.do?postNo="+pvo.getPostNo()+"&countryId="+countryId;
 			} else {
 				String orgName = multi.getOriginalFileName("filename");
 				long fileSize = multi.getFile("filename").length();
@@ -111,7 +111,7 @@ public class WritePostController implements Controller {
 //				System.out.println(pvo.getMemberVO().getId());
 //				System.out.println(fvo);
 				
-				return "redirect:PostDetailController.do?postNo="+pvo.getPostNo()+"&fileName="+fvo.getFileName();
+				return "redirect:PostDetailController.do?postNo="+pvo.getPostNo()+"&fileName="+fvo.getFileName()+"&countryId="+countryId;
 			}
 		}
 	}
