@@ -13,7 +13,7 @@ public class SelectDeletePostController implements Controller {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		HttpSession session = request.getSession(false);
+		HttpSession session = request.getSession(false); 
 		if(session == null || session.getAttribute("mvo") == null || request.getMethod().equals("POST") == false){
 			//return "redirect:AllListController.do";
 		}
