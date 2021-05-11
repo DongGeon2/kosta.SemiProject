@@ -1,12 +1,11 @@
 package org.kosta.semi.controller;
 
-import java.util.ArrayList;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.kosta.semi.model.MemberVO;
+import org.kosta.semi.model.FileDAO;
+import org.kosta.semi.model.FileVO;
 import org.kosta.semi.model.PostDAO2;
 import org.kosta.semi.model.PostVO;
 /**
@@ -21,21 +20,28 @@ public class PostDetailNoHitsController implements Controller {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		System.out.println();
+		System.out.println("PostDetailNoHitsController 시작");
 		HttpSession session = request.getSession(false);
 		if (session == null || session.getAttribute("mvo") == null) {
 			return "redirect:index.jsp";
 		}
-		String postNo = request.getParameter("postNo");
-		System.out.println(postNo);
+		String postNo = request.getParameter("postNo");		
+		String fileName = request.getParameter("fileName");
 		PostVO pvo = PostDAO2.getInstance().getPostingByNo(postNo);
+		String countryName = pvo.getCountryVO().getCountryName();
+		System.out.println(countryName);
+		
+		FileVO fvo = FileDAO.getInstance().getFile(postNo, fileName);
 		
 		// 개별 게시물 조회
+		request.setAttribute("fvo", fvo);
 		request.setAttribute("pvo", pvo);
-		String countryName = pvo.getCountryVO().getCountryName();
-		request.setAttribute("countryName", countryName);
+//		request.setAttribute("country", countryName);
 		request.setAttribute("urlCountry", "/template/countryInfo.jsp");
 		request.setAttribute("url", "/board/post-detail.jsp");
+//		request.setAttribute("countryName",pvo.getCountryVO().getCountryName());
+		System.out.println("PostDetailNoHitsController 끝");
 		return "/template/layout.jsp";
 	}
-
 }

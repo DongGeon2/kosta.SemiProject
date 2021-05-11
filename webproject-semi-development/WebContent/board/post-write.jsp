@@ -26,12 +26,12 @@
 					<option>후기</option>
 				</select>
 				<label for="catergory">나라</label>
-				<select class="form-control" name="countryname">
-					<option selected>영국</option>
-					<option >이탈리아</option>
-					<option >독일</option>
-					<option >프랑스</option>
-				</select>
+					<select class="form-control" name="countryId">
+						<option value="44"<c:if test="${sessionScope.mvo.countryVO.countryId==44 }">selected</c:if>>영국</option>
+						<option value="39"<c:if test="${sessionScope.mvo.countryVO.countryId==39 }">selected</c:if>>이탈리아</option>
+						<option value="49"<c:if test="${sessionScope.mvo.countryVO.countryId==49 }">selected</c:if>>독일</option>
+						<option value="33"<c:if test="${sessionScope.mvo.countryVO.countryId==33 }">selected</c:if>>프랑스</option>
+					</select>
 			</div>
 			<div class="form-group">
 				<label for="postTitle">제목</label>
@@ -42,6 +42,7 @@
 				<textarea class="form-control" rows="10" name="postContent" placeholder="내용을 입력해 주세요"></textarea>
 			</div>
 			<input type="file" name="filename">
+			<hr>
 			<div class="btnWrap">
 				<button type="submit" class="btn btn-outline-primary">
 				<i class="fas fa-fw fa-pencil-alt"></i>등록</button>

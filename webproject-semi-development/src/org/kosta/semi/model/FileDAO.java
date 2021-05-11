@@ -114,4 +114,26 @@ public class FileDAO {
 		}
 		return fvo;
 	}
+	
+	public String getFileName(String postNo) throws SQLException {
+		String fileName=null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			con = dataSource.getConnection();
+			String sql = "SELECT file_name FROM filedb WHERE post_no=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, postNo);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				FileVO fvo = new FileVO();
+				fvo.setFileName(rs.getString(1));
+				fileName=fvo.getFileName();
+			}
+		}finally {
+			closeAll(con, pstmt, rs);
+		}
+		return fileName;
+	}
 }

@@ -61,8 +61,18 @@
 					<td>${pvo.postTime}</td>
 				</tr>
 				<tr>
+				<c:set var="fvo" value="${requestScope.fvo }"></c:set>
 					<th class="table-active">제목</th>
-					<td colspan="5">${pvo.postTitle}</td>
+					<td colspan="3">${pvo.postTitle}</td>
+					<th class="table-active">첨부파일</th>
+					<c:choose>
+						<c:when test="${fvo!=null }">
+							<td><a href="DownloadController.do?postNo=${fvo.postVO.postNo }&fileName=${fvo.fileName}">${fvo.fileName }</a></td>
+						</c:when>
+						<c:otherwise>
+							<td>없음</td>
+						</c:otherwise>
+					</c:choose>
 				</tr>
 				<tr>
 					<td colspan="6" class="cotentWrap"><pre>${pvo.postContent}</pre></td>
