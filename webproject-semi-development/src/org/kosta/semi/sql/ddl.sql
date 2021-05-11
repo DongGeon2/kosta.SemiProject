@@ -57,12 +57,10 @@ CREATE TABLE manager(
    password VARCHAR2(100) not null,
    name VARCHAR2(100) not null
 )
-<<<<<<< HEAD
+
 SELECT count(*)
 FROM member m , country c
 WHERE m.country_id=c.country_id AND country_name='이탈리아';
-=======
->>>>>>> branch 'main' of https://github.com/DongGeon2/kosta.SemiProject.git
 
 -------------------------------fileDB
 drop table filedb;
@@ -94,3 +92,28 @@ WHERE f.file_id=p.post_no AND file_name='filelist3.hwp'
 SELECT post_no, file_id, org_name, file_name ,file_path, file_size, fdate
 FROM filedb
 WHERE file_name='filelist3.hwp'
+---------------------------------------------likedb
+drop table likedb;
+drop sequence like_seq;
+
+create sequence like_seq;
+
+create table likedb(
+	like_id varchar2(100) primary key,
+	post_no number not null,
+	file_id varchar2(100) not null,
+	like_count varchar2(100) not null,
+	constraint fk_likedb_post foreign key(post_no) references post(post_no),
+	constraint fk_likedb_filedb foreign key(file_id) references filedb(file_id)
+)
+
+create table filedb(
+	file_id varchar2(100) primary key,
+	post_no number not null,
+	org_name varchar2(100) not null,
+	file_name varchar2(100) not null,
+	file_path varchar2(100) not null,
+	file_size varchar2(100) not null,
+	fdate date not null,
+	constraint fk_filedb_post foreign key(post_no) references post(post_no)
+)
