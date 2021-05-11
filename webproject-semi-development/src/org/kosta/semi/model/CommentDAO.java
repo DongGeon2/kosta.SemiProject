@@ -47,8 +47,8 @@ public class CommentDAO {
 		try {
 			con=dataSource.getConnection();
 			StringBuilder sql = new StringBuilder();
-			sql.append(" INSERT INTO postcomment (comment_no, post_no, member_id, content ,time_commented )  ");
-			sql.append(" VALUES(postcomment_seq.nextval, ?, ?, ?, sysdate) ");
+			sql.append("INSERT INTO postcomment (comment_no, post_no, member_id, content ,time_commented ) ");
+			sql.append("VALUES(postcomment_seq.nextval, ?, ?, ?, sysdate) ");
 			pstmt=con.prepareStatement(sql.toString());
 			pstmt.setString(1, cvo.getPostVO().getPostNo());
 			pstmt.setString(2, member_id);
@@ -63,6 +63,25 @@ public class CommentDAO {
 			}
 		} finally {
 			closeAll(rs, pstmt, con);
+		}
+	}
+	/**
+	 * 댓글 삭제
+	 * delete postcomment where comment_no = '36';
+	 * @param commentId
+	 * @throws SQLException
+	 */
+	public void commentDelete(String commentId) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			con= dataSource.getConnection();
+			String sql = "delete postcomment where comment_no = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, commentId);
+			pstmt.executeUpdate();
+		}finally {
+			closeAll(pstmt, con);
 		}
 	}
 }

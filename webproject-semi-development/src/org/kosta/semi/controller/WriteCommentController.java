@@ -10,28 +10,29 @@ import org.kosta.semi.model.PostDAO2;
 import org.kosta.semi.model.PostVO;
 
 
-public class WriteCommentFormController implements Controller {
+public class WriteCommentController implements Controller {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session = request.getSession(false);
-		if (session == null || session.getAttribute("mvo") == null) {
-			return "redirect:index.jsp";
+		if (session == null || session.getAttribute("mvo") == null || request.getMethod().equals("POST") == false) {
+			return "redirect:member/loginUnlocked.jsp";
 		}
 		//commentVO 생성 하는 method 작성 
 		String memberId = request.getParameter("memberId");
 		String postNo = request.getParameter("postNo");
 		String commentContent = request.getParameter("commentContent");
 		
+		
 		// postVO 받아오기
 		PostVO pvo = PostDAO2.getInstance().getPostingByNo(postNo);
 		CommentVO cvo = new CommentVO();
-		cvo.setPostVO(pvo);
-		cvo.setCountryVO(pvo.getCountryVO());
-		cvo.setCommentContent(commentContent);
+		cvo.setPostVO(pvo); // PostVO
+		cvo.setCountryVO(pvo.getCountryVO()); //countryVO
+		cvo.setCommentContent(commentContent); //commentContent
 		
 		CommentDAO.getInstance().commentPosting(cvo, memberId, commentContent);
-		String path="PostDetailNoHitsController?pageNo="+pvo.getPostNo();
+		String path="PostDetailNoHitsController.do?pageNo="+pvo.getPostNo();
 		return path;
 	}
 	

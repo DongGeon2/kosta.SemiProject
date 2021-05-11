@@ -25,7 +25,7 @@
 	}
 	function commentPost() {
 		if (confirm("댓글을 등록하시겠습니까?")) {
-			document.updateForm.submit();
+			document.commentForm.submit();
 		}
 
 	}
@@ -137,22 +137,25 @@
 			<c:if test="${sessionScope.mvo!=null}">
 				<div class="commentWrap">
 					<form name="commentForm"
-						action="${pageContext.request.contextPath}/WriteCommentFormController.do"
+						action="${pageContext.request.contextPath}/WriteCommentController.do"
 						method="post">
-						<input type="hidden" name="postNo"
-							value="${requestScope.pvo.postNo}"> 
-						<input type="hidden"
-							name="memberId" value="${sessionScope.mvo.id}">
+						<input type="hidden" name="postNo" value="${requestScope.pvo.postNo}"> 
+						<input type="hidden" name="memberId" value="${sessionScope.mvo.id}">
+
+						<div>${sessionScope.mvo.id}</div>
+						<div class="form-group">
+							<label for="comment"></label>
+							<textarea class="form-control" name="commentContent" rows="2"
+								placeholder="댓글을 작성해 주세요"></textarea>
+						</div>
 					</form>
-					<div>${sessionScope.mvo.id}</div>
-					<div class="form-group">
-						<label for="comment"></label>
-						<textarea class="form-control" name="commentContent" rows="2"></textarea>
-					</div>
+
 					<div class="btnWrap">
 						<!-- 댓글등록버튼 -->
-						<button type="button" class="btn btn-outline-primary"
-						onclick="commentPost()"><i class="fas fa-fw fa-pencil-alt"></i>등록</button>
+						<button type="button" class="btn btn-outline-success btn-sm"
+							onclick="commentPost()">
+							<i class="fas fa-fw fa-pencil-alt"></i>등록
+						</button>
 					</div>
 				</div>
 			</c:if>
