@@ -6,7 +6,7 @@ SELECT * FROM country
 
 --1)컬럼 데이터 지우기 
 --ALTER TABLE country DROP COLUMN country_time --아예컬럼을 삭제
-UPDATE country SET country_time = NULL WHERE country_time IS NOT NULL;
+UPDATE country SET time_dif = NULL WHERE time_dif IS NOT NULL;
 -- 위의 쿼리로 데이터를 지우려면 not null이라는 데이터타입을 null로 변경해야함
 ALTER TABLE country MODIFY country_time NULL
 --2)컬럼명 변경

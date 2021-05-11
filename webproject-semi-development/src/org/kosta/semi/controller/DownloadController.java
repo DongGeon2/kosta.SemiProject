@@ -1,6 +1,7 @@
 package org.kosta.semi.controller;
 
 import java.io.BufferedOutputStream;
+import java.io.File;
 import java.io.FileInputStream;
 import java.net.URLEncoder;
 
@@ -28,7 +29,7 @@ public class DownloadController implements Controller {
 		 * 존재하지 않는 파일이름이 들어간 튜플을 지워줘야함.
 		 * 그리고 다시 post-detail.jsp가 새로고침되면서 해당게시물에 첨부파일이 사라지도록 코딩하면 좋을꺼같음.
 		 */
-		String path = "C:\\kosta215\\git\\semiproject-v1\\kosta.SemiProject\\kosta.SemiProject\\webproject-semi-development\\WebContent\\upload\\"+saveFileName;
+		String path = request.getServletContext().getRealPath("upload")+File.separator+saveFileName;
 		//다운로드 할 파일을 일거올 스트림 객체 생성
 		FileInputStream fis = new FileInputStream(path);
 		System.out.println(fis);

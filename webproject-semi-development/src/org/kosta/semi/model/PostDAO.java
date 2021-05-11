@@ -431,9 +431,9 @@ public class PostDAO {
 			con = dataSource.getConnection();
 			StringBuilder sql = new StringBuilder();
 			sql.append(
-					" SELECT to_char(p.time_posted,'YYYY.MM.DD PM HH12:MI') AS kor_time, c.time_dif, ");
+					" SELECT to_char(p.time_posted,'YYYY.MM.DD PM HH12:MI') AS kor_time, c.country_time, ");
 			sql.append(
-					" to_char((p.time_posted + c.time_dif/24), 'YYYY.MM.DD PM HH12:MI') as local_time ");
+					" to_char((p.time_posted + c.country_time/24), 'YYYY.MM.DD PM HH12:MI') as local_time ");
 			sql.append(" FROM post p, country c WHERE p.country_id = c.country_id AND p.post_no =? ");
 			pstmt = con.prepareStatement(sql.toString());
 			pstmt.setString(1, postNo);
