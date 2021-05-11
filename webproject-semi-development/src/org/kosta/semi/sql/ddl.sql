@@ -64,7 +64,6 @@ drop table filedb;
 
 drop sequence file_seq;
 create sequence file_seq;
-
 create table filedb(
 	file_id varchar2(100) primary key,
 	post_no number not null,

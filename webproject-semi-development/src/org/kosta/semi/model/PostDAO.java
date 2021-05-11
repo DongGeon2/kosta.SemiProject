@@ -285,7 +285,6 @@ public class PostDAO {
 	 **/
 	
 
-
 	/**
 	 * 나라와 칼럼(column)을 선택후 검색 문자열(keyWord)을 포함하는 로우(게시물) 목록을 가져오는 메서드.
 	 * getMyPostingList() 코드 가져와서 변경
