@@ -76,7 +76,7 @@ public class ManagerDAO {
 			ResultSet rs = null;
 			try {
 				con = dataSource.getConnection();
-				String sql = "select count(*) from member";
+				String sql = "select count(*) from member where state>0";
 				pstmt = con.prepareStatement(sql);
 				rs = pstmt.executeQuery();
 				if (rs.next())
@@ -100,7 +100,7 @@ public class ManagerDAO {
 				StringBuilder sql = new StringBuilder();
 				sql.append("SELECT m.member_id, m.name, m.travel_style, c.country_name ");
 				sql.append("FROM (SELECT row_number() over(ORDER BY member_id DESC) as rnum,  member_id, name, ");
-				sql.append("travel_style, country_id FROM member) m, country c ");
+				sql.append("travel_style, country_id FROM member where state>0) m, country c ");
 				sql.append("WHERE m.country_id=c.country_id AND rnum BETWEEN ? AND ?");
 				pstmt = con.prepareStatement(sql.toString());
 				pstmt.setInt(1, pagingBean.getStartRowNumber());

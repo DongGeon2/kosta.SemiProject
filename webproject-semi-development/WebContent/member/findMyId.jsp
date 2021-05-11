@@ -60,7 +60,7 @@
 										<a class="small"
 											href="${pageContext.request.contextPath}/member/login.jsp">로그인</a>&nbsp;&nbsp;
 										<a class="small" href="${pageContext.request.contextPath}/member/findMyPassword.jsp">비밀번호 찾기</a>&nbsp;&nbsp; <a
-											class="small" href="">회원가입</a></a>&nbsp;&nbsp;
+											class="small" href="${pageContext.request.contextPath}/member/register-ok.jsp">회원가입</a></a>&nbsp;&nbsp;
 										<a class="small" href="${pageContext.request.contextPath}/index.jsp"">Home</a>
 									</div>
 								</div>

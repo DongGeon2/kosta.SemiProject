@@ -1,4 +1,3 @@
-<%-- 작업중 --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -51,7 +50,6 @@
 <link href="${pageContext.request.contextPath}/css/sb-admin-2.min.css"
 	rel="stylesheet">
 
-
 </head>
 <%-- 회원가입 : 이름, id, password, password확인, 이메일, 생년월일, 성별, 여행스타일, 현재국가--%>
 <body class="bg-gradient-primary">
@@ -72,7 +70,8 @@
 								onsubmit="return checkRegForm()">
 								<div class="form-group">
 									<input type="text" class="form-control form-control-user"
-										name="name" placeholder="이름" onkeypress="if(!(event.keyCode < 47 && event.keyCode > 58)) event.returnValue=false;">
+										name="name" placeholder="이름"
+										onkeypress="if(!(event.keyCode < 47 && event.keyCode > 58)) event.returnValue=false;">
 
 								</div>
 								<div class="form-group row">
@@ -184,9 +183,9 @@
 											type="radio" class="form-check-input" id="radio5"
 											name="countryId" value="39">이탈리아
 										</label>
-									</div> 
+									</div>
 								</div>
-
+								
 								<div class="text-center">
 									<input type="submit" class="btn btn-primary" value="함께 여행하기">
 								</div>
@@ -202,6 +201,10 @@
 								<a class="small"
 									href="${pageContext.request.contextPath}/member/findMyPassword.jsp">비밀번호
 									찾기</a>
+								<div class="text-center">
+									<a class="small"
+										href="${pageContext.request.contextPath}/index.jsp">Home</a>
+								</div>
 							</div>
 						</div>
 					</div>

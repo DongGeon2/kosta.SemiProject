@@ -62,12 +62,12 @@
                                     <div class="text-center">
                                      <a class="small" href="${pageContext.request.contextPath}/member/findMyId.jsp">아이디 찾기</a>&nbsp;&nbsp;
                                      <a class="small" href="${pageContext.request.contextPath}/member/findMyPassword.jsp">비밀번호 찾기</a>&nbsp;&nbsp;
-                                     <a class="small" href="${pageContext.request.contextPath}/member/register.jsp">회원가입</a></a>&nbsp;&nbsp;
-										<a class="small" href="${pageContext.request.contextPath}/index.jsp"">Home</a>
+                                     <a class="small" href="${pageContext.request.contextPath}/member/register-ok.jsp">회원가입</a></a>&nbsp;&nbsp;
+										<a class="small" href="${pageContext.request.contextPath}/index.jsp">Home</a>
                                     </div>
                                     <hr>
                                     <div class="text-right">
-                                    <a class="small" href="${pageContext.request.contextPath}/manager/login.jsp"">관리자</a>
+                                    <a class="small" href="${pageContext.request.contextPath}/manager/login.jsp">관리자</a>
                                     </div>
                                 </div>
                             </div>

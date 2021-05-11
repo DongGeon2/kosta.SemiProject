@@ -54,7 +54,7 @@ public class MemberDAO {
 	         StringBuffer sql= new StringBuffer();
 	         sql.append("select m.name,m.gender,m.birth,m.email,m.travel_style,c.country_id,c.country_name ");
 	         sql.append("from member m, country c ");
-	         sql.append("where m.country_id=c.country_id and member_id=? and password=?");
+	         sql.append("where m.country_id=c.country_id and m.member_id=? and m.password=? and m.state>0 ");
 	         pstmt=con.prepareStatement(sql.toString());
 	         pstmt.setString(1, id);
 	         pstmt.setString(2, password);
@@ -119,7 +119,7 @@ public class MemberDAO {
 		ResultSet rs=null;
 		try {
 			con=dataSource.getConnection();
-			String sql="select member_id from member where email=?";
+			String sql="select member_id from member where email=? and state>0";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1,email);
 			rs=pstmt.executeQuery();
@@ -146,7 +146,7 @@ public class MemberDAO {
 		ResultSet rs=null;
 		try {
 			con=dataSource.getConnection();
-			String sql="select password from member where email=? and member_id=?";
+			String sql="select password from member where email=? and member_id=? and state>0 ";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, email);
 			pstmt.setString(2, id);
@@ -236,7 +236,9 @@ public class MemberDAO {
 			sql.append("LEFT OUTER ");
 			sql.append("JOIN country c ");
 			sql.append("ON m.country_id=c.country_id ");
-			sql.append("GROUP BY c.country_name");
+			sql.append("WHERE m.state>0 ");
+			sql.append("GROUP BY c.country_name ");
+			
 			pstmt=con.prepareStatement(sql.toString());
 			rs=pstmt.executeQuery();
 			while(rs.next()) {
@@ -328,7 +330,7 @@ public class MemberDAO {
 			StringBuffer sql = new StringBuffer();
 			sql.append("UPDATE member set ");
 			sql.append("country_id=? ");
-			sql.append("where member_id = ?");
+			sql.append("where member_id = ? and state>0");
 			pstmt=con.prepareStatement(sql.toString());
 			pstmt.setString(1, countryId);
 			pstmt.setString(2, memberId);
@@ -338,5 +340,73 @@ public class MemberDAO {
 		}
 	}
 	
+	/**
+	 * 회원 탈퇴, state값을 -1로 바꿉니다.
+	 * @param 
+	 * @throws SQLException
+	 */
+	public void DeleteMemberById(String memberId) throws SQLException {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		try{
+			con=dataSource.getConnection();
+			StringBuffer sql = new StringBuffer();
+			sql.append("UPDATE member set ");
+			sql.append("state = -1 ");
+			sql.append("where member_id = ?");
+			pstmt=con.prepareStatement(sql.toString());
+			pstmt.setString(1, memberId);
+			pstmt.executeUpdate();
+		}finally{
+			closeAll(pstmt,con);
+		}
+	}
+	
+	/**
+	 * 멤버의 포인트를 더합니다
+	 * @param memberId, point
+	 * @throws SQLException
+	 */
+	public void AddMemberPoint(String memberId, int point) throws SQLException {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		try{
+			con=dataSource.getConnection();
+			StringBuffer sql = new StringBuffer();
+			sql.append("UPDATE member set ");
+			sql.append("point = point + ? ");
+			sql.append("where member_id = ?");
+			pstmt=con.prepareStatement(sql.toString());
+			pstmt.setInt(1, point);
+			pstmt.setString(2, memberId);
+			pstmt.executeUpdate();
+		}finally{
+			closeAll(pstmt,con);
+		}
+	}
+	
+	/**
+	 * 멤버의 포인트를 뺍니다
+	 * @param memberId
+	 * @param point
+	 * @throws SQLException
+	 */
+	public void SubtractMemberPoint(String memberId, int point) throws SQLException {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		try{
+			con=dataSource.getConnection();
+			StringBuffer sql = new StringBuffer();
+			sql.append("UPDATE member set ");
+			sql.append("point = point - ? ");
+			sql.append("where member_id = ?");
+			pstmt=con.prepareStatement(sql.toString());
+			pstmt.setInt(1, point);
+			pstmt.setString(2, memberId);
+			pstmt.executeUpdate();
+		}finally{
+			closeAll(pstmt,con);
+		}
+	}
 	
 }

@@ -51,18 +51,13 @@ CREATE TABLE member(
    country_id VARCHAR2(100) not null,
    constraint fk_member_country foreign key(country_id) references country(country_id)
 )
+
 --2번
 CREATE TABLE manager(
    manager_id VARCHAR2(100) primary key,
    password VARCHAR2(100) not null,
    name VARCHAR2(100) not null
 )
-<<<<<<< HEAD
-SELECT count(*)
-FROM member m , country c
-WHERE m.country_id=c.country_id AND country_name='이탈리아';
-=======
->>>>>>> branch 'main' of https://github.com/DongGeon2/kosta.SemiProject.git
 
 -------------------------------fileDB
 drop table filedb;
@@ -94,3 +89,17 @@ WHERE f.file_id=p.post_no AND file_name='filelist3.hwp'
 SELECT post_no, file_id, org_name, file_name ,file_path, file_size, fdate
 FROM filedb
 WHERE file_name='filelist3.hwp'
+
+
+-- member table 상태값 추가
+ALTER TABLE member ADD ( state NUMBER ) ;
+UPDATE member SET state=1 ;
+ALTER TABLE member MODIFY ( state NUMBER DEFAULT 1 ) ;
+
+-- !!삭제한 모든 회원 되살리기!!
+UPDATE member SET state=1 ;
+
+-- member table 포인트 추가
+ALTER TABLE member ADD ( point NUMBER ) ;
+UPDATE member SET point=0 ;
+ALTER TABLE member MODIFY ( point NUMBER DEFAULT 0 ) ;

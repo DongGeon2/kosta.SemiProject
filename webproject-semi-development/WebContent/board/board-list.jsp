@@ -84,12 +84,16 @@
 					</c:forEach>
 				</tbody>
 			</table>
-			<div class="btnWrap">
-				<button type="button" class="btn btn btn-outline-secondary btn-sm">
-					<i class="fas fa-fw fa-pencil-alt"></i> 글쓰기
-				</button>
-			</div>
-
+			<c:choose>
+				<c:when test="${sessionScope.mvo!=null}">
+					<form action="WritePostFormController.do" method="post">
+						<div class="btnWrap">
+							<button type="submit" class="btn btn btn-outline-secondary btn-sm">
+							<i class="fas fa-fw fa-pencil-alt"></i> 글쓰기</button>
+						</div>
+					</form>
+				</c:when>
+			</c:choose>
 		</div>
 		<!-- Pagination -->
 		<c:set var="pb" value="${requestScope.pagingBean}"></c:set>
