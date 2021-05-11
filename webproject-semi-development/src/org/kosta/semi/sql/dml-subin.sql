@@ -32,6 +32,7 @@ INSERT INTO postcomment (comment_no, post_no, member_id, content ,time_commented
 delete postcomment where comment_no = '1';
 delete postcomment where comment_no = '2';
 delete postcomment where comment_no = '3';
-delete postcomment where comment_no = '4';
+delete postcomment where comment_no = '36';
 
+-- 매니저
 INSERT INTO manager VALUES('binnee3', 'a','주커피');

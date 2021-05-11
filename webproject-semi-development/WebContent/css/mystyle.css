@@ -35,6 +35,11 @@ pre {
 }
 
 .commentWrap {
-	border:1px solid #e3e6f0;
+	border:2px solid #e3e6f0;
 	border-radius:10px;
+	padding:10px 15px;
+	box-sizing: border-box;
+}
+.commentWrap textarea {
+	border:0 none;
 }
