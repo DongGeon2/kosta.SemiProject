@@ -95,3 +95,6 @@ WHERE file_name='filelist3.hwp'
 ALTER TABLE member ADD ( state NUMBER ) ;
 UPDATE member SET state=1 ;
 ALTER TABLE member MODIFY ( state NUMBER DEFAULT 1 ) ;
+
+-- !!삭제한 모든 회원 되살리기!!
+UPDATE member SET state=1 ;
