@@ -28,7 +28,7 @@ public class WriteCommentController implements Controller {
 		PostVO pvo = PostDAO2.getInstance().getPostingByNo(postNo);
 		CommentVO cvo = new CommentVO();
 		cvo.setPostVO(pvo); // PostVO
-		cvo.setCountryVO(pvo.getCountryVO()); //countryVO
+		cvo.setMemberVO(pvo.getMemberVO()); //countryVO
 		cvo.setCommentContent(commentContent); //commentContent
 		
 		CommentDAO.getInstance().commentPosting(cvo, memberId, commentContent);

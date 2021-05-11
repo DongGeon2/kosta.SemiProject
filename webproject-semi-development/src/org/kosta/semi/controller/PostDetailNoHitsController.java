@@ -68,6 +68,7 @@ public class PostDetailNoHitsController implements Controller {
 		} else {
 			request.setAttribute("commentList", null);	
 		}
+
 		
 		request.setAttribute("count", countryCount);
 		request.setAttribute("pvo", pvo);
