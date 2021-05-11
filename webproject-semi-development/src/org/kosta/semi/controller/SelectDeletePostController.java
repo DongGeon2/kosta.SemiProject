@@ -24,7 +24,6 @@ public class SelectDeletePostController implements Controller {
 		request.setAttribute("url", "/manager/member-list.jsp");
 		
 		return "/template/layoutMember.jsp";
-		return null;
 	}
 
 }
