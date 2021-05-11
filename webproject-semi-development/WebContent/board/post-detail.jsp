@@ -9,7 +9,7 @@
  -->
 <script>
 	function MoveList() {
-		alert("MoveForm");
+		document.MoveForm.submit();
 	}
 
 	function deletePost() {
@@ -64,14 +64,13 @@
 					<td>${time[2]}</td>
 				</tr>
 				<tr>
-					<c:set var="fvo" value="${requestScope.fvo }"></c:set>
+				<c:set var="fvo" value="${requestScope.fvo }"></c:set>
 					<th class="table-active">제목</th>
 					<td colspan="3">${pvo.postTitle}</td>
 					<th class="table-active">첨부파일</th>
 					<c:choose>
 						<c:when test="${fvo!=null }">
-							<td><a
-								href="DownloadController.do?postNo=${fvo.postVO.postNo }&fileName=${fvo.fileName}">${fvo.fileName }</a></td>
+							<td><a href="DownloadController.do?postNo=${fvo.postVO.postNo }&fileName=${fvo.fileName}">${fvo.fileName }</a></td>
 						</c:when>
 						<c:otherwise>
 							<td>없음</td>
@@ -81,12 +80,16 @@
 				<tr>
 					<td colspan="6" class="cotentWrap"><pre>${pvo.postContent}</pre></td>
 				</tr>
+				<tr>
+					<td colspan="6">좋아요 ${requestScope.pvo }</td>
+					
+				</tr>
 			</table>
 			<div class="btnWrap">
 				<!-- submit 을 위한 form -->
-				<form name="MoveForm" action="" method="post">
-					<input type="hidden" name="pageNo"
-						value="${requestScope.pvo.postNo}">
+				<form name="MoveForm" action="${pageContext.request.contextPath}/IndividualListBycountryController.do" method="post">
+					<input type="hidden" name="countryId"
+						value="${requestScope.pvo.countryVO.countryId}">
 				</form>
 				<form name="deleteForm"
 					action="${pageContext.request.contextPath}/DeletePostController.do"
@@ -151,6 +154,7 @@
 					</div>
 				</c:forEach>
 			</c:if>
+
 			<!-- html test page.... 
 			<div>
 				java<br> <font size="2" color="lightgray">11:11:11</font>
