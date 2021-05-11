@@ -12,8 +12,8 @@ public class DeletePostController implements Controller {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session = request.getSession(false);
-		if(session == null || session.getAttribute("mvo") == null || request.getMethod().equals("POST") == false){
-			//return "redirect:AllListController.do";
+		if(session == null || session.getAttribute("mvo") == null || session.getAttribute("mgvo") == null || request.getMethod().equals("POST") == false){
+			return "redirect:member/loginUnlocked.jsp";
 			
 		}
 		// pageNo -> postNo 수정해야함

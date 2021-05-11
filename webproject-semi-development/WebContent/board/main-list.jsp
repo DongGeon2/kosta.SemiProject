@@ -42,7 +42,7 @@
 							<td>${pvo.countryVO.countryName}</td>
 							<td>${pvo.catergory}</td>
 							<td><c:choose>
-									<c:when test="${sessionScope.mvo!=null}">
+									<c:when test="${sessionScope.mvo!=null || sessionScope.mgvo!=null}">
 										<a
 											href="${pageContext.request.contextPath}/PostDetailController.do?postNo=${pvo.postNo}">${pvo.postTitle}
 										</a>

@@ -59,9 +59,7 @@ CREATE TABLE manager(
    password VARCHAR2(100) not null,
    name VARCHAR2(100) not null
 )
-SELECT count(*)
-FROM member m , country c
-WHERE m.country_id=c.country_id AND country_name='이탈리아';
+
 -------------------------------fileDB
 drop table filedb;
 
@@ -105,8 +103,8 @@ UPDATE member SET state=1 ;
 -- member table 포인트 추가
 ALTER TABLE member ADD ( point NUMBER ) ;
 UPDATE member SET point=0 ;
-ALTER TABLE member MODIFY ( point NUMBER DEFAULT 0 ) ;
 
+ALTER TABLE member MODIFY ( point NUMBER DEFAULT 0 ) ;
 
 ---------------------------------------------------likedb추가
 drop table likedb;
@@ -122,5 +120,9 @@ create table likedb(
 	constraint fk_likedb_post foreign key(post_no) references post(post_no),
 	constraint fk_likedb_filedb foreign key(file_id) references filedb(file_id)
 )
+------------comment-----------------------------
+SELECT member_id, time_commented , content  FROM postcomment  
+WHERE post_no=42 order by time_commented DESC
 
- SELECT count(*) FROM member m , country c  WHERE m.country_id=c.country_id AND country_name='프랑스';
+
+ALTER TABLE member MODIFY ( point NUMBER DEFAULT 0 );

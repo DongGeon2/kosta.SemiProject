@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.sql.DataSource;
 
@@ -29,6 +30,39 @@ public class CommentDAO {
 			pstmt.close();
 		if(con!=null)
 			con.close();
+	}
+	/**
+	 *  DB에서 저장된 댓글 리스트를 가져옴 
+	 * 
+	 * 
+	 * @throws SQLException 
+	 */
+	public ArrayList<CommentVO> getCommentListByPostNo(String postNo) throws SQLException{
+		ArrayList<CommentVO> list = new ArrayList<CommentVO>();
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			con=dataSource.getConnection();
+			StringBuilder sql = new StringBuilder();
+			sql.append(" SELECT member_id, time_commented , content  FROM ");
+			sql.append(" postcomment  WHERE post_no=? order by time_commented DESC ");
+			pstmt=con.prepareStatement(sql.toString());
+			pstmt.setString(1, postNo);
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+				CommentVO cvo = new CommentVO();
+				MemberVO mvo = new MemberVO();
+				mvo.setId(rs.getString(1));
+				cvo.setMemberVO(mvo);
+				cvo.setCommentedTime(rs.getString(2));
+				cvo.setCommentContent(rs.getString(3));
+				list.add(cvo);				
+			}
+		} finally {
+			closeAll(rs, pstmt, con);
+		}
+		return list;
 	}
 	/**
 	 * 댓글 작성
