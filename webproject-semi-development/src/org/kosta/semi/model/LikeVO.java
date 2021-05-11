@@ -45,5 +45,5 @@ public class LikeVO {
 		return "LikeVO [likeId=" + likeId + ", postVO=" + postVO + ", fileVO=" + fileVO + ", likeCount=" + likeCount
 				+ "]";
 	}
-	
+	 
 }

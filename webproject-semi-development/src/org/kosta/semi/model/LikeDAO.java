@@ -27,5 +27,5 @@ public class LikeDAO {
 		if(rs != null)
 			rs.close();
 		closeAll(con, pstmt);
-	}
+	} 
 }
