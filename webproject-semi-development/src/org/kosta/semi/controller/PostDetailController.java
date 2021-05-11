@@ -6,6 +6,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.kosta.semi.model.CommentDAO;
+import org.kosta.semi.model.CommentVO;
 import org.kosta.semi.model.FileDAO;
 import org.kosta.semi.model.FileVO;
 import org.kosta.semi.model.MemberVO;
@@ -64,6 +66,18 @@ public class PostDetailController implements Controller {
 		ArrayList<String> time = PostDAO.getInstance().getSysdateAndLocalTime(postNo);
 		request.setAttribute("time", time);
 		
+		/*
+		 * comment list 가져오기 
+		 * id와 postNo 사용 
+		 */
+		ArrayList<CommentVO> commentList = CommentDAO.getInstance().getCommentListByPostNo(postNo);
+		System.out.println(commentList);
+		if(commentList!=null) {
+			//comment list --> post-detail.jsp
+			request.setAttribute("commentList", commentList);			
+		} else {
+			request.setAttribute("commentList", null);	
+		}
 		
 		request.setAttribute("pvo", pvo);
 		request.setAttribute("fvo", fvo);
