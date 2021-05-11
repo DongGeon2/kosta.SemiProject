@@ -253,7 +253,7 @@ public class PostDAO {
 		PreparedStatement pstmt = null;
 		try {
 			con = dataSource.getConnection();
-			pstmt = con.prepareStatement("update board set title=?,content=? where no=?");
+			pstmt = con.prepareStatement("update post set post_title=?,content=?, category_name=? where post_no=?");
 			pstmt.setString(1, vo.getPostTitle());
 			pstmt.setString(2, vo.getPostContent());
 			pstmt.setString(3, vo.getCatergory());
