@@ -103,3 +103,8 @@ UPDATE member SET state=1 ;
 ALTER TABLE member ADD ( point NUMBER ) ;
 UPDATE member SET point=0 ;
 ALTER TABLE member MODIFY ( point NUMBER DEFAULT 0 ) ;
+
+------------comment-----------------------------
+SELECT member_id, time_commented , content  FROM postcomment  
+WHERE post_no=42 order by time_commented DESC
+
