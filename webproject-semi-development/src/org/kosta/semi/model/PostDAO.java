@@ -422,5 +422,31 @@ public class PostDAO {
 			closeAll(rs, pstmt, con);
 		}
 	}
-
+	public ArrayList<String> getSysdateAndLocalTime(String postNo) throws SQLException {
+		ArrayList<String> time = new ArrayList<String>();
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			con = dataSource.getConnection();
+			StringBuilder sql = new StringBuilder();
+			sql.append(
+					" SELECT to_char(p.time_posted,'YYYY.MM.DD PM HH12:MI') AS kor_time, c.time_dif, ");
+			sql.append(
+					" to_char((p.time_posted + c.time_dif/24), 'YYYY.MM.DD PM HH12:MI') as local_time ");
+			sql.append(" FROM post p, country c WHERE p.country_id = c.country_id AND p.post_no =? ");
+			pstmt = con.prepareStatement(sql.toString());
+			pstmt.setString(1, postNo);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				time.add(rs.getString(1));
+				time.add(rs.getString(2));
+				time.add(rs.getString(3));
+			}
+		} finally {
+			closeAll(rs, pstmt, con);
+		}
+		System.out.println(time);
+		return time;
+	}
 }

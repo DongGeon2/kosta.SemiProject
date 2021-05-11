@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import org.kosta.semi.model.FileDAO;
 import org.kosta.semi.model.FileVO;
 import org.kosta.semi.model.MemberVO;
+import org.kosta.semi.model.PostDAO;
 import org.kosta.semi.model.PostDAO2;
 import org.kosta.semi.model.PostVO;
 
@@ -59,6 +60,10 @@ public class PostDetailController implements Controller {
 			fileName=new String(fileName.getBytes("UTF-8"),"8859_1");
 			System.out.println("게시글번호, 파일이름: "+postNo+","+fileName);
 		}
+		
+		//한국과 해당게시판의 나라별 시간
+		ArrayList<String> time = PostDAO.getInstance().getSysdateAndLocalTime(postNo);
+		request.setAttribute("time", time);
 		
 		request.setAttribute("pvo", pvo);
 		request.setAttribute("fvo", fvo);
