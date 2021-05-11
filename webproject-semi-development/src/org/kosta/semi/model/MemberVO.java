@@ -9,10 +9,13 @@ public class MemberVO {
 	private String id;
 	private String name;
 	private String password;
+	private String state;
+	private int point;
 	public MemberVO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+
 	public MemberVO(CountryVO countryVO, String birth, String gender, String travelStyle, String email, String id,
 			String name, String password) {
 		super();
@@ -25,6 +28,14 @@ public class MemberVO {
 		this.name = name;
 		this.password = password;
 	}
+	
+	public MemberVO(CountryVO countryVO, String birth, String gender, String travelStyle, String email, String id,
+			String name, String password, String state, int point) {
+		this(countryVO, birth, gender, travelStyle, email, id, name, password);
+		this.state = state;
+		this.point = point;
+	}
+	
 	public CountryVO getCountryVO() {
 		return countryVO;
 	}
@@ -73,9 +84,30 @@ public class MemberVO {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
+	
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
+	public int getPoint() {
+		return point;
+	}
+
+	public void setPoint(int point) {
+		this.point = point;
+	}
+
 	@Override
 	public String toString() {
 		return "MemberVO [countryVO=" + countryVO + ", birth=" + birth + ", gender=" + gender + ", travelStyle="
-				+ travelStyle + ", email=" + email + ", id=" + id + ", name=" + name + ", password=" + password + "]";
+				+ travelStyle + ", email=" + email + ", id=" + id + ", name=" + name + ", password=" + password
+				+ ", state=" + state + ", point=" + point + "]";
 	}
+
+	
 }

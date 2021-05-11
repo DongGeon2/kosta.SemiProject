@@ -64,6 +64,10 @@ public class PostDetailController implements Controller {
 		ArrayList<String> time = PostDAO.getInstance().getSysdateAndLocalTime(postNo);
 		request.setAttribute("time", time);
 		
+		//한국과 해당게시판의 나라별 시간
+		ArrayList<String> time = PostDAO.getInstance().getSysdateAndLocalTime(postNo);
+		request.setAttribute("time", time);
+		
 		request.setAttribute("pvo", pvo);
 		request.setAttribute("fvo", fvo);
 		request.setAttribute("urlCountry", "/template/countryInfo.jsp");
