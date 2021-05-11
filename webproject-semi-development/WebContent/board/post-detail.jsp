@@ -118,24 +118,23 @@
 				</c:if>
 			</div>
 			<hr>
-				<!-- 댓글 리스트를 불러오기  -->
-				<c:if test="${requestScope.commentList !=null}">
-					<c:forEach var="comment" items="${requestScope.commentList}">
-
+			<!-- 댓글 리스트를 불러오기  -->
+			<c:if test="${requestScope.commentList !=null}">
+				<c:forEach var="comment" items="${requestScope.commentList}">
+					<div>
 						<!-- ID, 작성날짜 -->
-						<div>
-							${comment.memberVO.id}<br> <font size="2" color="lightgray">${comment.commentedTime}</font>
-						</div>
+						${comment.memberVO.id}<br> <font size="2" color="lightgray">${comment.commentedTime}</font>
 						<!-- 본문내용 -->
 						<div class="text_wrapper">${comment.commentContent}</div>
 						<!-- 댓글 작성자만 수정 가능 -->
 						<c:if test="${comment.memberVO.id==sessionScope.mvo.id}">
-							<div id="btn" style="text-align: center;">
-								<a href="#">[수정]</a><br> <a href="#">[삭제]</a>
+							<div class="btnWrap">
+								<a href="#">[수정]</a><a href="#">[삭제]</a>
 							</div>
 						</c:if>
-					</c:forEach>
-				</c:if>
+					</div>
+				</c:forEach>
+			</c:if>
 			<!-- 로그인 시 댓글 작성 가능 -->
 			<c:if test="${sessionScope.mvo!=null}">
 				<div class="commentWrap">
