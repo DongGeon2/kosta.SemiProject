@@ -28,7 +28,9 @@ INSERT INTO post VALUES(post_seq.nextval, '39', '동행', 'dfsf', 'singleton',  
 INSERT INTO post VALUES(post_seq.nextval, '39', '동행', '12345', 'spring',  sysdate, 0,'12345 ');
 ----postcomment-----
 CREATE SEQUENCE postcomment_seq;
-INSERT INTO POSTCOMMENT VALUES(postcomment_seq.nextval, post_no, member_id, content, sysdate)
+INSERT INTO POSTCOMMENT VALUES(postcomment_seq.nextval, 42, 'spring', '지은 해물찜 맛있어요', sysdate)
+INSERT INTO POSTCOMMENT VALUES(postcomment_seq.nextval, 42, 'java', '수빈 전복찜도 추천이요', sysdate)
+INSERT INTO POSTCOMMENT VALUES(postcomment_seq.nextval, 42, 'mvc', '인재는 내가 찜', sysdate)
 --------------------------
 delete from post where post_no='22';
 delete from post where post_no='23';
@@ -86,9 +88,9 @@ SELECT postcomment_seq.currval from dual;
 
 
 
+SELECT c.country_name, COUNT(m.member_id) FROM member m LEFT OUTER JOIN country c ON m.country_id=c.country_id WHERE m.state>0 GROUP BY c.country_name
 
-
-
-
+UPDATE member set point = point + 10 where member_id = 'java'
+SELECT * from member where member_id = 'java'
 =======
 >>>>>>> branch 'main' of https://github.com/DongGeon2/kosta.SemiProject.git
