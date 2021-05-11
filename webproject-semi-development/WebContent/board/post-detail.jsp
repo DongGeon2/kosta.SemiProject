@@ -56,18 +56,22 @@
 				</tr>
 				<tr>
 					<th class="table-active">분류</th>
-					<td colspan="3">${pvo.catergory}</td>
+					<td>${pvo.catergory}</td>
 					<th class="table-active">작성일</th>
+					<td>${pvo.postTime}</td>
+					<th class="table-active">현지작성일</th>
+					<!-- 이 th 이름 바꿔주시면 될 것 같아요  -->
 					<td>${pvo.postTime}</td>
 				</tr>
 				<tr>
-				<c:set var="fvo" value="${requestScope.fvo }"></c:set>
+					<c:set var="fvo" value="${requestScope.fvo }"></c:set>
 					<th class="table-active">제목</th>
 					<td colspan="3">${pvo.postTitle}</td>
 					<th class="table-active">첨부파일</th>
 					<c:choose>
 						<c:when test="${fvo!=null }">
-							<td><a href="DownloadController.do?postNo=${fvo.postVO.postNo }&fileName=${fvo.fileName}">${fvo.fileName }</a></td>
+							<td><a
+								href="DownloadController.do?postNo=${fvo.postVO.postNo }&fileName=${fvo.fileName}">${fvo.fileName }</a></td>
 						</c:when>
 						<c:otherwise>
 							<td>없음</td>
@@ -114,43 +118,33 @@
 				</c:if>
 			</div>
 			<hr>
-			<!-- 댓글 리스트를 불러오기  -->
-			<c:if test="${requestScope.commentList !=null}">
-				<c:forEach var="comment" items="${requestScope.commentList}">
-					<tr>
-						<!-- ID, 작성날짜 -->
-						<td width="150">
-							<div>
-								${comment.member_id}<br> <font size="2" color="lightgray">${comment.time_commented}</font>
-							</div>
-						</td>
-						<!-- 본문내용 -->
-						<td width="550">
-							<div class="text_wrapper">${comment.content}</div>
-						</td>
-						<!-- 댓글 작성자만 수정 가능 -->
-						<td width="100">
-							<div id="btn" style="text-align: center;">
-								<c:if
-									test="${requestScope.pvo.memberVO.id==sessionScope.mvo.id}">
-									<a href="#">[수정]</a>
-									<br>
-									<a href="#">[삭제]</a>
-								</c:if>
-							</div>
-						</td>
-					</tr>
+				<!-- 댓글 리스트를 불러오기  -->
+				<c:if test="${requestScope.commentList !=null}">
+					<c:forEach var="comment" items="${requestScope.commentList}">
 
-				</c:forEach>
-			</c:if>
+						<!-- ID, 작성날짜 -->
+						<div>
+							${comment.memberVO.id}<br> <font size="2" color="lightgray">${comment.commentedTime}</font>
+						</div>
+						<!-- 본문내용 -->
+						<div class="text_wrapper">${comment.commentContent}</div>
+						<!-- 댓글 작성자만 수정 가능 -->
+						<c:if test="${comment.memberVO.id==sessionScope.mvo.id}">
+							<div id="btn" style="text-align: center;">
+								<a href="#">[수정]</a><br> <a href="#">[삭제]</a>
+							</div>
+						</c:if>
+					</c:forEach>
+				</c:if>
 			<!-- 로그인 시 댓글 작성 가능 -->
 			<c:if test="${sessionScope.mvo!=null}">
 				<div class="commentWrap">
 					<form name="commentForm"
 						action="${pageContext.request.contextPath}/WriteCommentController.do"
 						method="post">
-						<input type="hidden" name="postNo" value="${requestScope.pvo.postNo}"> 
-						<input type="hidden" name="memberId" value="${sessionScope.mvo.id}">
+						<input type="hidden" name="postNo"
+							value="${requestScope.pvo.postNo}"> <input type="hidden"
+							name="memberId" value="${sessionScope.mvo.id}">
 
 						<div>${sessionScope.mvo.id}</div>
 						<div class="form-group">

@@ -28,7 +28,7 @@ public class PostDetailController implements Controller {
 		System.out.println("PostDetailController 시작");
 		HttpSession session = request.getSession(false);
 		if (session == null || session.getAttribute("mvo") == null) {
-			return "redirect:index.jsp";
+			return "redirect:member/loginUnlocked.jsp";
 		}
 		MemberVO mvo = (MemberVO) session.getAttribute("mvo");
 		String postNo = request.getParameter("postNo");
