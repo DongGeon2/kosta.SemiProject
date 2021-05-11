@@ -9,7 +9,7 @@
  -->
 <script>
 	function MoveList() {
-		alert("MoveForm");
+		document.MoveForm.submit();
 	}
 
 	function deletePost() {
@@ -87,9 +87,9 @@
 			</table>
 			<div class="btnWrap">
 				<!-- submit 을 위한 form -->
-				<form name="MoveForm" action="" method="post">
-					<input type="hidden" name="pageNo"
-						value="${requestScope.pvo.postNo}">
+				<form name="MoveForm" action="${pageContext.request.contextPath}/IndividualListBycountryController.do" method="post">
+					<input type="hidden" name="countryId"
+						value="${requestScope.pvo.countryVO.countryId}">
 				</form>
 				<form name="deleteForm"
 					action="${pageContext.request.contextPath}/DeletePostController.do"
@@ -124,40 +124,46 @@
 			<!-- 댓글 리스트를 불러오기  -->
 			<c:if test="${requestScope.commentList !=null}">
 				<c:forEach var="comment" items="${requestScope.commentList}">
-					<tr>
+					<div>
 						<!-- ID, 작성날짜 -->
-						<td width="150">
-							<div>
-								${comment.member_id}<br> <font size="2" color="lightgray">${comment.time_commented}</font>
-							</div>
-						</td>
+						${comment.memberVO.id}<br> <font size="2" color="lightgray">${comment.commentedTime}</font>
 						<!-- 본문내용 -->
-						<td width="550">
-							<div class="text_wrapper">${comment.content}</div>
-						</td>
+						<div class="text_wrapper">${comment.commentContent}</div>
 						<!-- 댓글 작성자만 수정 가능 -->
-						<td width="100">
-							<div id="btn" style="text-align: center;">
-								<c:if
-									test="${requestScope.pvo.memberVO.id==sessionScope.mvo.id}">
-									<a href="#">[수정]</a>
-									<br>
-									<a href="#">[삭제]</a>
-								</c:if>
+						<c:if test="${comment.memberVO.id==sessionScope.mvo.id}">
+							<div class="btnWrap">
+								<form name="updateComment"
+									action="${pageContext.request.contextPath}/UpdatePostFormController.do"
+									method="post" style="display: inline">
+									<input type="hidden" name="commentNo"
+										value="${comment.commentNo}">
+									<button type="button" class="btn  btn-sm" onclick="updateComment()">
+										수정</button>
+								</form>
+								<form name="deleteComment"
+									action="${pageContext.request.contextPath}/DeleteCommentController.do"
+									method="post" style="display: inline">
+									<input type="hidden" name="commentNo"
+										value="${comment.commentNo}">
+									<button type="button" class="btn  btn-sm" onclick="deleteComment()">
+										삭제</button>
+								</form>
 							</div>
-						</td>
-					</tr>
-
+						</c:if>
+						<hr>
+					</div>
 				</c:forEach>
 			</c:if>
+			
 			<!-- 로그인 시 댓글 작성 가능 -->
 			<c:if test="${sessionScope.mvo!=null}">
 				<div class="commentWrap">
 					<form name="commentForm"
 						action="${pageContext.request.contextPath}/WriteCommentController.do"
 						method="post">
-						<input type="hidden" name="postNo" value="${requestScope.pvo.postNo}"> 
-						<input type="hidden" name="memberId" value="${sessionScope.mvo.id}">
+						<input type="hidden" name="postNo"
+							value="${requestScope.pvo.postNo}"> <input type="hidden"
+							name="memberId" value="${sessionScope.mvo.id}">
 
 						<div>${sessionScope.mvo.id}</div>
 						<div class="form-group">

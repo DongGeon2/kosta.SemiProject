@@ -33,7 +33,7 @@ public class WritePostController implements Controller {
 			MultipartRequest multi = null;
 			int sizeLimit = 10*1024*1024; 			
 			//String path = request.getContextPath();
-			String savePath = "C:\\Users\\SUE\\git\\kosta.SemiProject\\webproject-semi-development\\WebContent\\upload";
+			String savePath = request.getServletContext().getRealPath("upload");
 			try {
 				multi = new MultipartRequest(request, savePath, sizeLimit, "utf-8", new DefaultFileRenamePolicy());
 				System.out.println("try문");
@@ -75,7 +75,7 @@ public class WritePostController implements Controller {
 			 * 바로 redirect를 통해 PostDetailController로 이동
 			 */
 			if(filename == null || filename == "") {
-				return "redirect:PostDetailController.do?postNo="+pvo.getPostNo()+"&countryId="+countryId;
+				return "redirect:PostDetailController.do?postNo="+pvo.getPostNo();
 			} else {
 				String orgName = multi.getOriginalFileName("filename");
 				long fileSize = multi.getFile("filename").length();
@@ -111,7 +111,7 @@ public class WritePostController implements Controller {
 //				System.out.println(pvo.getMemberVO().getId());
 //				System.out.println(fvo);
 				
-				return "redirect:PostDetailController.do?postNo="+pvo.getPostNo()+"&fileName="+fvo.getFileName()+"&countryId="+countryId;
+				return "redirect:PostDetailController.do?postNo="+pvo.getPostNo()+"&fileName="+fvo.getFileName();
 			}
 		}
 	}

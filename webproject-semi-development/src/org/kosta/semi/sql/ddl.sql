@@ -121,5 +121,11 @@ create table likedb(
 	constraint fk_likedb_post foreign key(post_no) references post(post_no),
 	constraint fk_likedb_filedb foreign key(file_id) references filedb(file_id)
 )
+------------comment-----------------------------
+SELECT member_id, time_commented , content  FROM postcomment  
+WHERE post_no=42 order by time_commented DESC
+
+
+ALTER TABLE member MODIFY ( point NUMBER DEFAULT 0 );
 
  SELECT count(*) FROM member m , country c  WHERE m.country_id=c.country_id AND country_name='프랑스';

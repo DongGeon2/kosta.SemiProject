@@ -8,6 +8,8 @@ import javax.servlet.http.HttpSession;
 
 import org.kosta.semi.model.CountryDAO;
 import org.kosta.semi.model.CountryVO;
+import org.kosta.semi.model.CommentDAO;
+import org.kosta.semi.model.CommentVO;
 import org.kosta.semi.model.FileDAO;
 import org.kosta.semi.model.FileVO;
 import org.kosta.semi.model.MemberVO;
@@ -63,15 +65,29 @@ public class PostDetailController implements Controller {
 			System.out.println("게시글번호, 파일이름: "+postNo+","+fileName);
 		}
 		
-		String countryId = request.getParameter("countryId");
+		String countryName = pvo.getCountryVO().getCountryName();
 		System.out.println("");
-		System.out.println("나라 아이디:" +countryId);
-		CountryVO country = CountryDAO.getInstance().findCountryById(countryId);
+		System.out.println("나라 이름:"+pvo.getCountryVO().getCountryName());
+		int countryCount = CountryDAO.getInstance().findMemberCountByCountryname(countryName);
 		
 		//한국과 해당게시판의 나라별 시간
 		ArrayList<String> time = PostDAO.getInstance().getSysdateAndLocalTime(postNo);
 		request.setAttribute("time", time);
 		
+		/*
+		 * comment list 가져오기 
+		 * id와 postNo 사용 
+		 */
+		ArrayList<CommentVO> commentList = CommentDAO.getInstance().getCommentListByPostNo(postNo);
+		System.out.println(commentList);
+		if(commentList!=null) {
+			//comment list --> post-detail.jsp
+			request.setAttribute("commentList", commentList);			
+		} else {
+			request.setAttribute("commentList", null);	
+		}
+		
+		request.setAttribute("count", countryCount);
 		request.setAttribute("pvo", pvo);
 		request.setAttribute("fvo", fvo);
 		request.setAttribute("urlCountry", "/template/countryInfo.jsp");
