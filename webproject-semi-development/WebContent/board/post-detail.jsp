@@ -9,7 +9,7 @@
  -->
 <script>
 	function MoveList() {
-		alert("MoveForm");
+		document.MoveForm.submit();
 	}
 
 	function deletePost() {
@@ -84,9 +84,9 @@
 			</table>
 			<div class="btnWrap">
 				<!-- submit 을 위한 form -->
-				<form name="MoveForm" action="" method="post">
-					<input type="hidden" name="pageNo"
-						value="${requestScope.pvo.postNo}">
+				<form name="MoveForm" action="${pageContext.request.contextPath}/IndividualListBycountryController.do" method="post">
+					<input type="hidden" name="countryId"
+						value="${requestScope.pvo.countryVO.countryId}">
 				</form>
 				<form name="deleteForm"
 					action="${pageContext.request.contextPath}/DeletePostController.do"
