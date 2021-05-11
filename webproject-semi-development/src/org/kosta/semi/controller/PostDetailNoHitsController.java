@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.kosta.semi.model.CountryDAO;
 import org.kosta.semi.model.FileDAO;
 import org.kosta.semi.model.FileVO;
 import org.kosta.semi.model.PostDAO;
@@ -43,12 +44,16 @@ public class PostDetailNoHitsController implements Controller {
 			System.out.println("게시글번호, 파일이름: " + postNo + "," + fileName);
 		}
 		
+		String countryName = pvo.getCountryVO().getCountryName();
+		System.out.println("");
+		System.out.println("나라 이름:" +countryName);
+		int countryCount = CountryDAO.getInstance().findMemberCountByCountryname(countryName);
+		
 		//한국과 해당게시판의 나라별 시간. jsp에서 각각 ${time[0]} 과 ${time[2]} 
 		ArrayList<String> time = PostDAO.getInstance().getSysdateAndLocalTime(postNo);
 		request.setAttribute("time", time);
 		
-//		String countryName = pvo.getCountryVO().getCountryName();
-//		request.setAttribute("country", countryName);
+		request.setAttribute("count", countryCount);
 		request.setAttribute("pvo", pvo);
 		request.setAttribute("fvo", fvo);
 		request.setAttribute("urlCountry", "/template/countryInfo.jsp");

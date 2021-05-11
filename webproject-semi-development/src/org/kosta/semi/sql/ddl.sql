@@ -7,7 +7,8 @@ DROP TABLE postcomment;
 
 SELECT * FROM MEMBER;
 select * from POST;
-
+SELECT count(*) FROM member m , country c  WHERE m.country_id=c.country_id AND country_id='44';
+SELECT count(*) FROM member m , country c  WHERE m.country_id=c.country_id AND country_name='영국';
 --1번
 CREATE TABLE country(
    country_id VARCHAR2(100) primary key,
