@@ -70,43 +70,40 @@
 
 		<!-- Nav Item - User Information -->
 		<c:choose>
-		<c:when test="${sessionScope.mvo!=null}">
-		<li class="nav-item dropdown no-arrow"><a
-			class="nav-link dropdown-toggle" href="#" id="userDropdown"
+		<c:when test="${sessionScope.mvo!=null}">		
+		<li class="nav-item dropdown no-arrow">
+		<%-- check 사항 --%>
+	  	<a  href="#" class="nav-link dropdown-toggle" id="userDropdown"
 			role="button" data-toggle="dropdown" aria-haspopup="true"
-			aria-expanded="false"> <span
-				class="mr-2 d-none d-lg-inline text-gray-600 small">
-				${sessionScope.mvo.name}님</span> <img
+			aria-expanded="false"> 
+			
+			<span class="mr-2 d-none d-lg-inline text-gray-600 small">
+				${sessionScope.mvo.name}님 </span> <img
 				class="img-profile rounded-circle" src="images/circle_flag/${sessionScope.mvo.countryVO.countryId}.svg"
 				alt="사용자 프로필 이미지">
-		</a> <!-- Dropdown - User Information -->
-			<div
-				class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+		</a>  
+		 	<div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
 				aria-labelledby="userDropdown">
-				<a class="dropdown-item" href="#"> <i
-					class="fa-sm fa-fw mr-2 text-gray-400"></i> 대한민국
+				<a class="dropdown-item" href="${pageContext.request.contextPath}/ChangeCountryController.do?cid=82">대한민국
 				</a>
 				<div class="dropdown-divider"></div>
-				<a class="dropdown-item" href="#"> <i
-					class="fa-sm fa-fw mr-2 text-gray-400"></i> 프랑스
+				<a class="dropdown-item" href="${pageContext.request.contextPath}/ChangeCountryController.do?cid=33">프랑스
 				</a>
 				<div class="dropdown-divider"></div>
-				<a class="dropdown-item" href="#"> <i
-					class="fa-sm fa-fw mr-2 text-gray-400"></i> 이탈리아
+				<a class="dropdown-item" href="${pageContext.request.contextPath}/ChangeCountryController.do?cid=39">이탈리아
 				</a>
 				<div class="dropdown-divider"></div>
-				<a class="dropdown-item" href="#"> <i
-					class="fa-sm fa-fw mr-2 text-gray-400"></i> 영국
+				<a class="dropdown-item" href="${pageContext.request.contextPath}/ChangeCountryController.do?cid=44">영국
 				</a>
 				<div class="dropdown-divider"></div>
-				<a class="dropdown-item" href="#"> <i
-					class="fa-sm fa-fw mr-2 text-gray-400"></i> 독일
+				<a class="dropdown-item" href="${pageContext.request.contextPath}/ChangeCountryController.do?cid=49">독일
 				</a>
-			</div></li>
+				</div> 
+			</li>
 		</c:when>
 		<c:when test="${sessionScope.mgvo!=null}">
 			<li class="nav-item dropdown no-arrow"><a
-			class="nav-link dropdown-toggle" href="#" id="userDropdown"
+			class="nav-link dropdown-toggle" href="#" id="managerDropdown"
 			role="button" data-toggle="dropdown" aria-haspopup="true"
 			aria-expanded="false"> <span
 				class="mr-2 d-none d-lg-inline text-gray-600 small">

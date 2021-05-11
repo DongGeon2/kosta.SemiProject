@@ -14,17 +14,16 @@ public class ChangeCountryController implements Controller {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session=request.getSession(false);
-		if(session==null||session.getAttribute("mvo")==null|| request.getMethod().equals("POST")==false){
+		if(session==null||session.getAttribute("mvo")==null){
 			return "redirect:index.jsp";
 		}
+		System.out.println("Change Countroller 작동");
 		String id = request.getParameter("cid");
-		System.out.println(id);
 		MemberVO mvo = (MemberVO)session.getAttribute("mvo");
-		System.out.println(mvo);
 		MemberDAO.getInstance().UpdateMemberCountry(mvo.getId(), id);
 		CountryVO cvo = CountryDAO.getInstance().findCountryById(id);
-		System.out.println(cvo);
-		//session.setAttribute("mvo", mvo);
-		return "redirect:index.jsp";
+		mvo.setCountryVO(cvo);
+		session.setAttribute("mvo", mvo);
+		return "redirect:member/changeCountry-ok.jsp";
 	}
 }
