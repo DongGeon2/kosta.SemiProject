@@ -19,7 +19,7 @@ public class DeleteMemberController implements Controller {
 		String id[] = request.getParameterValues("deleteId");
 		int i = 0;
 		for(i=0; i<id.length; i++) {
-			MemberDAO.getInstance().DeleteMemberById(id[i]);
+			MemberDAO.getInstance().deleteMemberById(id[i]);
 		}
 		request.setAttribute("num", i);
 		if(i == id.length) {

@@ -46,7 +46,7 @@ public class PostDAO2 {
 			con=dataSource.getConnection();
 			StringBuilder sql=new StringBuilder();
 			sql.append("SELECT p.post_no, p.hits,p.member_id, p.category_name, ");	
-			sql.append("to_char(time_posted, 'YYYY.MM.DD') as time_posted, ");	
+			sql.append("to_char(time_posted, 'YYYY.MM.DD HH24:MI:SS') as time_posted, ");	
 			sql.append("p.post_title, p.content, p.country_id, c.country_name ");	
 			sql.append("FROM  post p, member m, country c ");	
 			sql.append("WHERE p.member_id = m.member_id AND p.country_id = c.country_id  AND p.post_no = ?");	

@@ -19,7 +19,7 @@ public class ChangeCountryController implements Controller {
 		}
 		String id = request.getParameter("cid");
 		MemberVO mvo = (MemberVO)session.getAttribute("mvo");
-		MemberDAO.getInstance().UpdateMemberCountry(mvo.getId(), id);
+		MemberDAO.getInstance().updateMemberCountry(mvo.getId(), id);
 		CountryVO cvo = CountryDAO.getInstance().findCountryById(id);
 		mvo.setCountryVO(cvo);
 		session.setAttribute("mvo", mvo);

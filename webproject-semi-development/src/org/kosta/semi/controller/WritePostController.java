@@ -33,7 +33,8 @@ public class WritePostController implements Controller {
 			MultipartRequest multi = null;
 			int sizeLimit = 10*1024*1024; 			
 			//String path = request.getContextPath();
-			String savePath = "C:\\kosta215\\git\\semiproject-v1\\kosta.SemiProject\\kosta.SemiProject\\webproject-semi-development\\WebContent\\upload";
+			String savePath = request.getServletContext().getRealPath("upload");
+
 			try {
 				multi = new MultipartRequest(request, savePath, sizeLimit, "utf-8", new DefaultFileRenamePolicy());
 				System.out.println("try문");

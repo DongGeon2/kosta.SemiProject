@@ -40,7 +40,7 @@ public class MemberDAO {
 	    * 회원정보로 로그인
 	    * @param id
 	    * @param password
-	    * @return MemberVO-패스워드 제외한 모든 정보
+	    * @return MemberVO - name, email, country_id, country_name
 	    * @throws SQLException
 	    */
 	   public MemberVO login(String id,String password) throws SQLException{
@@ -52,7 +52,7 @@ public class MemberDAO {
 	      try{
 	         con=dataSource.getConnection();
 	         StringBuffer sql= new StringBuffer();
-	         sql.append("select m.name,m.gender,m.birth,m.email,m.travel_style,c.country_id,c.country_name ");
+	         sql.append("select m.name,m.email,c.country_id,c.country_name ");
 	         sql.append("from member m, country c ");
 	         sql.append("where m.country_id=c.country_id and m.member_id=? and m.password=? and m.state>0 ");
 	         pstmt=con.prepareStatement(sql.toString());
@@ -64,12 +64,9 @@ public class MemberDAO {
 	            cvo = new CountryVO();
 	            vo.setId(id);
 	            vo.setName(rs.getString(1));
-	            vo.setGender(rs.getString(2));
-	            vo.setBirth(rs.getString(3));
-	            vo.setEmail(rs.getString(4));
-	            vo.setTravelStyle(rs.getString(5));
-	            cvo.setCountryId(rs.getString(6));
-	            cvo.setCountryName(rs.getString(7));
+	            vo.setEmail(rs.getString(2));
+	            cvo.setCountryId(rs.getString(3));
+	            cvo.setCountryName(rs.getString(4));
 	            vo.setCountryVO(cvo);
 	         }
 	      }finally{
@@ -322,7 +319,7 @@ public class MemberDAO {
 	 * @param 
 	 * @throws SQLException
 	 */
-	public void UpdateMemberCountry(String memberId, String countryId) throws SQLException {
+	public void updateMemberCountry(String memberId, String countryId) throws SQLException {
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		try{
@@ -345,7 +342,7 @@ public class MemberDAO {
 	 * @param 
 	 * @throws SQLException
 	 */
-	public void DeleteMemberById(String memberId) throws SQLException {
+	public void deleteMemberById(String memberId) throws SQLException {
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		try{
@@ -367,7 +364,7 @@ public class MemberDAO {
 	 * @param memberId, point
 	 * @throws SQLException
 	 */
-	public void AddMemberPoint(String memberId, int point) throws SQLException {
+	public void addMemberPoint(String memberId, int point) throws SQLException {
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		try{
@@ -391,7 +388,7 @@ public class MemberDAO {
 	 * @param point
 	 * @throws SQLException
 	 */
-	public void SubtractMemberPoint(String memberId, int point) throws SQLException {
+	public void subtractMemberPoint(String memberId, int point) throws SQLException {
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		try{
@@ -408,5 +405,48 @@ public class MemberDAO {
 			closeAll(pstmt,con);
 		}
 	}
+	
+	/**
+	 * id로 회원의 pw를 제외한 상세 정보를 불러옵니다
+	 * @param id
+	 * @param password
+	 * @return
+	 * @throws SQLException
+	 */
+	public MemberVO getMemberDetailById(String id) throws SQLException{
+	      MemberVO vo=null;
+	      CountryVO cvo = null;
+	      Connection con=null;
+	      PreparedStatement pstmt=null;
+	      ResultSet rs=null;
+	      try{
+	         con=dataSource.getConnection();
+	         StringBuffer sql= new StringBuffer();
+	         sql.append("select m.name, m.email, c.country_id, c.country_name, m.birth, m.gender, m.travel_style, m.point, m.state ");
+	         sql.append("from member m, country c ");
+	         sql.append("where m.country_id=c.country_id and m.member_id=?");
+	         pstmt=con.prepareStatement(sql.toString());
+	         pstmt.setString(1, id);
+	         rs=pstmt.executeQuery();
+	         if(rs.next()){
+	            vo=new MemberVO();
+	            cvo = new CountryVO();
+	            vo.setId(id);
+	            vo.setName(rs.getString(1));
+	            vo.setEmail(rs.getString(2));
+	            cvo.setCountryId(rs.getString(3));
+	            cvo.setCountryName(rs.getString(4));
+	            vo.setBirth(rs.getString(5));
+	            vo.setGender(rs.getString(6));
+	            vo.setTravelStyle(rs.getString(7));
+	            vo.setPoint(rs.getInt(8));
+	            vo.setState(rs.getString(9));
+	            vo.setCountryVO(cvo);
+	         }
+	      }finally{
+	         closeAll(rs, pstmt,con);
+	      }
+	      return vo;
+	   }
 	
 }
