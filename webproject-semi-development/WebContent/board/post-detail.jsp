@@ -64,14 +64,13 @@
 					<td>${time[2]}</td>
 				</tr>
 				<tr>
-					<c:set var="fvo" value="${requestScope.fvo }"></c:set>
+				<c:set var="fvo" value="${requestScope.fvo }"></c:set>
 					<th class="table-active">제목</th>
 					<td colspan="3">${pvo.postTitle}</td>
 					<th class="table-active">첨부파일</th>
 					<c:choose>
 						<c:when test="${fvo!=null }">
-							<td><a
-								href="DownloadController.do?postNo=${fvo.postVO.postNo }&fileName=${fvo.fileName}">${fvo.fileName }</a></td>
+							<td><a href="DownloadController.do?postNo=${fvo.postVO.postNo }&fileName=${fvo.fileName}">${fvo.fileName }</a></td>
 						</c:when>
 						<c:otherwise>
 							<td>없음</td>
@@ -80,6 +79,10 @@
 				</tr>
 				<tr>
 					<td colspan="6" class="cotentWrap"><pre>${pvo.postContent}</pre></td>
+				</tr>
+				<tr>
+					<td colspan="6">좋아요 ${requestScope.pvo }</td>
+					
 				</tr>
 			</table>
 			<div class="btnWrap">
@@ -151,6 +154,7 @@
 					</div>
 				</c:forEach>
 			</c:if>
+
 			<!-- html test page.... 
 			<div>
 				java<br> <font size="2" color="lightgray">11:11:11</font>

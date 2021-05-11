@@ -446,6 +446,7 @@ public class MemberDAO {
 	      }finally{
 	         closeAll(rs, pstmt,con);
 	      }
+	      System.out.println(vo);
 	      return vo;
 	   }
 	

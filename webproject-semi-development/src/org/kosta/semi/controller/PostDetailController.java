@@ -6,6 +6,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.kosta.semi.model.CountryDAO;
+import org.kosta.semi.model.CountryVO;
 import org.kosta.semi.model.CommentDAO;
 import org.kosta.semi.model.CommentVO;
 import org.kosta.semi.model.FileDAO;
@@ -62,6 +64,12 @@ public class PostDetailController implements Controller {
 			fileName=new String(fileName.getBytes("UTF-8"),"8859_1");
 			System.out.println("게시글번호, 파일이름: "+postNo+","+fileName);
 		}
+		
+		String countryName = pvo.getCountryVO().getCountryName();
+		System.out.println("");
+		System.out.println("나라 이름:"+pvo.getCountryVO().getCountryName());
+		int countryCount = CountryDAO.getInstance().findMemberCountByCountryname(countryName);
+		
 		//한국과 해당게시판의 나라별 시간
 		ArrayList<String> time = PostDAO.getInstance().getSysdateAndLocalTime(postNo);
 		request.setAttribute("time", time);
@@ -79,6 +87,7 @@ public class PostDetailController implements Controller {
 			request.setAttribute("commentList", null);	
 		}
 		
+		request.setAttribute("count", countryCount);
 		request.setAttribute("pvo", pvo);
 		request.setAttribute("fvo", fvo);
 		request.setAttribute("urlCountry", "/template/countryInfo.jsp");
