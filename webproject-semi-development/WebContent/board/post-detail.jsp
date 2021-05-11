@@ -77,6 +77,10 @@
 				<tr>
 					<td colspan="6" class="cotentWrap"><pre>${pvo.postContent}</pre></td>
 				</tr>
+				<tr>
+					<td colspan="6">좋아요 ${requestScope.pvo. }</td>
+					
+				</tr>
 			</table>
 			<div class="btnWrap">
 				<!-- submit 을 위한 form -->

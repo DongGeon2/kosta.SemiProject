@@ -58,7 +58,9 @@ CREATE TABLE manager(
    password VARCHAR2(100) not null,
    name VARCHAR2(100) not null
 )
-
+SELECT count(*)
+FROM member m , country c
+WHERE m.country_id=c.country_id AND country_name='이탈리아';
 -------------------------------fileDB
 drop table filedb;
 
