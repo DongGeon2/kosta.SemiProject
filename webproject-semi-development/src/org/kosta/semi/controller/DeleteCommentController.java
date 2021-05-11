@@ -13,6 +13,7 @@ public class DeleteCommentController implements Controller {
 			return "redirect:member/loginUnlocked.jsp";
 		}
 		
+		
 		return null;
 	}
 
