@@ -30,6 +30,7 @@ public class DownloadController implements Controller {
 		 * 그리고 다시 post-detail.jsp가 새로고침되면서 해당게시물에 첨부파일이 사라지도록 코딩하면 좋을꺼같음.
 		 */
 		String path = request.getServletContext().getRealPath("upload")+File.separator+saveFileName;
+
 		//다운로드 할 파일을 일거올 스트림 객체 생성
 		FileInputStream fis = new FileInputStream(path);
 		System.out.println(fis);

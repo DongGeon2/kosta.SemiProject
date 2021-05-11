@@ -29,7 +29,7 @@ public class PostDetailController implements Controller {
 		System.out.println("PostDetailController 시작");
 		HttpSession session = request.getSession(false);
 		if (session == null || session.getAttribute("mvo") == null) {
-			return "redirect:index.jsp";
+			return "redirect:member/loginUnlocked.jsp";
 		}
 		MemberVO mvo = (MemberVO) session.getAttribute("mvo");
 		String postNo = request.getParameter("postNo");
@@ -60,10 +60,10 @@ public class PostDetailController implements Controller {
 			fileName=new String(fileName.getBytes("UTF-8"),"8859_1");
 			System.out.println("게시글번호, 파일이름: "+postNo+","+fileName);
 		}
-		
 		//한국과 해당게시판의 나라별 시간
 		ArrayList<String> time = PostDAO.getInstance().getSysdateAndLocalTime(postNo);
 		request.setAttribute("time", time);
+		
 		
 		request.setAttribute("pvo", pvo);
 		request.setAttribute("fvo", fvo);
