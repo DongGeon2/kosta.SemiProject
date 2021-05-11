@@ -56,9 +56,12 @@
 				</tr>
 				<tr>
 					<th class="table-active">분류</th>
-					<td colspan="3">${pvo.catergory}</td>
-					<th class="table-active">작성일</th>
+					<td>${pvo.catergory}</td>
+					<th class="table-active">한국작성일</th>
 					<td>${time[0]}</td>
+					<th class="table-active">현지작성일</th>
+					<!-- 이 th 이름 바꿔주시면 될 것 같아요  -->
+					<td>${time[2]}</td>
 				</tr>
 				<tr>
 				<c:set var="fvo" value="${requestScope.fvo }"></c:set>
