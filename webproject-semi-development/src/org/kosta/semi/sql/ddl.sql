@@ -98,3 +98,8 @@ ALTER TABLE member MODIFY ( state NUMBER DEFAULT 1 ) ;
 
 -- !!삭제한 모든 회원 되살리기!!
 UPDATE member SET state=1 ;
+
+-- member table 포인트 추가
+ALTER TABLE member ADD ( point NUMBER ) ;
+UPDATE member SET point=0 ;
+ALTER TABLE member MODIFY ( point NUMBER DEFAULT 0 ) ;

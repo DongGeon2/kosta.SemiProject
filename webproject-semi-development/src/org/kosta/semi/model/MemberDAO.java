@@ -362,5 +362,51 @@ public class MemberDAO {
 		}
 	}
 	
+	/**
+	 * 멤버의 포인트를 더합니다
+	 * @param memberId, point
+	 * @throws SQLException
+	 */
+	public void AddMemberPoint(String memberId, int point) throws SQLException {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		try{
+			con=dataSource.getConnection();
+			StringBuffer sql = new StringBuffer();
+			sql.append("UPDATE member set ");
+			sql.append("point = point + ? ");
+			sql.append("where member_id = ?");
+			pstmt=con.prepareStatement(sql.toString());
+			pstmt.setInt(1, point);
+			pstmt.setString(2, memberId);
+			pstmt.executeUpdate();
+		}finally{
+			closeAll(pstmt,con);
+		}
+	}
+	
+	/**
+	 * 멤버의 포인트를 뺍니다
+	 * @param memberId
+	 * @param point
+	 * @throws SQLException
+	 */
+	public void SubtractMemberPoint(String memberId, int point) throws SQLException {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		try{
+			con=dataSource.getConnection();
+			StringBuffer sql = new StringBuffer();
+			sql.append("UPDATE member set ");
+			sql.append("point = point - ? ");
+			sql.append("where member_id = ?");
+			pstmt=con.prepareStatement(sql.toString());
+			pstmt.setInt(1, point);
+			pstmt.setString(2, memberId);
+			pstmt.executeUpdate();
+		}finally{
+			closeAll(pstmt,con);
+		}
+	}
 	
 }
