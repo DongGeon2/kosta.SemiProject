@@ -37,7 +37,7 @@
 						<th>이름</th>
 						<th>여행스타일</th>
 						<th>현재국가</th>
-						<th>탈퇴</th>
+						<th>선택</th>
 
 					</tr>
 				</thead>
@@ -67,8 +67,9 @@
 				</tbody>
 			</table>
 			<hr>
-			<input type = "submit" value="삭제">
-			
+			<div class="text-right">
+			<input type="submit" class="btn btn-outline-primary btn-sm" value="강제탈퇴">
+			</div>
 			</form>
 		</div>
 		<!-- Pagination -->
