@@ -31,11 +31,14 @@ public class CommentDAO {
 			con.close();
 	}
 	/**
-	 * 
+	 * 댓글 작성
 	 * @param cvo
 	 * @param member_id
 	 * @param commentContent
 	 * @throws SQLException
+	 * 
+	 * INSERT INTO postcomment (comment_no, post_no, member_id, content ,time_commented ) 
+	 * VALUES(postcomment_seq.nextval, '2', 'mvc', ' 수정 감사드립니다!', sysdate);
 	 */
 	public void commentPosting(CommentVO cvo, String member_id, String commentContent ) throws SQLException {
 		Connection con = null;

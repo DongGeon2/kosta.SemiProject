@@ -139,20 +139,21 @@
 					<form name="commentForm"
 						action="${pageContext.request.contextPath}/WriteCommentFormController.do"
 						method="post">
-						<input type="hidden" name="comment_no"
-							value="${requestScope.pvo.postNo}"> <input type="hidden"
-							name="member_id" value="${sessionScope.mvo.id}">
+						<input type="hidden" name="postNo"
+							value="${requestScope.pvo.postNo}"> 
+						<input type="hidden"
+							name="memberId" value="${sessionScope.mvo.id}">
 					</form>
 					<div>${sessionScope.mvo.id}</div>
 					<div class="form-group">
 						<label for="comment"></label>
-						<textarea class="form-control" name="commentContent" rows="3"></textarea>
+						<textarea class="form-control" name="commentContent" rows="2"></textarea>
 					</div>
-
-					<!-- 댓글등록버튼 -->
-					<button type="button" class="btn btn-outline-primary"
-						onclick="commentPost()">
-						<i class="fas fa-fw fa-pencil-alt"></i>등록</button>
+					<div class="btnWrap">
+						<!-- 댓글등록버튼 -->
+						<button type="button" class="btn btn-outline-primary"
+						onclick="commentPost()"><i class="fas fa-fw fa-pencil-alt"></i>등록</button>
+					</div>
 				</div>
 			</c:if>
 		</div>

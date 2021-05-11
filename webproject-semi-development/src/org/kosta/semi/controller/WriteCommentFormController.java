@@ -4,6 +4,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.kosta.semi.model.CommentDAO;
+import org.kosta.semi.model.CommentVO;
+import org.kosta.semi.model.PostDAO2;
+import org.kosta.semi.model.PostVO;
+
+
 public class WriteCommentFormController implements Controller {
 
 	@Override
@@ -12,9 +18,25 @@ public class WriteCommentFormController implements Controller {
 		if (session == null || session.getAttribute("mvo") == null) {
 			return "redirect:index.jsp";
 		}
-		return null;
+		//commentVO 생성 하는 method 작성 
+		String memberId = request.getParameter("memberId");
+		String postNo = request.getParameter("postNo");
+		String commentContent = request.getParameter("commentContent");
+		
+		// postVO 받아오기
+		PostVO pvo = PostDAO2.getInstance().getPostingByNo(postNo);
+		CommentVO cvo = new CommentVO();
+		cvo.setPostVO(pvo);
+		cvo.setCountryVO(pvo.getCountryVO());
+		cvo.setCommentContent(commentContent);
+		
+		CommentDAO.getInstance().commentPosting(cvo, memberId, commentContent);
+		String path="PostDetailNoHitsController?pageNo="+pvo.getPostNo();
+		return path;
 	}
-	//commentVO 생성 하는 method 작성 
+	
+	
+	
 	
 
 }
