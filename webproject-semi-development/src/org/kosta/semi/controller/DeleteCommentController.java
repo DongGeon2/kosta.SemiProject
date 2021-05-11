@@ -12,6 +12,8 @@ public class DeleteCommentController implements Controller {
 		if (session == null || session.getAttribute("mvo") == null || request.getMethod().equals("POST") == false) {
 			return "redirect:member/loginUnlocked.jsp";
 		}
+		String commentNo = request.getParameter("commentNo");
+		System.out.println(commentNo);
 		
 		
 		return null;
