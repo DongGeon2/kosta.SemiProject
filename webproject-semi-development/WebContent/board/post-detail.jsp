@@ -61,7 +61,7 @@
 					<td>${pvo.postTime}</td>
 				</tr>
 				<tr>
-					<c:set var="fvo" value="${requestScope.fvo }"></c:set>
+				<c:set var="fvo" value="${requestScope.fvo }"></c:set>
 					<th class="table-active">제목</th>
 					<td colspan="3">${pvo.postTitle}</td>
 					<th class="table-active">첨부파일</th>
