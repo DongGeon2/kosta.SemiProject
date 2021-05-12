@@ -137,7 +137,7 @@
 									method="post" style="display: inline">
 									<input type="hidden" name="commentNo"
 										value="${comment.commentNo}">
-									<button type="button" class="btn  btn-sm" onclick="updateComment()">
+									<button type="submit" class="btn btn-sm">
 										수정</button>
 								</form>
 								<form name="deleteComment"
@@ -145,7 +145,9 @@
 									method="post" style="display: inline">
 									<input type="hidden" name="commentNo"
 										value="${comment.commentNo}">
-									<button type="button" class="btn  btn-sm" onclick="deleteComment()">
+										<input type="hidden" name="postNo"
+										value="${pvo.postNo}">
+									<button type="submit" class="btn btn-sm">
 										삭제</button>
 								</form>
 							</div>
@@ -154,61 +156,6 @@
 					</div>
 				</c:forEach>
 			</c:if>
-
-			<!-- html test page.... 
-			<div>
-				java<br> <font size="2" color="lightgray">11:11:11</font>
-				<div class="text_wrapper">
-					안녕 본문내용 이게 몇줄일까 모르겠넹 얼마나 얼마나 넣어야 하징 ㅎㅎㅎㅎㅎㅎㅎ
-					<div class="btnWrap">
-						<form name="updateComment"
-							action="${pageContext.request.contextPath}/UpdatePostFormController.do"
-							method="post" style="display: inline">
-							<input type="hidden" name="commentNo"
-								value="${comment.commentNo}">
-							<button type="button" class="btn  btn-sm" onclick="updateComment()">
-								수정</button>
-						</form>
-						<form name="deleteComment"
-							action="${pageContext.request.contextPath}/DeleteCommentController.do"
-							method="post" style="display: inline">
-							<input type="hidden" name="commentNo"
-								value="${comment.commentNo}">
-							<button type="button" class="btn btn-sm" onclick="deleteComment()">
-								삭제</button>
-						</form>
-					</div>
-				</div>
-				<hr>
-			</div>
-			<div>
-				java<br> <font size="2" color="lightgray">11:11:11</font>
-				<div class="text_wrapper">
-					안녕 본문내용 이게 몇줄일까 모르겠넹 얼마나 얼마나 넣어야 하징 ㅎㅎㅎㅎㅎㅎㅎ
-					<div class="btnWrap">
-						<form name="updateComment"
-							action="${pageContext.request.contextPath}/UpdatePostFormController.do"
-							method="post" style="display: inline">
-							<input type="hidden" name="commentNo"
-								value="${comment.commentNo}">
-							<button type="button" class="btn  btn-sm" onclick="updateComment()">
-								수정</button>
-						</form>
-						<form name="deleteComment"
-							action="${pageContext.request.contextPath}/DeleteCommentController.do"
-							method="post" style="display: inline">
-							<input type="hidden" name="commentNo"
-								value="${comment.commentNo}">
-							<button type="button" class="btn btn-sm" onclick="deleteComment()">
-								삭제</button>
-						</form>
-					</div>
-				</div>
-				<hr>
-			</div> -->
-			<!-- 본문내용 -->
-
-			<!-- 댓글 작성자만 수정 가능 -->
 
 			<!-- 로그인 시 댓글 작성 가능 -->
 			<c:if test="${sessionScope.mvo!=null}">

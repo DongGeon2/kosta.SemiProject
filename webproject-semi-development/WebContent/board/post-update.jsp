@@ -30,7 +30,7 @@
 					class="form-control" placeholder="제목을 입력해 주세요" id="postTitle"> -->
 			</div>
 			<div class="form-group">
-				<textarea class="form-control" rows="10" name="postContent" required="required"">${pvo.postContent}</textarea>
+				<textarea class="form-control" rows="10" name="postContent" required="required">${pvo.postContent}</textarea>
 				<!-- <label for="postContent">내용</label>
 				<textarea class="form-control" rows="10" id="postContent" placeholder="내용을 입력해 주세요"></textarea> -->
 			</div>
