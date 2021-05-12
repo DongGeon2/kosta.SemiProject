@@ -18,7 +18,7 @@ public class DeleteMyIdController implements Controller{
 		
 		MemberVO mvo = (MemberVO)session.getAttribute("mvo");
 		MemberDAO.getInstance().deleteMemberById(mvo.getId());
-		
+		MemberDAO.getInstance().AddMemberTimeline(mvo.getId(), "회원 탈퇴");
 		if(session!=null)
 			session.invalidate();
 		
