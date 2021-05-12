@@ -16,6 +16,7 @@ public class LoginController implements Controller {
 		String id = request.getParameter("id");
 		String password = request.getParameter("password");
 		MemberVO mvo = MemberDAO.getInstance().login(id, password);
+		MemberDAO.getInstance().addMemberPoint(id, 1, "로그인 포인트");
 		if (mvo != null) {
 			HttpSession session = request.getSession();
 			session.setAttribute("mvo", mvo);
