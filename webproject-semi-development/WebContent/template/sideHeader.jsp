@@ -41,8 +41,9 @@
 						<a class="collapse-item" href="${pageContext.request.contextPath}/IndividualListBycountryController.do?countryId=39">이탈리아</a> 
 						<a class="collapse-item" href="${pageContext.request.contextPath}/IndividualListBycountryController.do?countryId=44">영국</a> 
 						<a class="collapse-item" href="${pageContext.request.contextPath}/IndividualListBycountryController.do?countryId=49">독일</a>
-						<c:if test="${sessionScope.mvo.point>=10}">
-						<a class="collapse-item" href="PointController.do">PREMIUM</a>
+						<%-- <c:if test="${sessionScope.mvo.point>=10}"> --%>
+						<c:if test="${sessionScope.mvo!=null}"> 
+						<a class="collapse-item" href="PointCheckController.do">PREMIUM</a>
 						</c:if>
 					</div>
 				</div></li>
