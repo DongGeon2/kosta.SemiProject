@@ -140,7 +140,7 @@
 						<c:if test="${comment.memberVO.id==sessionScope.mvo.id}">
 							<div class="btnWrap">
 								<form name="updateComment"
-									action="${pageContext.request.contextPath}/UpdateCommentFormController.do"
+									action="redirect:${pageContext.request.contextPath}/UpdateCommentFormController.do"
 									method="post" style="display: inline">
 									<input type="hidden" name="commentNo"
 										value="${comment.commentNo}">
