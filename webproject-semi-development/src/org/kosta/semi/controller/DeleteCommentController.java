@@ -4,6 +4,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.kosta.semi.model.CommentDAO;
+
 public class DeleteCommentController implements Controller {
 
 	@Override
@@ -14,7 +16,9 @@ public class DeleteCommentController implements Controller {
 		}
 		String postNo = request.getParameter("postNo");
 		String commentNo = request.getParameter("commentNo");
-		System.out.println("commentNo:" + commentNo);
+		System.out.println("s + commentNo:" + commentNo);
+		CommentDAO.getInstance().commentDelete(commentNo);
+		
 		
 		
 		return "PostDetailNoHitsController.do?pageNo="+postNo;
