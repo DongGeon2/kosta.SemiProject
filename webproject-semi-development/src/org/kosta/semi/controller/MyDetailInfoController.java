@@ -16,8 +16,8 @@ public class MyDetailInfoController implements Controller {
 			return "redirect:index.jsp";
 		}
 		MemberVO mvo = (MemberVO)session.getAttribute("mvo");
-		MemberDAO.getInstance().getMemberDetailById(mvo.getId());
-		request.setAttribute("detailMVO", mvo);
+		MemberVO detailMVO = MemberDAO.getInstance().getMemberDetailById(mvo.getId());
+		request.setAttribute("detailMVO", detailMVO);
 		request.setAttribute("url", "/member/myinfo.jsp");
 		return "/template/layoutMember.jsp";
 	}

@@ -103,6 +103,20 @@ ALTER TABLE member ADD ( point NUMBER ) ;
 UPDATE member SET point=0 ;
 ALTER TABLE member MODIFY ( point NUMBER DEFAULT 0 ) ;
 
+
+create table member_timeline(
+	member_id varchar2(100) not null,	
+	acted_time date not null,
+	point number,
+	message clob not null,
+	primary key(member_id, acted_time)
+)
+
+INSERT INTO member_timeline (member_id, acted_time, point, message) VALUES(id, sysdate, point, message);
+
+
+
+
 ---------------------------------------------------likedb추가
 drop table likedb;
 drop sequence like_seq;
@@ -123,3 +137,7 @@ WHERE post_no=42 order by time_commented DESC
 
 
 ALTER TABLE member MODIFY ( point NUMBER DEFAULT 0 );
+
+
+
+
