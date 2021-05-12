@@ -468,6 +468,7 @@ public class MemberDAO {
 	      System.out.println(vo);
 	      return vo;
 	   }
+
 	public int getPointById(String id) throws SQLException{
 		Connection con=null;
 		PreparedStatement pstmt=null;
@@ -486,5 +487,27 @@ public class MemberDAO {
 			closeAll(rs, pstmt,con);
 		}
 		return point;
+	}
+	
+	/**
+	 * 멤버의 활동을 기록합니다
+	 * @param memberId, message
+	 * @throws SQLException
+	 */
+	public void AddMemberTimeline(String memberId, String message) throws SQLException {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		try{
+			con=dataSource.getConnection();
+			StringBuffer sql = new StringBuffer();
+			sql.append("INSERT INTO member_timeline (member_id, acted_time, message) ");
+			sql.append("VALUES(?, sysdate, ?)");
+			pstmt=con.prepareStatement(sql.toString());
+			pstmt.setString(1, memberId);
+			pstmt.setString(2, message);
+			pstmt.executeUpdate();
+		}finally{
+			closeAll(pstmt,con);
+		}
 	}
 }
