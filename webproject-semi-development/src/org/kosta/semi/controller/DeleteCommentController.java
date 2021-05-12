@@ -13,7 +13,7 @@ public class DeleteCommentController implements Controller {
 			return "redirect:member/loginUnlocked.jsp";
 		}
 		String commentNo = request.getParameter("commentNo");
-		System.out.println(commentNo);
+		System.out.println("commentNo:" + commentNo);
 		
 		
 		return null;
