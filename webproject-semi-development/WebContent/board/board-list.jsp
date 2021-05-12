@@ -41,7 +41,7 @@
 						<th>작성자</th>
 						<th>작성일</th>
 						<th>조회수</th>
-						<c:if test="${requestScope.pvo.memberVO.id==sessionScope.mvo.id}">
+						<c:if test="${sessionScope.mgvo!=null}">
 							<th>삭제</th>
 						</c:if>
 
@@ -65,7 +65,7 @@
 							<td>${pvo.memberVO.id}</td>
 							<td>${pvo.postTime}</td>
 							<td>${pvo.hits}</td>
-							<c:if test="${requestScope.pvo.memberVO.id==sessionScope.mvo.id}">
+							<c:if test="${sessionScope.mgvo!=null}">
 								<td>
 									<button type="button" class="btn btn-outline-primary btn-sm"
 										onclick="deletePost()">
