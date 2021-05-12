@@ -66,20 +66,17 @@
 							<td>${pvo.postTime}</td>
 							<td>${pvo.hits}</td>
 							<c:if test="${sessionScope.mgvo!=null}">
-								<td>
-									<button type="button" class="btn btn-outline-primary btn-sm"
-										onclick="deletePost()">
-										<i class="fas fa-fw fa-times"></i> 삭제
-									</button>
-								</td>
-								<form name="deleteForm"
-										action="${pageContext.request.contextPath}/DeletePostController.do"
-										method="post">
-										<input type="hidden" name="pageNo" value="${pvo.postNo}">
-									</form>
+								<!--  <input type="checkbox" name="deleteId" value="${mvo.id}">-->
+								
+								<form name="deleteForm" action="${pageContext.request.contextPath}/DeletePostController.do" method="post">
+									<input type="hidden" name="pageNo" value="${pvo.postNo}">
+									<td>
+										<button type="submit" class="btn btn-outline-primary btn-sm" onsubmit="return deletePost()">
+											<i class="fas fa-fw fa-times"></i> 삭제
+										</button>
+									</td>
+								</form>
 							</c:if>
-
-
 						</tr>
 					</c:forEach>
 				</tbody>
@@ -105,7 +102,7 @@
 			<c:forEach var="page" begin="${pb.startPageOfPageGroup}"
 				end="${pb.endPageOfPageGroup}">
 				<c:choose>
-					<c:when test="">
+					<c:when test="${pb.nowPage==page }">
 						<li class="page-item active"><a class="page-link"
 							href="${pageContext.request.contextPath}/AllListController.do?pageNo=${page}">${page}</a></li>
 					</c:when>

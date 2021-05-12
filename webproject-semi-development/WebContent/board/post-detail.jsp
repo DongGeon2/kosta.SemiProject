@@ -29,6 +29,13 @@
 		}
 
 	}
+	function DeleteComment() {
+		var flag = false;
+		if (confirm("댓글을 삭제하시겠습니까?")) {
+			flag = true;
+		}
+		return flag;
+	}
 </script>
 <div class="card shadow mb-4">
 	<div class="card-header py-3">
@@ -133,7 +140,7 @@
 						<c:if test="${comment.memberVO.id==sessionScope.mvo.id}">
 							<div class="btnWrap">
 								<form name="updateComment"
-									action="${pageContext.request.contextPath}/UpdatePostFormController.do"
+									action="${pageContext.request.contextPath}/UpdateCommentFormController.do"
 									method="post" style="display: inline">
 									<input type="hidden" name="commentNo"
 										value="${comment.commentNo}">
@@ -142,7 +149,7 @@
 								</form>
 								<form name="deleteComment"
 									action="${pageContext.request.contextPath}/DeleteCommentController.do"
-									method="post" style="display: inline">
+									method="post" style="display: inline" onsubmit="return DeleteComment();">
 									<input type="hidden" name="commentNo"
 										value="${comment.commentNo}">
 										<input type="hidden" name="postNo"
