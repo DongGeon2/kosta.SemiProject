@@ -468,5 +468,23 @@ public class MemberDAO {
 	      System.out.println(vo);
 	      return vo;
 	   }
-	
+	public int getPointById(String id) throws SQLException{
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		int point = 0;
+		try{
+			con=dataSource.getConnection();
+			String sql="SELECT point FROM member WHERE member_id=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs=pstmt.executeQuery();
+			if(rs.next()){
+				point =rs.getInt(1);
+			}
+		}finally{
+			closeAll(rs, pstmt,con);
+		}
+		return point;
+	}
 }

@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<script type="text/javascript">
+alert("프리미엄 게시판에 입장하셨습니다.\n현재 포인트: ${point}");
+</script>
 
 	<div class="d-sm-flex align-items-center justify-content-between mb-4">
 		<!-- ${totalCount} 넣어주세요 -->
