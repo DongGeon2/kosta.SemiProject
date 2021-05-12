@@ -127,4 +127,61 @@ public class CommentDAO {
 			closeAll(pstmt, con);
 		}
 	}
+	/**
+	 * 댓글 수정 기능 
+	 * @param commentNo
+	 * @param commentContent
+	 * @throws SQLException
+	 */
+	public void commentUpdate(String commentNo ,String commentContent) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			con= dataSource.getConnection();
+			String sql = "UPDATE postcomment SET time_commented=sysdate, content=? WHERE comment_no=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, commentContent);
+			pstmt.setString(2, commentNo);
+			pstmt.executeUpdate();
+		} finally {
+			closeAll(pstmt, con);
+		}
+	}
+	/**
+	 * 댓글 불러오기 기능 -댓글 수정에서 사용  
+	 * @param commentNo
+	 * @return
+	 * @throws SQLException
+	 */
+	public CommentVO getComment(String commentNo) throws SQLException {
+		CommentVO cvo = null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			con= dataSource.getConnection();
+			StringBuilder sql = new StringBuilder();
+			sql.append(" SELECT comment_no, post_no , member_id,  content, time_commented ");
+			sql.append("  FROM postcomment  WHERE comment_no =? ");
+			pstmt = con.prepareStatement(sql.toString());
+			pstmt.setString(1, commentNo);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				cvo = new CommentVO();
+				cvo.setCommentNo(commentNo);
+				PostVO pvo = new PostVO();
+				pvo.setPostNo(rs.getString(2));
+				cvo.setPostVO(pvo);
+				MemberVO mvo = new MemberVO();
+				mvo.setId(rs.getString(3));
+				cvo.setMemberVO(mvo);
+				cvo.setCommentContent(rs.getString(4));
+				cvo.setCommentedTime(rs.getString(5));
+			}
+		} finally {
+			closeAll(rs, pstmt, con);
+			
+		}
+		return cvo;
+	}
 }
