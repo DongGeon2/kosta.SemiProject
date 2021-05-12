@@ -360,11 +360,11 @@ public class MemberDAO {
 	}
 	
 	/**
-	 * 멤버의 포인트를 더합니다
-	 * @param memberId, point
+	 * 멤버의 포인트를 더합니다, 포인트 추가 근거를 message에 입력
+	 * @param memberId, point, message
 	 * @throws SQLException
 	 */
-	public void addMemberPoint(String memberId, int point) throws SQLException {
+	public void addMemberPoint(String memberId, int point, String message) throws SQLException {
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		try{
@@ -377,18 +377,28 @@ public class MemberDAO {
 			pstmt.setInt(1, point);
 			pstmt.setString(2, memberId);
 			pstmt.executeUpdate();
+			pstmt.close();
+			sql = new StringBuffer();
+			sql.append("INSERT INTO member_timeline (member_id, acted_time, point, message) ");
+			sql.append("VALUES(?, sysdate, ?, ?)");
+			pstmt=con.prepareStatement(sql.toString());
+			pstmt.setString(1, memberId);
+			pstmt.setInt(2, point);
+			pstmt.setString(3, message);
+			pstmt.executeUpdate();
 		}finally{
 			closeAll(pstmt,con);
 		}
 	}
 	
 	/**
-	 * 멤버의 포인트를 뺍니다
-	 * @param memberId
+	 * 멤버의 포인트를 뺍니다, 포인트 차감 근거를 message에 입력
+	 * 포인트는 차감할 포인트를 양수로 입력(ex: -100점할 때, 100만 입력)
+	 * @param memberId, point, message
 	 * @param point
 	 * @throws SQLException
 	 */
-	public void subtractMemberPoint(String memberId, int point) throws SQLException {
+	public void subtractMemberPoint(String memberId, int point, String message) throws SQLException {
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		try{
@@ -400,6 +410,15 @@ public class MemberDAO {
 			pstmt=con.prepareStatement(sql.toString());
 			pstmt.setInt(1, point);
 			pstmt.setString(2, memberId);
+			pstmt.executeUpdate();
+			pstmt.close();
+			sql = new StringBuffer();
+			sql.append("INSERT INTO member_timeline (member_id, acted_time, point, message) ");
+			sql.append("VALUES(?, sysdate, ?, ?)");
+			pstmt=con.prepareStatement(sql.toString());
+			pstmt.setString(1, memberId);
+			pstmt.setInt(2, -point);
+			pstmt.setString(3, message);
 			pstmt.executeUpdate();
 		}finally{
 			closeAll(pstmt,con);
