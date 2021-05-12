@@ -15,7 +15,7 @@ public class WriteCommentController implements Controller {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session = request.getSession(false);
-		if (session == null || session.getAttribute("mvo") == null || request.getMethod().equals("POST") == false) {
+		if (session == null || session.getAttribute("mvo") == null || request.getMethod().equals("POST")==false) {
 			return "redirect:member/loginUnlocked.jsp";
 		}
 		//commentVO 생성 하는 method 작성 
@@ -30,9 +30,10 @@ public class WriteCommentController implements Controller {
 		cvo.setPostVO(pvo); // PostVO
 		cvo.setMemberVO(pvo.getMemberVO()); //countryVO
 		cvo.setCommentContent(commentContent); //commentContent
+		System.out.println("pvo.getPostNo()" + pvo.getPostNo());
 		
 		CommentDAO.getInstance().commentPosting(cvo, memberId, commentContent);
-		String path="PostDetailNoHitsController.do?pageNo="+pvo.getPostNo();
+		String path= "PostDetailNoHitsController.do?pageNo="+pvo.getPostNo();
 		return path;
 	}
 	

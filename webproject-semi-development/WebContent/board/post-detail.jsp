@@ -178,7 +178,7 @@
 						<div class="form-group">
 							<label for="comment"></label>
 							<textarea class="form-control" name="commentContent" rows="2"
-								placeholder="댓글을 작성해 주세요"></textarea>
+								placeholder="댓글을 작성해 주세요" required="required"></textarea>
 						</div>
 					</form>
 
