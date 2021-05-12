@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -509,5 +510,67 @@ public class MemberDAO {
 		}finally{
 			closeAll(pstmt,con);
 		}
+	}
+	
+	/**
+	 * id로 멤버의 활동 내역을 불러옵니다
+	 * @param id
+	 * @return
+	 * @throws SQLException
+	 */
+	public ArrayList<ActVO> getActListById(String id, PagingBean pagingBean) throws SQLException{
+		ArrayList<ActVO> list = new ArrayList<ActVO>();
+		ActVO avo = null;
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		try{
+			con=dataSource.getConnection();
+			StringBuffer sql = new StringBuffer();
+			sql.append("SELECT * FROM (SELECT row_number() over(ORDER BY acted_time DESC) as rnum, ");
+			sql.append("acted_time, point, message FROM member_timeline where member_id=?) ");
+			sql.append("WHERE rnum BETWEEN ? AND ?"); 
+			pstmt=con.prepareStatement(sql.toString());
+			pstmt.setString(1, id);
+			pstmt.setInt(2, pagingBean.getStartRowNumber());
+			pstmt.setInt(3, pagingBean.getEndRowNumber());
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+				avo = new ActVO();
+				avo.setActed_time(rs.getString(2));
+				avo.setPoint(rs.getInt(3));
+				avo.setMessage(rs.getString(4));
+				avo.setMember_id(id);
+				list.add(avo);
+			}
+		}finally{
+			closeAll(rs, pstmt,con);
+		}
+		return list;
+	}
+	
+	/**
+	 * id로 멤버의 활동 내역 수를 불러옵니다
+	 * @param id
+	 * @return totalCount
+	 * @throws SQLException
+	 */
+	public int getActCountById(String id) throws SQLException {
+		int totalCount = 0;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			con = dataSource.getConnection();
+			String sql = "select count(*) from member_timeline where member_id=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			if (rs.next())
+				totalCount = rs.getInt(1);
+		} finally {
+			closeAll(rs, pstmt, con);
+		}
+		return totalCount;
 	}
 }
