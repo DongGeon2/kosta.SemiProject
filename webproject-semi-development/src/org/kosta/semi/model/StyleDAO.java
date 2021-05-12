@@ -43,8 +43,8 @@ public class StyleDAO {
 			StringBuffer sql = new StringBuffer();
 			sql.append("SELECT s.member_id,TRUNC(MONTHS_BETWEEN(sysdate, m.birth)/12) AS AGE, m.country_id ");
 			sql.append("FROM style s, member m ");
-			sql.append(
-					"WHERE s.member_id=m.member_id AND m.country_id = ? AND s.style1 =? AND s.style2 =? AND s.style3 =? AND s.style4 =? ");
+			sql.append("WHERE s.member_id=m.member_id AND m.country_id = ? ");
+			sql.append("AND s.style1 =? AND s.style2 =? AND s.style3 =? AND s.style4 =? ");
 			pstmt = con.prepareStatement(sql.toString());
 			pstmt.setString(1, mvo.getCountryVO().getCountryId());
 			pstmt.setString(2, svo.getStyle1());
