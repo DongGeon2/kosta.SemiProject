@@ -253,7 +253,8 @@ public class PostDAO {
 		PreparedStatement pstmt = null;
 		try {
 			con = dataSource.getConnection();
-			pstmt = con.prepareStatement("update board set title=?,content=? where no=?");
+
+			pstmt = con.prepareStatement("update post set post_title=?,content=?, category_name=? where post_no=?");
 			pstmt.setString(1, vo.getPostTitle());
 			pstmt.setString(2, vo.getPostContent());
 			pstmt.setString(3, vo.getCatergory());
@@ -284,7 +285,6 @@ public class PostDAO {
 	 * @throws SQLException
 	 **/
 	
-
 
 	/**
 	 * 나라와 칼럼(column)을 선택후 검색 문자열(keyWord)을 포함하는 로우(게시물) 목록을 가져오는 메서드.
