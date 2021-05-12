@@ -16,13 +16,13 @@ public class PointCheckController implements Controller {
 		int point = MemberDAO.getInstance().getPointById(mvo.getId());
 		mvo.setPoint(point);
 		request.setAttribute("point", point);
-		if (point<10)
+		if (point < 10)
 			return "premium-access-fail.jsp";
 		else {
-			request.setAttribute("url","/board/main-list.jsp");
+			// request.setAttribute("url","/board/main-list.jsp");
+			request.setAttribute("url", "/premium-selectform.jsp");
 			request.setAttribute("urlCountry", "/premiumBoard.jsp");
-			return "/template/layout.jsp"; 
+			return "/template/layout.jsp";
 		}
 	}
 }
-		
