@@ -7,7 +7,7 @@
  -->
 <div class="card shadow mb-4">
 	<div class="card-header py-3">
-		<h6 class="m-0 font-weight-bold text-primary">${requestScope.id}님
+		<h6 class="m-0 font-weight-bold text-primary">${requestScope.detailMVO.name}님의
 			활동 내역</h6>
 	</div>
 	<div class="card-body">

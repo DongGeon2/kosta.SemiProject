@@ -117,10 +117,6 @@ create table likedb(
 ------------comment-----------------------------
 SELECT member_id, time_commented , content  FROM postcomment  
 WHERE post_no=42 order by time_commented DESC
-
-
-ALTER TABLE member MODIFY ( point NUMBER DEFAULT 0 );
-
 ----------------------------------------------------------
 -- member table 포인트 추가
 ALTER TABLE member ADD ( point NUMBER ) ;

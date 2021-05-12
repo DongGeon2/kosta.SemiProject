@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import org.kosta.semi.model.CommentDAO;
 import org.kosta.semi.model.CommentVO;
+import org.kosta.semi.model.MemberDAO;
 import org.kosta.semi.model.PostDAO2;
 import org.kosta.semi.model.PostVO;
 
@@ -33,6 +34,7 @@ public class WriteCommentController implements Controller {
 		System.out.println("pvo.getPostNo()" + pvo.getPostNo());
 		
 		CommentDAO.getInstance().commentPosting(cvo, memberId, commentContent);
+		MemberDAO.getInstance().addMemberPoint(memberId, 2, "댓글 작성");
 		String path= "PostDetailNoHitsController.do?pageNo="+pvo.getPostNo();
 		return path;
 	}

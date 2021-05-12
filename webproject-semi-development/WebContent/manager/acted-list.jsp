@@ -7,7 +7,7 @@
  -->
 <div class="card shadow mb-4">
 	<div class="card-header py-3">
-		<h6 class="m-0 font-weight-bold text-primary">${requestScope.id}님
+		<h6 class="m-0 font-weight-bold text-primary">${requestScope.detailMVO.name}님의
 			활동 내역</h6>
 	</div>
 	<div class="card-body">
@@ -43,24 +43,24 @@
 		<ul class="pagination justify-content-center" style="margin-top: 50px">
 			<c:if test="${pb.previousPageGroup}">
 				<li class="page-item"><a class="page-link"
-					href="${pageContext.request.contextPath}/MemberDetailInfoController.do?id=${requestScope.id}&pageNo=${pb.startPageOfPageGroup-1}">&laquo;</a></li>
+					href="${pageContext.request.contextPath}/MemberDetailInfoController.do?id=${requestScope.detailMVO.id}&pageNo=${pb.startPageOfPageGroup-1}">&laquo;</a></li>
 			</c:if>
 			<c:forEach var="page" begin="${pb.startPageOfPageGroup}"
 				end="${pb.endPageOfPageGroup}">
 				<c:choose>
 					<c:when test="">
 						<li class="page-item active"><a class="page-link"
-							href="${pageContext.request.contextPath}/MemberDetailInfoController.do?id=${requestScope.id}&pageNo=${page}">${page}</a></li>
+							href="${pageContext.request.contextPath}/MemberDetailInfoController.do?id=${requestScope.detailMVO.id}&pageNo=${page}">${page}</a></li>
 					</c:when>
 					<c:otherwise>
 						<li><a class="page-link"
-							href="${pageContext.request.contextPath}/MemberDetailInfoController.do?id=${requestScope.id}&pageNo=${page}">${page}</a></li>
+							href="${pageContext.request.contextPath}/MemberDetailInfoController.do?id=${requestScope.detailMVO.id}&pageNo=${page}">${page}</a></li>
 					</c:otherwise>
 				</c:choose>
 			</c:forEach>
 			<c:if test="${pb.nextPageGroup}">
 				<li><a class="page-link"
-					href="${pageContext.request.contextPath}/MemberDetailInfoController.do?id=${requestScope.id}&pageNo=${pb.endPageOfPageGroup+1}">&raquo;</a></li>
+					href="${pageContext.request.contextPath}/MemberDetailInfoController.do?id=${requestScope.detailMVO.id}&pageNo=${pb.endPageOfPageGroup+1}">&raquo;</a></li>
 			</c:if>
 		</ul>
 		<!-- /.Pagination -->
