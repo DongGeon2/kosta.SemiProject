@@ -46,7 +46,7 @@
 						<tr>
 							<td>${mvo.id}</td>
 							<td title="클릭하면 상세 회원정보를 볼 수 있습니다."><a
-								href="${pageContext.request.contextPath}/memberDetailController.do?Id=${mvo.id}">${mvo.name}
+								href="${pageContext.request.contextPath}/MemberDetailInfoController.do?id=${mvo.id}">${mvo.name}
 							</a></td>
 							<td>${mvo.travelStyle}</td>
 							<td>${mvo.countryVO.countryName}</td>
