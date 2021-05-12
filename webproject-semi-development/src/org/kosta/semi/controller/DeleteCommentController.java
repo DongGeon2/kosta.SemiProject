@@ -16,7 +16,7 @@ public class DeleteCommentController implements Controller {
 		}
 		String postNo = request.getParameter("postNo");
 		String commentNo = request.getParameter("commentNo");
-		System.out.println("s + commentNo:" + commentNo);
+		//System.out.println("s + commentNo:" + commentNo);
 		CommentDAO.getInstance().commentDelete(commentNo);
 		
 		
