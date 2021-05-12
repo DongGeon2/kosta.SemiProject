@@ -139,4 +139,9 @@ create table member_timeline(
 ALTER TABLE POSTCOMMENT drop constraint fk_postcomment_postforeign
 ALTER TABLE postcomment ADD  constraint fk_postcomment_postforeign foreign key(post_no) references post(post_no) ON DELETE CASCADE
 
+ALTER TABLE filedb drop constraint fk_filedb_post
+ALTER TABLE filedb ADD  constraint fk_filedb_post foreign key(post_no) references post(post_no) ON DELETE CASCADE
+
+ALTER TABLE likedb drop constraint fk_likedb_post
+ALTER TABLE likedb ADD  constraint fk_likedb_post foreign key(post_no) references post(post_no) ON DELETE CASCADE
 
