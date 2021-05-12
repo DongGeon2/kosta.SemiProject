@@ -7,9 +7,11 @@
  -->
 <script>
 	function deletePost() {
-		if (confirm("게시글을 삭제하시겠습니까?")) {
-			document.deleteForm.submit();
+		var flag = false;
+		if (confirm("글을 삭제하시겠습니까?")) {
+			flag = true;
 		}
+		var flag;
 	}
 </script>
 <div class="card shadow mb-4">
@@ -66,14 +68,12 @@
 							<td>${pvo.postTime}</td>
 							<td>${pvo.hits}</td>
 							<c:if test="${sessionScope.mgvo!=null}">
-								<!--  <input type="checkbox" name="deleteId" value="${mvo.id}">-->
-								
-								<form name="deleteForm" action="${pageContext.request.contextPath}/DeletePostController.do" method="post">
-									<input type="hidden" name="pageNo" value="${pvo.postNo}">
+								<form name="deleteForm" action="${pageContext.request.contextPath}/DeletePostController.do" method="post" onsubmit="return deletePost();">
 									<td>
-										<button type="submit" class="btn btn-outline-primary btn-sm" onsubmit="return deletePost()">
-											<i class="fas fa-fw fa-times"></i> 삭제
-										</button>
+									<input type="hidden" name="pageNo" value="${pvo.postNo}">
+									<button type="submit" class="btn btn-outline-primary btn-sm">
+										<i class="fas fa-fw fa-times"></i> 삭제
+									</button>
 									</td>
 								</form>
 							</c:if>
@@ -102,7 +102,7 @@
 			<c:forEach var="page" begin="${pb.startPageOfPageGroup}"
 				end="${pb.endPageOfPageGroup}">
 				<c:choose>
-					<c:when test="${pb.nowPage==page }">
+					<c:when test="${pb.nowPage==page}">
 						<li class="page-item active"><a class="page-link"
 							href="${pageContext.request.contextPath}/AllListController.do?pageNo=${page}">${page}</a></li>
 					</c:when>

@@ -77,7 +77,7 @@
 					<th class="table-active">첨부파일</th>
 					<c:choose>
 						<c:when test="${fvo!=null }">
-							<td><a href="DownloadController.do?postNo=${fvo.postVO.postNo }&fileName=${fvo.fileName}">${fvo.fileName }</a></td>
+							<td><a href="DownloadController.do?postNo=${fvo.postVO.postNo }&fileName=${fvo.fileName}"><i class="fas fa-link"></i>${fvo.fileName }</a></td>
 						</c:when>
 						<c:otherwise>
 							<td>없음</td>
@@ -101,7 +101,7 @@
 				<form name="deleteForm"
 					action="${pageContext.request.contextPath}/DeletePostController.do"
 					method="post">
-					<input type="hidden" name="pageNo"
+					<input type="hidden" name="postNo"
 						value="${requestScope.pvo.postNo}">
 				</form>
 				<form name="updateForm"

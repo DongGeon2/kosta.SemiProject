@@ -35,7 +35,7 @@ public class WriteCommentController implements Controller {
 		
 		CommentDAO.getInstance().commentPosting(cvo, memberId, commentContent);
 		MemberDAO.getInstance().addMemberPoint(memberId, 2, "댓글 작성");
-		String path= "PostDetailNoHitsController.do?pageNo="+pvo.getPostNo();
+		String path= "redirect:PostDetailNoHitsController.do?postNo="+pvo.getPostNo();
 		return path;
 	}
 	

@@ -32,17 +32,13 @@ public class PostDetailController implements Controller {
 		System.out.println();
 		System.out.println("PostDetailController 시작");
 		HttpSession session = request.getSession(false);
-		if (session == null || session.getAttribute("mvo") == null) {
+		if (session == null || (session.getAttribute("mvo") == null && session.getAttribute("mgvo") == null)) {
 			return "redirect:member/loginUnlocked.jsp";
 		}
-		MemberVO mvo = (MemberVO) session.getAttribute("mvo");
+		
+		MemberVO mvo = null;
 		String postNo = request.getParameter("postNo");
-		PostVO pvo = PostDAO2.getInstance().getPostingByNo(postNo);
-		// post 작성자 아이디와 로그인한 id 가 같을 때(본인글) 조회수 count 안하기
-		if( mvo.getId().equals(pvo.getMemberVO().getId())) {
-			//System.out.println("작성자가 글읽음");
-			return "PostDetailNoHitsController.do";
-		}
+		
 		/*
 		 * 읽은 게시물을 다시 읽었을 때 조회수 증가를 방지하기 위해 noList에 게시글번호가 존재하지 않으면 조회수를 증가시킨다.
 		 */
@@ -53,6 +49,22 @@ public class PostDetailController implements Controller {
 			PostDAO2.getInstance().updateHit(postNo);		//혹시 파일명 깨질까
 			noList.add(postNo);
 		}
+		// 조회수 증가 후 글 불러오기
+		PostVO pvo = PostDAO2.getInstance().getPostingByNo(postNo);
+		// post 작성자 아이디와 로그인한 id 가 같을 때(본인글) 조회수 count 안하기
+		// 관리자가 있을 수 있으니 mvo 가 null 이 아닐 때 실행
+		if( session.getAttribute("mvo") != null ) {
+			mvo = (MemberVO) session.getAttribute("mvo");
+			if( mvo.getId().equals(pvo.getMemberVO().getId())) {
+				return "PostDetailNoHitsController.do";
+			}
+		}
+		// 관리자일때도 조회수 증가 방지
+		if( session.getAttribute("mgvo") != null) {
+			return "PostDetailNoHitsController.do";
+		}
+		
+		
 		
 		//파일 정보 불러오기 관련 로직
 		String fileName = FileDAO.getInstance().getFileName(postNo);
