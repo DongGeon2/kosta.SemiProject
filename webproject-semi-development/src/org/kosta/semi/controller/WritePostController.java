@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import org.kosta.semi.model.CountryVO;
 import org.kosta.semi.model.FileDAO;
 import org.kosta.semi.model.FileVO;
+import org.kosta.semi.model.MemberDAO;
 import org.kosta.semi.model.MemberVO;
 import org.kosta.semi.model.PostDAO;
 import org.kosta.semi.model.PostVO;
@@ -66,7 +67,7 @@ public class WritePostController implements Controller {
 			PostDAO.getInstance().writeContent(pvo);//글쓰면 DB에 정보 들어가게하는 DAO
 			System.out.println(pvo.getPostNo());
 			System.out.println("글쓰기완료");
-			
+			MemberDAO.getInstance().addMemberPoint(mvo.getId(), 1, "글 작성");
 			//--------------------------------------------------------------------------------------------------------
 			
 			String filename = multi.getFilesystemName("filename");//저장된 파일명
