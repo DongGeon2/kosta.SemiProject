@@ -117,10 +117,6 @@ create table likedb(
 ------------comment-----------------------------
 SELECT member_id, time_commented , content  FROM postcomment  
 WHERE post_no=42 order by time_commented DESC
-
-
-ALTER TABLE member MODIFY ( point NUMBER DEFAULT 0 );
-
 ----------------------------------------------------------
 -- member table 포인트 추가
 ALTER TABLE member ADD ( point NUMBER ) ;
@@ -135,6 +131,13 @@ create table member_timeline(
 	message clob not null,
 	primary key(member_id, acted_time)
 )
+
+INSERT INTO member_timeline VALUES('java',to_date('2021-02-22 09:04:20','yyyy-mm-dd hh24:mi:ss'),null,'회원가입');
+INSERT INTO member_timeline VALUES('spring',to_date('2021-02-22 09:05:45','yyyy-mm-dd hh24:mi:ss'),null,'회원가입');
+INSERT INTO member_timeline VALUES('mvc',to_date('2021-02-22 09:01:20','yyyy-mm-dd hh24:mi:ss'),null,'회원가입');
+INSERT INTO member_timeline VALUES('singleton',to_date('2021-02-22 08:56:10','yyyy-mm-dd hh24:mi:ss'),null,'회원가입');
+INSERT INTO member_timeline VALUES('francfranc',to_date('2021-02-22 09:02:27','yyyy-mm-dd hh24:mi:ss'),null,'회원가입');
+INSERT INTO member_timeline VALUES('princessK',to_date('2021-02-22 08:45:09','yyyy-mm-dd hh24:mi:ss'),null,'회원가입');
 -----------------------------------------------------------------
 --게시글 삭제를 위한 TABLE 수정
 --PostNo를 참조하는 테이블들의 제약조건을 수정

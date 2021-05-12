@@ -28,7 +28,7 @@ public class PostDetailNoHitsController implements Controller {
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("PostDetailNoHitsController 시작");
 		HttpSession session = request.getSession(false);
-		if (session == null || session.getAttribute("mvo") == null) {
+		if (session == null || (session.getAttribute("mvo") == null  && session.getAttribute("mgvo") == null)) {
 			return "redirect:index.jsp";
 		}
 

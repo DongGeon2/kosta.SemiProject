@@ -3,10 +3,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 	<div class="d-sm-flex align-items-center justify-content-between mb-4">
 		<!-- ${totalCount} 넣어주세요 -->
-		<h4 class="h4 mb-0 text-gray-800" style="text-align: center">
-			환영합니다! ${requestScope.detailMVO.name}님!
-		</h4>
+		<a class="collapse-item" href="${pageContext.request.contextPath}/MemberListController.do"><i class="fas fa-chevron-left"></i></a>
+		
 	</div>
+	<h4 class="h4 mb-0 text-gray-800" style="text-align: center; margin-bottom:50px !important;">
+		<b style="background-color:#4e73df; color:white; padding:5px 10px">${requestScope.detailMVO.name}</b>님의 회원 정보</h4>
 	<!-- Content Row -->
 	<div class="row">
 	<!-- Earnings (Monthly) Card Example -->
