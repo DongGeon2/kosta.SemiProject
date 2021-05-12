@@ -77,7 +77,7 @@
 					<th class="table-active">첨부파일</th>
 					<c:choose>
 						<c:when test="${fvo!=null }">
-							<td><a href="DownloadController.do?postNo=${fvo.postVO.postNo }&fileName=${fvo.fileName}">${fvo.fileName }</a></td>
+							<td><a href="DownloadController.do?postNo=${fvo.postVO.postNo }&fileName=${fvo.fileName}"><i class="fas fa-link"></i>${fvo.fileName }</a></td>
 						</c:when>
 						<c:otherwise>
 							<td>없음</td>
@@ -140,7 +140,7 @@
 						<c:if test="${comment.memberVO.id==sessionScope.mvo.id}">
 							<div class="btnWrap">
 								<form name="updateComment"
-									action="redirect:${pageContext.request.contextPath}/UpdateCommentFormController.do"
+									action="${pageContext.request.contextPath}/UpdateCommentFormController.do"
 									method="post" style="display: inline">
 									<input type="hidden" name="commentNo"
 										value="${comment.commentNo}">
