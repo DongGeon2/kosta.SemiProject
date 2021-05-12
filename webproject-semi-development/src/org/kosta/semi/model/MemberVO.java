@@ -11,6 +11,15 @@ public class MemberVO {
 	private String password;
 	private String state;
 	private int point;
+	private int age;
+	public int getAge() {
+		return age;
+	}
+
+	public void setAge(int age) {
+		this.age = age;
+	}
+
 	public MemberVO() {
 		super();
 		// TODO Auto-generated constructor stub
