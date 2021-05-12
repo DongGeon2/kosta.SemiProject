@@ -43,7 +43,7 @@
 						<a class="collapse-item" href="${pageContext.request.contextPath}/IndividualListBycountryController.do?countryId=49">독일</a>
 						<%-- <c:if test="${sessionScope.mvo.point>=10}"> --%>
 						<c:if test="${sessionScope.mvo!=null}"> 
-						<a class="collapse-item" href="PointCheckController.do">PREMIUM</a>
+						<a class="collapse-item" href="PointCheckController.do" style="background-color:gold; font-weight:bold; color:dimgray"><i class="fas fa-crown" style="color:white;"></i>&nbsp;&nbsp;&nbsp;&nbsp;PREMIUM</a>
 						</c:if>
 					</div>
 				</div></li>
