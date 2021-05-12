@@ -136,7 +136,15 @@ create table member_timeline(
 	primary key(member_id, acted_time)
 )
 -----------------------------------------------------------------
+--게시글 삭제를 위한 TABLE 수정
+--PostNo를 참조하는 테이블들의 제약조건을 수정
+--Post가 삭제 될때 해당 PK를 참조하는 자료들을 모두 삭제함
 ALTER TABLE POSTCOMMENT drop constraint fk_postcomment_postforeign
 ALTER TABLE postcomment ADD  constraint fk_postcomment_postforeign foreign key(post_no) references post(post_no) ON DELETE CASCADE
 
+ALTER TABLE filedb drop constraint fk_filedb_post
+ALTER TABLE filedb ADD  constraint fk_filedb_post foreign key(post_no) references post(post_no) ON DELETE CASCADE
+
+ALTER TABLE likedb drop constraint fk_likedb_post
+ALTER TABLE likedb ADD  constraint fk_likedb_post foreign key(post_no) references post(post_no) ON DELETE CASCADE
 
