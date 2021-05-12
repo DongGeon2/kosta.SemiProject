@@ -101,7 +101,7 @@
 				<form name="deleteForm"
 					action="${pageContext.request.contextPath}/DeletePostController.do"
 					method="post">
-					<input type="hidden" name="pageNo"
+					<input type="hidden" name="postNo"
 						value="${requestScope.pvo.postNo}">
 				</form>
 				<form name="updateForm"
