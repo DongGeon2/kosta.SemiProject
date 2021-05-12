@@ -35,9 +35,16 @@
 					"width=450,height=250,top=150,left=400");
 		}
 	}
+	function welcome() {
+		// 회원가입 확인
+		alert("환영합니다~ 회원가입이 완료되었습니다!")
+	}
+	
 </script>
 
 
+
+<%-- --%>
 <title>한국인 모여라, 회원가입</title>
 <!-- Custom fonts for this template-->
 <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
@@ -70,9 +77,8 @@
 								onsubmit="return checkRegForm()">
 								<div class="form-group">
 									<input type="text" class="form-control form-control-user"
-										name="name" placeholder="이름"
+										name="name" placeholder="이름 (한글만 입력 가능합니다)"
 										onkeypress="if(!(event.keyCode < 47 && event.keyCode > 58)) event.returnValue=false;">
-
 								</div>
 								<div class="form-group row">
 									<div class="col-sm-6 mb-3 mb-sm-0">
@@ -185,11 +191,11 @@
 										</label>
 									</div>
 								</div>
-								
 								<div class="text-center">
-									<input type="submit" class="btn btn-primary" value="함께 여행하기">
+									<input type="submit" class="btn btn-primary" value="함께 여행하기" onclick="welcome()">
 								</div>
 							</form>
+
 							<hr>
 
 							<div class="text-center">
