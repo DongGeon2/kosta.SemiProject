@@ -37,7 +37,7 @@ CREATE TABLE postcomment(
    content clob not null,
    time_commented DATE not null,
    constraint fk_postcomment_member foreign key(member_id) references member(member_id),
-   constraint fk_postcomment_postforeign foreign key(post_no) references post(post_no)
+   constraint fk_postcomment_postforeign foreign key(post_no) references post(post_no) ON DELETE CASCADE
 )
 --3번
 CREATE TABLE member(
@@ -136,3 +136,7 @@ create table member_timeline(
 	primary key(member_id, acted_time)
 )
 -----------------------------------------------------------------
+ALTER TABLE POSTCOMMENT drop constraint fk_postcomment_postforeign
+ALTER TABLE postcomment ADD  constraint fk_postcomment_postforeign foreign key(post_no) references post(post_no) ON DELETE CASCADE
+
+
