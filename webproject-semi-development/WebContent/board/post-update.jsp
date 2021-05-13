@@ -16,14 +16,14 @@
 		if(text == '분류를 선택해주세요'){
 			alert("분류를 선택해 주세요");
 			numSelect.focus();
-			flag = false;-
+			flag = false;
 		}
 		return flag;
-	}-
+	}
 </script>
 <div class="card shadow mb-4">
 	<div class="card-header py-3">
-		<h6 class="m-0 font-weight-bold text-primary">프랑스 게시판</h6>
+		<h6 class="m-0 font-weight-bold text-primary">${requestScope.pvo.countryVO.countryName} 게시판</h6>
 	</div>
 	<div class="card-body">
 		<form method="post" action="${pageContext.request.contextPath}/UpdatePostController.do" method="post" onsubmit="return checkCatergory();">
@@ -31,7 +31,8 @@
 			<div class="form-group">
 				<label for="catergory">분류</label> 
 				<select class="form-control" id="catergory" name="catergory">
-					<option value="정보" selected>정보</option>
+					<option value="분류를 선택해주세요" selected>분류를 선택해주세요</option>
+					<option value="정보">정보</option>
 					<option value="동행">동행</option>
 					<option value="후기">후기</option>
 				</select>
