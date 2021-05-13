@@ -16,10 +16,11 @@ public class PointCheckController implements Controller {
 		HttpSession session = request.getSession(false);
 		MemberVO mvo = (MemberVO) session.getAttribute("mvo");
 		int point = MemberDAO.getInstance().getPointById(mvo.getId());
+		System.out.println(point);
 		mvo.setPoint(point);
 		request.setAttribute("point", point);
 		if (point < 10)
-			return "redirect:premium-access-fail.jsp";
+			return "redirect:/premium-access-fail.jsp";
 		else {
 			String travelStyleArr[][] = { { "북적", "한적", "무관" }, { "럭셔리", "저예산", "가성비" }, { "큰계획", "세부계획", "즉흥" },
 					{ "음식", "쇼핑", "숙소" } };
@@ -37,7 +38,7 @@ public class PointCheckController implements Controller {
 			if (session.getAttribute("svo") == null) {
 				request.setAttribute("map", travelStyleMap);
 				request.setAttribute("url", "/premium-select-form2.jsp");
-				request.setAttribute("urlCountry", "/premium-board.jsp");
+				request.setAttribute("urlCountry", "/premium-header.jsp");
 				return "/template/layout.jsp";
 			} else {
 				return "TravelStyleMatchController.do";

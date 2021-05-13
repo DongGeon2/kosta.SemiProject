@@ -2,9 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 	<div class="d-sm-flex align-items-center justify-content-between mb-4">
-		<!-- ${totalCount} 넣어주세요 -->
 		<h4 class="h4 mb-0 text-gray-800" style="text-align: center">
-			지금 당신과 즐거운 시간을 보낼수도 있는 한국인 <b>${requestScope.count}</b> 명이 ${country.countryName}에서 여행을 하고있어요 !!
+			지금! 설레는 마음을 담아 메세지를 보내세요 !!
 		</h4>
 	</div>
 	<!-- Content Row -->
