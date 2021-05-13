@@ -37,7 +37,7 @@ public class PostDetailController implements Controller {
 			return "redirect:member/loginUnlocked.jsp";
 		}
 		
-		MemberVO mvo = null;
+		MemberVO mvo = (MemberVO) session.getAttribute("mvo");
 		String postNo = request.getParameter("postNo");
 		PostVO pvo = PostDAO2.getInstance().getPostingByNo(postNo);
 		System.out.println(pvo);
