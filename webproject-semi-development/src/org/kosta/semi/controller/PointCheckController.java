@@ -20,7 +20,7 @@ public class PointCheckController implements Controller {
 		mvo.setPoint(point);
 		request.setAttribute("point", point);
 		if (point < 10)
-			return "redirect:/premium-access-fail.jsp";
+			return "premium-access-fail.jsp";
 		else {
 			String travelStyleArr[][] = { { "북적", "한적", "무관" }, { "럭셔리", "저예산", "가성비" }, { "큰계획", "세부계획", "즉흥" },
 					{ "음식", "쇼핑", "숙소" } };
@@ -30,11 +30,6 @@ public class PointCheckController implements Controller {
 			travelStyleMap.put("계획", travelStyleArr[2]);
 			travelStyleMap.put("중요", travelStyleArr[3]);
 
-			/*
-			 * StringBuilder initial = new StringBuilder(); for (int i =0;
-			 * i<travelStyleArr.length;i++) { for(String[] style: travelStyleArr ) {
-			 * initial.append(style[i].charAt(0)); } } 첫글자로 받을지 인덱스로 받을지
-			 */
 			if (session.getAttribute("svo") == null) {
 				request.setAttribute("map", travelStyleMap);
 				request.setAttribute("url", "/premium-select-form2.jsp");

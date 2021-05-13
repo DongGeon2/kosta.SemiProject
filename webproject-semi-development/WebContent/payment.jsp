@@ -10,7 +10,7 @@
 </head>
 <body>
 아직 결제페이지는 준비중입니다<br>
-좋은 글 많이 써주시고 포인트 쌓으셔서 무료일때 많이 즐기세요 :)
-<img src="/images/under.gif" >
+좋은 글 많이 써주시고 포인트 쌓으셔서 무료일때 많이 즐기세요 :)<br>
+<img src="./images/under.gif" >
 </body>
 </html>
