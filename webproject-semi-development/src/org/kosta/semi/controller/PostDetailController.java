@@ -36,6 +36,10 @@ public class PostDetailController implements Controller {
 		if (session == null || (session.getAttribute("mvo") == null && session.getAttribute("mgvo") == null)) {
 			return "redirect:member/loginUnlocked.jsp";
 		}
+		// 관리자일때 관리자 post detail view 로 넘겨줌
+		if(session.getAttribute("mgvo") != null) {
+			return "PostDetailNoHitsManagerController.do";
+		}
 		
 		MemberVO mvo = (MemberVO) session.getAttribute("mvo");
 		String postNo = request.getParameter("postNo");
@@ -59,18 +63,6 @@ public class PostDetailController implements Controller {
 		}
 		// 조회수 증가 후 글 불러오기
 		pvo = PostDAO2.getInstance().getPostingByNo(postNo);
-		// post 작성자 아이디와 로그인한 id 가 같을 때(본인글) 조회수 count 안하기
-		// 관리자가 있을 수 있으니 mvo 가 null 이 아닐 때 실행
-		if( session.getAttribute("mvo") != null ) {
-			mvo = (MemberVO) session.getAttribute("mvo");
-			if( mvo.getId().equals(pvo.getMemberVO().getId())) {
-				return "PostDetailNoHitsController.do";
-			}
-		}
-		// 관리자일때도 조회수 증가 방지
-		if( session.getAttribute("mgvo") != null) {
-			return "PostDetailNoHitsController.do";
-		}
 		
 		
 		//파일 정보 불러오기 관련 로직
