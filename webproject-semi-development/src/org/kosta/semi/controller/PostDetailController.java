@@ -81,8 +81,8 @@ public class PostDetailController implements Controller {
 		request.setAttribute("time", time);
 		
 		//해당 게시글의 cvo 가져오기
-		CountryVO cvo = CountryDAO.getInstance().findCountryName(countryName);	
-		cvo = CountryDAO.getInstance().findCountryById(cvo.getCountryId());
+		//CountryVO cvo = CountryDAO.getInstance().findCountryName( pvo.getCountryVO().getCountryId());	
+		CountryVO cvo = CountryDAO.getInstance().findCountryById(pvo.getCountryVO().getCountryId());
 		/*
 		 * comment list 가져오기 
 		 * id와 postNo 사용 
