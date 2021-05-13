@@ -51,8 +51,7 @@ public class PostDetailNoHitsController implements Controller {
 		}
 
 		String countryName = pvo.getCountryVO().getCountryName();
-		System.out.println("");
-		System.out.println("나라 이름:"+pvo.getCountryVO().getCountryName());
+		request.setAttribute("countryName", countryName);
 		int countryCount = CountryDAO.getInstance().findMemberCountByCountryname(countryName);
 		
 		//한국과 해당게시판의 나라별 시간. jsp에서 각각 ${time[0]} 과 ${time[2]} 
@@ -76,6 +75,7 @@ public class PostDetailNoHitsController implements Controller {
 		LikeVO lvo = LikeDAO.getInstance().check(mvo.getId(), postNo);
 		System.out.println(totalLike);
 		System.out.println("test:"+lvo);
+		System.out.println(pvo);
 		
 		request.setAttribute("lvo", lvo);
 		request.setAttribute("totalLike", totalLike);
