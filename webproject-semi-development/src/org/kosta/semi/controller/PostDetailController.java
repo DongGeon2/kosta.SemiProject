@@ -6,9 +6,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-
-import org.kosta.semi.model.CountryDAO;
-import org.kosta.semi.model.CountryVO;
 import org.kosta.semi.model.CommentDAO;
 import org.kosta.semi.model.CommentVO;
 import org.kosta.semi.model.CountryDAO;
@@ -61,7 +58,7 @@ public class PostDetailController implements Controller {
 			noList.add(postNo);
 		}
 		// 조회수 증가 후 글 불러오기
-		PostVO pvo = PostDAO2.getInstance().getPostingByNo(postNo);
+		pvo = PostDAO2.getInstance().getPostingByNo(postNo);
 		// post 작성자 아이디와 로그인한 id 가 같을 때(본인글) 조회수 count 안하기
 		// 관리자가 있을 수 있으니 mvo 가 null 이 아닐 때 실행
 		if( session.getAttribute("mvo") != null ) {
