@@ -6,12 +6,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.kosta.semi.model.CountryDAO;
-import org.kosta.semi.model.CountryVO;
 import org.kosta.semi.model.CommentDAO;
 import org.kosta.semi.model.CommentVO;
+import org.kosta.semi.model.CountryDAO;
 import org.kosta.semi.model.FileDAO;
 import org.kosta.semi.model.FileVO;
+import org.kosta.semi.model.LikeDAO;
+import org.kosta.semi.model.LikeVO;
 import org.kosta.semi.model.MemberVO;
 import org.kosta.semi.model.PostDAO;
 import org.kosta.semi.model.PostDAO2;
@@ -35,10 +36,21 @@ public class PostDetailController implements Controller {
 		if (session == null || (session.getAttribute("mvo") == null && session.getAttribute("mgvo") == null)) {
 			return "redirect:member/loginUnlocked.jsp";
 		}
+		// 관리자일때 관리자 post detail view 로 넘겨줌
+		if(session.getAttribute("mgvo") != null) {
+			return "PostDetailNoHitsManagerController.do";
+		}
 		
-		MemberVO mvo = null;
+		MemberVO mvo = (MemberVO) session.getAttribute("mvo");
 		String postNo = request.getParameter("postNo");
-		
+		PostVO pvo = PostDAO2.getInstance().getPostingByNo(postNo);
+		System.out.println(pvo);
+		// post 작성자 아이디와 로그인한 id 가 같을 때(본인글) 조회수 count 안하기
+		if( mvo.getId().equals(pvo.getMemberVO().getId())) {
+			//System.out.println("작성자가 글읽음");
+			return "PostDetailNoHitsController.do";
+		}
+
 		/*
 		 * 읽은 게시물을 다시 읽었을 때 조회수 증가를 방지하기 위해 noList에 게시글번호가 존재하지 않으면 조회수를 증가시킨다.
 		 */
@@ -50,20 +62,7 @@ public class PostDetailController implements Controller {
 			noList.add(postNo);
 		}
 		// 조회수 증가 후 글 불러오기
-		PostVO pvo = PostDAO2.getInstance().getPostingByNo(postNo);
-		// post 작성자 아이디와 로그인한 id 가 같을 때(본인글) 조회수 count 안하기
-		// 관리자가 있을 수 있으니 mvo 가 null 이 아닐 때 실행
-		if( session.getAttribute("mvo") != null ) {
-			mvo = (MemberVO) session.getAttribute("mvo");
-			if( mvo.getId().equals(pvo.getMemberVO().getId())) {
-				return "PostDetailNoHitsController.do";
-			}
-		}
-		// 관리자일때도 조회수 증가 방지
-		if( session.getAttribute("mgvo") != null) {
-			return "PostDetailNoHitsController.do";
-		}
-		
+		pvo = PostDAO2.getInstance().getPostingByNo(postNo);
 		
 		
 		//파일 정보 불러오기 관련 로직
@@ -78,8 +77,7 @@ public class PostDetailController implements Controller {
 		}
 		
 		String countryName = pvo.getCountryVO().getCountryName();
-		System.out.println("");
-		System.out.println("나라 이름:"+pvo.getCountryVO().getCountryName());
+		request.setAttribute("countryName", countryName);
 		int countryCount = CountryDAO.getInstance().findMemberCountByCountryname(countryName);
 		
 		//한국과 해당게시판의 나라별 시간
@@ -99,6 +97,18 @@ public class PostDetailController implements Controller {
 			request.setAttribute("commentList", null);	
 		}
 		
+		/*
+		 * totalLike는 총 좋아요 수
+		 * lvo는 좋아요 눌렀는지 안눌렀는지 체크해주는거(여기선 뷰가서 해줌)
+		 */
+		int totalLike = LikeDAO.getInstance().totalCount(postNo);
+		LikeVO lvo = LikeDAO.getInstance().check(mvo.getId(), postNo);
+		System.out.println(totalLike);
+		System.out.println(lvo);
+		System.out.println(pvo);
+		
+		request.setAttribute("lvo", lvo);
+		request.setAttribute("totalLike", totalLike);
 		request.setAttribute("count", countryCount);
 		request.setAttribute("pvo", pvo);
 		request.setAttribute("fvo", fvo);

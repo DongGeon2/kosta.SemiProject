@@ -37,9 +37,39 @@
 		return flag;
 	}
 </script>
+<script>
+	let likeFlag;
+	function like(flag){
+		likeFlag=flag;
+		let postNo=document.getElementById("postNo").value;
+		xhr = new XMLHttpRequest(); //Ajax를 위한 자바스크립트 객체
+		xhr.onreadystatechange=callback; //서버가 응답할때 callback 함수를 실행하기 위한 코드
+		xhr.open("POST","LikeController.do",true);
+		xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+		xhr.send("postNo="+postNo);
+		/* xhr.open("GET","LikeController.do?postNo="+postNo);
+		xhr.send(null); */
+	}
+	function callback(){
+		
+		//readyState가 4: 서버의 응답정보를 받은 상태
+		//status가 200: 정상 수행
+		if(xhr.readyState==4 && xhr.status==200){
+			//alert(likeFlag+" "+xhr.responseText);
+			//xhr.responseText : 서버의 응답데이터를 저장하는 변수
+			if(likeFlag==false){
+				document.getElementById("likeView").innerHTML="<input type='image' id='yes' src='images/yes-heart.png' onclick='like(true)'>";
+			}else{
+				document.getElementById("likeView").innerHTML="<input type='image' id='no' src='images/no-heart.png' onclick='like(false)'>";
+			}
+			document.getElementById("like_result").innerHTML=xhr.responseText;
+			
+		}//if
+	}//callback
+</script>
 <div class="card shadow mb-4">
 	<div class="card-header py-3">
-		<h6 class="m-0 font-weight-bold text-primary">${requestScope.countryName}
+		<h6 class="m-0 font-weight-bold text-primary">${requestScope.pvo.countryVO.countryName}
 			게시판</h6>
 	</div>
 	<div class="card-body">
@@ -87,11 +117,30 @@
 				<tr>
 					<td colspan="6" class="cotentWrap"><pre>${pvo.postContent}</pre></td>
 				</tr>
-				<tr>
-					<td colspan="6">좋아요 ${requestScope.pvo }</td>
-					
-				</tr>
 			</table>
+			
+			<c:choose>
+				<c:when test="${sessionScope.mvo!=null}">
+					<input type="hidden" id="postNo" value="${requestScope.pvo.postNo }">
+					<span id="likeView">
+					<c:choose>
+						<c:when test="${requestScope.lvo==null}">
+							<input type="image" id="no" src="images/no-heart.png" onclick="like(false)">
+							<!-- <input type="button" value="좋아요!" onclick="return like()"> -->
+						</c:when>
+						<c:otherwise>
+							<input type="image" id="yes" src="images/yes-heart.png" onclick="like(true)">
+						</c:otherwise>
+					</c:choose>
+					</span>
+					<span id="like_result">${requestScope.totalLike }</span>
+				</c:when>
+				<c:otherwise>
+					<img alt="좋아요" src="images/no-heart.png">
+					<span>${requestScope.totalLike }</span>
+				</c:otherwise> 			
+			</c:choose>
+
 			<div class="btnWrap">
 				<!-- submit 을 위한 form -->
 				<form name="MoveForm" action="${pageContext.request.contextPath}/IndividualListBycountryController.do" method="post">

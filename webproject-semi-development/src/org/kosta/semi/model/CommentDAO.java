@@ -49,7 +49,7 @@ public class CommentDAO {
 			con = dataSource.getConnection();
 			StringBuilder sql = new StringBuilder();
 			sql.append(" SELECT member_id, time_commented , content, comment_no  FROM ");
-			sql.append(" postcomment  WHERE post_no=? order by time_commented DESC ");
+			sql.append(" postcomment  WHERE post_no=? order by time_commented  ");
 			pstmt = con.prepareStatement(sql.toString());
 			pstmt.setString(1, postNo);
 			rs = pstmt.executeQuery();

@@ -9,12 +9,13 @@ public class PostVO {
 	private MemberVO memberVO;
 	private CountryVO countryVO;
 	private String catergory;
+	private int comment_count;
 	public PostVO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	public PostVO(String postNo, String postTitle, String postContent, int hits, String postTime, MemberVO memberVO,
-			CountryVO countryVO, String catergory) {
+			CountryVO countryVO, String catergory, int comment_count ) {
 		super();
 		this.postNo = postNo;
 		this.postTitle = postTitle;
@@ -24,6 +25,14 @@ public class PostVO {
 		this.memberVO = memberVO;
 		this.countryVO = countryVO;
 		this.catergory = catergory;
+		this.comment_count = comment_count;
+	}
+	
+	public int getComment_count() {
+		return comment_count;
+	}
+	public void setComment_count(int comment_count) {
+		this.comment_count = comment_count;
 	}
 	public String getPostNo() {
 		return postNo;
@@ -77,7 +86,8 @@ public class PostVO {
 	public String toString() {
 		return "PostVO [postNo=" + postNo + ", postTitle=" + postTitle + ", postContent=" + postContent + ", hits="
 				+ hits + ", postTime=" + postTime + ", memberVO=" + memberVO + ", countryVO=" + countryVO
-				+ ", catergory=" + catergory + "]";
+				+ ", catergory=" + catergory + ", comment_count=" + comment_count + "]";
 	}
+	
 	
 }

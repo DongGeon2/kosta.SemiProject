@@ -45,6 +45,7 @@
 									<c:when test="${sessionScope.mvo!=null || sessionScope.mgvo!=null}">
 										<a
 											href="${pageContext.request.contextPath}/PostDetailController.do?postNo=${pvo.postNo}">${pvo.postTitle}
+											<span style="color:DodgerBlue">[${pvo.comment_count}]</span>	
 										</a>
 									</c:when>
 									<c:otherwise>

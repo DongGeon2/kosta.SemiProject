@@ -5,7 +5,7 @@
 	<div class="d-sm-flex align-items-center justify-content-between mb-4">
 		<!-- ${totalCount} 넣어주세요 -->
 		<h4 class="h4 mb-0 text-gray-800" style="text-align: center">
-			지금 당신과 즐거운 시간을 보낼수도 있는 한국인 <b>${requestScope.count}</b> 명이 ${requestScope.pvo.countryVO.countryName }에서 여행을 하고있어요 !!
+			지금 당신과 즐거운 시간을 보낼수도 있는 한국인 <b>${requestScope.count }</b> 명이 ${requestScope.pvo.countryVO.countryName }에서 여행을 하고있어요 !!
 			
 		</h4>
 	</div>
@@ -19,8 +19,10 @@
 					<div class="col mr-2">
 						<div
 							class="text-lg font-weight-bold text-primary text-uppercase mb-1">
-							${country.countryTime}</div>
-						<div class="h5 mb-0 font-weight-bold text-gray-800"></div>
+							시차</div>
+					
+							
+						<div class="h5 mb-0 font-weight-bold text-gray-800">${country.countryTime}</div>
 					</div>
 					<div class="col-auto">
 						<i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -77,14 +79,10 @@
 			<div class="card-body">
 				<div class="row no-gutters align-items-center">
 					<div class="col mr-2">
-						<div
-							class="text-lg font-weight-bold text-warning text-uppercase mb-1">
-							뭐 들어가야 할까요,....</div>
-						<div class="h5 mb-0 font-weight-bold text-gray-800">뭐 들어가야
-							할까욤....</div>
-					</div>
-					<div class="col-auto">
-						<i class="fas fa-comments fa-2x text-gray-300"></i>
+						<div class="h5 mb-0 font-weight-bold text-gray-800"style="text-align:center;"><img
+				 src="images/flag/${country.countryId}.svg"
+				alt="국기 이미지" style="width:120px;">
+				 </div>
 					</div>
 				</div>
 			</div>

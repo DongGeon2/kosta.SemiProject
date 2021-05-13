@@ -12,6 +12,9 @@ import org.kosta.semi.model.CountryDAO;
 import org.kosta.semi.model.CountryVO;
 import org.kosta.semi.model.FileDAO;
 import org.kosta.semi.model.FileVO;
+import org.kosta.semi.model.LikeDAO;
+import org.kosta.semi.model.LikeVO;
+import org.kosta.semi.model.MemberVO;
 import org.kosta.semi.model.PostDAO;
 import org.kosta.semi.model.PostDAO2;
 import org.kosta.semi.model.PostVO;
@@ -31,7 +34,7 @@ public class PostDetailNoHitsController implements Controller {
 		if (session == null || (session.getAttribute("mvo") == null  && session.getAttribute("mgvo") == null)) {
 			return "redirect:index.jsp";
 		}
-
+		MemberVO mvo = (MemberVO) session.getAttribute("mvo");
 		String postNo = request.getParameter("postNo");
 		PostVO pvo = PostDAO2.getInstance().getPostingByNo(postNo);
 
@@ -48,8 +51,7 @@ public class PostDetailNoHitsController implements Controller {
 		}
 
 		String countryName = pvo.getCountryVO().getCountryName();
-		System.out.println("");
-		System.out.println("나라 이름:"+pvo.getCountryVO().getCountryName());
+		request.setAttribute("countryName", countryName);
 		int countryCount = CountryDAO.getInstance().findMemberCountByCountryname(countryName);
 		
 		//한국과 해당게시판의 나라별 시간. jsp에서 각각 ${time[0]} 과 ${time[2]} 
@@ -69,7 +71,14 @@ public class PostDetailNoHitsController implements Controller {
 			request.setAttribute("commentList", null);	
 		}
 
+		int totalLike = LikeDAO.getInstance().totalCount(postNo);
+		LikeVO lvo = LikeDAO.getInstance().check(mvo.getId(), postNo);
+		System.out.println(totalLike);
+		System.out.println("test:"+lvo);
+		System.out.println(pvo);
 		
+		request.setAttribute("lvo", lvo);
+		request.setAttribute("totalLike", totalLike);
 		request.setAttribute("count", countryCount);
 		request.setAttribute("pvo", pvo);
 		request.setAttribute("fvo", fvo);

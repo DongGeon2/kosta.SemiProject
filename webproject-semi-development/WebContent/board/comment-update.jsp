@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+ <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <c:if test="${sessionScope.mvo!=null}">
 				<div class="commentWrap">
@@ -26,4 +26,4 @@
 
 					
 				</div>
-			</c:if>
+</c:if>

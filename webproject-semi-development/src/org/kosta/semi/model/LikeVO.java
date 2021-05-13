@@ -1,26 +1,16 @@
 package org.kosta.semi.model;
 
 public class LikeVO {
-	private String likeId;
 	private PostVO postVO;
-	private FileVO fileVO;
-	private String likeCount;
+	private MemberVO memberVO;
 	public LikeVO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public LikeVO(String likeId, PostVO postVO, FileVO fileVO, String likeCount) {
+	public LikeVO(PostVO postVO, MemberVO memberVO) {
 		super();
-		this.likeId = likeId;
 		this.postVO = postVO;
-		this.fileVO = fileVO;
-		this.likeCount = likeCount;
-	}
-	public String getLikeId() {
-		return likeId;
-	}
-	public void setLikeId(String likeId) {
-		this.likeId = likeId;
+		this.memberVO = memberVO;
 	}
 	public PostVO getPostVO() {
 		return postVO;
@@ -28,22 +18,14 @@ public class LikeVO {
 	public void setPostVO(PostVO postVO) {
 		this.postVO = postVO;
 	}
-	public FileVO getFileVO() {
-		return fileVO;
+	public MemberVO getMemberVO() {
+		return memberVO;
 	}
-	public void setFileVO(FileVO fileVO) {
-		this.fileVO = fileVO;
-	}
-	public String getLikeCount() {
-		return likeCount;
-	}
-	public void setLikeCount(String likeCount) {
-		this.likeCount = likeCount;
+	public void setMemberVO(MemberVO memberVO) {
+		this.memberVO = memberVO;
 	}
 	@Override
 	public String toString() {
-		return "LikeVO [likeId=" + likeId + ", postVO=" + postVO + ", fileVO=" + fileVO + ", likeCount=" + likeCount
-				+ "]";
+		return "LikeVO [postVO=" + postVO + ", memberVO=" + memberVO + "]";
 	}
-	 
 }

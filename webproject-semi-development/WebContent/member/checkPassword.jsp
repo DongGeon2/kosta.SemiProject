@@ -9,10 +9,10 @@
 </div>
 
  <form action="${pageContext.request.contextPath}/UpdateMemberFormController.do" method="post" class="user">
-	<div class="form-group">
+	<div class="form-group col-6">
 	<input type="password" class="form-control form-control-user" name="password" placeholder="Password">
 	</div>
-	<div class="text-center">
+	<div class="text-center col-6">
 	<input type="submit" class="btn btn-primary" value="확인">
 	</div>
 </form>
