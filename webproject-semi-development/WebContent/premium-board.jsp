@@ -18,7 +18,7 @@
 						<div
 							class="text-lg font-weight-bold text-primary text-uppercase mb-1">
 							동행</div>
-						<div class="h5 mb-0 font-weight-bold text-gray-800">또래를 원해요<br>로맨틱한 만남을 기대해요</div>
+						<div class="h5 mb-0 font-weight-bold text-gray-800">비슷한 여행스타일</div>
 					</div>
 					<div class="col-auto">
 						<i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -37,7 +37,7 @@
 						<div
 							class="text-lg font-weight-bold text-success text-uppercase mb-1">
 							실시간대기현황</div>
-						<div class="h5 mb-0 font-weight-bold text-gray-800"> 지금 가면 살수 있나요?<br>지금 가면 바로 입장되나요?<br>데이시트, 맛집 대기줄..</div>
+						<div class="h5 mb-0 font-weight-bold text-gray-800">데이시트, 맛집 대기줄..</div>
 					</div>
 					<div class="col-auto">
 						<i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
@@ -54,10 +54,10 @@
 				<div class="row no-gutters align-items-center">
 					<div class="col mr-2">
 						<div
-							class="text-lg font-weight-bold text-info text-uppercase mb-1">추천 코스</div>
+							class="text-lg font-weight-bold text-info text-uppercase mb-1">ㅁㅁㅁ</div>
 						<div class="row no-gutters align-items-center">
 							<div class="col-auto">
-								<div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">나에게 맞는 보장된 코스를 원해요</div>
+								<div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">ㅁㅁㅁㅁ</div>
 							</div>
 						</div>
 					</div>
@@ -77,8 +77,8 @@
 					<div class="col mr-2">
 						<div
 							class="text-lg font-weight-bold text-warning text-uppercase mb-1">
-							파티</div>
-						<div class="h5 mb-0 font-weight-bold text-gray-800">Korean Assemble팀은 성숙한 여행문화를 응원합니다</div>
+							Korean Assemble</div>
+						<div class="h5 mb-0 font-weight-bold text-gray-800">성숙한 여행문화를<br> 응원합니다</div>
 					</div>
 					<div class="col-auto">
 						<i class="fas fa-comments fa-2x text-gray-300"></i>

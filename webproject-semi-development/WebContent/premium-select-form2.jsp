@@ -50,8 +50,10 @@
 								</c:forEach>
 
 								<div class="text-center">
+								제출은 한번만 가능하니 신중하게 골라주세요!<br>
 									<input type="submit" class="btn btn-primary"
 										value="나와 같은 여행 스타일 가진 분 계실까요?">
+										
 								</div>
 							</form>
 						</div>
