@@ -73,6 +73,10 @@ public class PostDetailNoHitsManagerController implements Controller {
 			request.setAttribute("commentList", null);	
 		}
 		
+		int totalLike = LikeDAO.getInstance().totalCount(postNo);
+		System.out.println(totalLike);
+		
+		request.setAttribute("totalLike", totalLike);
 		request.setAttribute("count", countryCount);
 		request.setAttribute("pvo", pvo);
 		request.setAttribute("fvo", fvo);

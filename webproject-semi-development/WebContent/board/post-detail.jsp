@@ -137,9 +137,10 @@
 				</c:when>
 				<c:otherwise>
 					<img alt="좋아요" src="images/no-heart.png">
-					<span id="like_result">${requestScope.totalLike }</span>
+					<span>${requestScope.totalLike }</span>
 				</c:otherwise> 			
 			</c:choose>
+
 			<div class="btnWrap">
 				<!-- submit 을 위한 form -->
 				<form name="MoveForm" action="${pageContext.request.contextPath}/IndividualListBycountryController.do" method="post">
