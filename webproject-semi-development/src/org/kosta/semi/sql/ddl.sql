@@ -51,7 +51,7 @@ CREATE TABLE member(
    country_id VARCHAR2(100) not null,
    constraint fk_member_country foreign key(country_id) references country(country_id)
 )
-
+SELECT TRUNC(MONTHS_BETWEEN(sysdate, birth)/12) AS AGE FROM MEMBER 
 --2번
 CREATE TABLE manager(
    manager_id VARCHAR2(100) primary key,
