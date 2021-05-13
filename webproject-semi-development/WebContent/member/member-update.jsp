@@ -138,7 +138,7 @@
 											</label>
 										</div>
 									</div>
-									<div class="text-center">
+									<div class="text-center" style="margin-top:50px">
                                         	<input type="submit" class="btn btn-primary" value="수정">
                                         	
                                     </div>
