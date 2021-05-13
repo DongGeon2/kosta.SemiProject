@@ -9,8 +9,9 @@ SELECT * FROM country
 UPDATE country SET country_time = NULL WHERE country_time IS NOT NULL;
 -- 위의 쿼리로 데이터를 지우려면 not null이라는 데이터타입을 null로 변경해야함
 ALTER TABLE country MODIFY country_time NULL
---2)컬럼명 변경
+--2)컬럼명 변경 --  (country_time, time_dif  중 하나 선택해서 실행)
 ALTER TABLE country RENAME COLUMN country_time TO time_dif
+ALTER TABLE country RENAME COLUMN time_dif TO country_time
 --3)컬럼 데이터 타입 변경
 ALTER TABLE country MODIFY country_time NUMBER 
 --4)새로운 값을 넣어준후 not null조건 다시 넣어주기
