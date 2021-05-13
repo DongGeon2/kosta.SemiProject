@@ -21,8 +21,8 @@ import org.kosta.semi.model.PostDAO2;
 import org.kosta.semi.model.PostVO;
 
 /**
- * 조회수 UPDATE 안되는 PostDetail View 기능
- * 관리자가 View 하는 page...!
+ * 조회수 UPDATE 안되는 PostDetail View 기능 관리자가 View 하는 page...!
+ * 
  * @author SUE
  *
  */
@@ -45,7 +45,7 @@ public class PostDetailNoHitsManagerController implements Controller {
 		FileVO fvo = FileDAO.getInstance().getFile(postNo, fileName);
 		System.out.println("fvo: " + fvo);
 		System.out.println(fileName);
-		//혹시 파일명 깨질까
+		// 혹시 파일명 깨질까
 		if (fileName != null && fileName != "") {
 			fileName = new String(fileName.getBytes("UTF-8"), "8859_1");
 			System.out.println("게시글번호, 파일이름: " + postNo + "," + fileName);
@@ -53,33 +53,38 @@ public class PostDetailNoHitsManagerController implements Controller {
 
 		String countryName = pvo.getCountryVO().getCountryName();
 		System.out.println("");
-		System.out.println("나라 이름:"+pvo.getCountryVO().getCountryName());
+		System.out.println("나라 이름:" + pvo.getCountryVO().getCountryName());
 		int countryCount = CountryDAO.getInstance().findMemberCountByCountryname(countryName);
-		
-		//한국과 해당게시판의 나라별 시간. jsp에서 각각 ${time[0]} 과 ${time[2]} 
+
+		// 해당 게시글의 cvo 가져오기
+		CountryVO cvo = CountryDAO.getInstance().findCountryName(countryName);
+		cvo = CountryDAO.getInstance().findCountryById(cvo.getCountryId());
+
+		// 한국과 해당게시판의 나라별 시간. jsp에서 각각 ${time[0]} 과 ${time[2]}
 		ArrayList<String> time = PostDAO.getInstance().getSysdateAndLocalTime(postNo);
 		request.setAttribute("time", time);
-		
+
 		/*
-		 * comment list 가져오기 
-		 * id와 postNo 사용 
+		 * comment list 가져오기 id와 postNo 사용
 		 */
 		ArrayList<CommentVO> commentList = CommentDAO.getInstance().getCommentListByPostNo(postNo);
 		System.out.println(commentList);
-		if(commentList!=null) {
-			//comment list --> post-detail.jsp
-			request.setAttribute("commentList", commentList);			
+		if (commentList != null) {
+			// comment list --> post-detail.jsp
+			request.setAttribute("commentList", commentList);
 		} else {
-			request.setAttribute("commentList", null);	
+			request.setAttribute("commentList", null);
 		}
-		
+
 		int totalLike = LikeDAO.getInstance().totalCount(postNo);
 		System.out.println(totalLike);
-		
+
 		request.setAttribute("totalLike", totalLike);
 		request.setAttribute("count", countryCount);
 		request.setAttribute("pvo", pvo);
 		request.setAttribute("fvo", fvo);
+		request.setAttribute("country", cvo);
+		request.setAttribute("countryName", cvo.getCountryName());
 		request.setAttribute("urlCountry", "/template/countryInfo.jsp");
 		request.setAttribute("url", "/board/post-detail.jsp");
 		System.out.println("PostDetailNoHitsController 끝");

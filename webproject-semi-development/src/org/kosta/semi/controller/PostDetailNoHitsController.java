@@ -54,6 +54,10 @@ public class PostDetailNoHitsController implements Controller {
 		request.setAttribute("countryName", countryName);
 		int countryCount = CountryDAO.getInstance().findMemberCountByCountryname(countryName);
 		
+		//해당 게시글의 cvo 가져오기
+				CountryVO cvo = CountryDAO.getInstance().findCountryName(countryName);	
+				cvo = CountryDAO.getInstance().findCountryById(cvo.getCountryId());
+				
 		//한국과 해당게시판의 나라별 시간. jsp에서 각각 ${time[0]} 과 ${time[2]} 
 		ArrayList<String> time = PostDAO.getInstance().getSysdateAndLocalTime(postNo);
 		request.setAttribute("time", time);
@@ -82,6 +86,7 @@ public class PostDetailNoHitsController implements Controller {
 		request.setAttribute("count", countryCount);
 		request.setAttribute("pvo", pvo);
 		request.setAttribute("fvo", fvo);
+		request.setAttribute("country", cvo);
 		request.setAttribute("urlCountry", "/template/countryInfo.jsp");
 		request.setAttribute("url", "/board/post-detail.jsp");
 		System.out.println("PostDetailNoHitsController 끝");
