@@ -330,7 +330,7 @@ public class PostDAO {
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				PostVO vo = new PostVO();
-				vo.setPostNo(rs.getString(1));
+				vo.setPostNo(rs.getString(2));
 				vo.setPostTitle(rs.getString(5));
 				vo.setPostContent(null);
 				vo.setHits(rs.getInt(8));

@@ -31,10 +31,9 @@
 			<div class="form-group">
 				<label for="catergory">분류</label> 
 				<select class="form-control" id="catergory" name="catergory">
-					<option selected>분류를 선택해주세요</option>
-					<option value="정보" >정보</option>
-					<option value="동행" >동행</option>
-					<option value="후기" >후기</option>
+					<option value="정보" selected>정보</option>
+					<option value="동행">동행</option>
+					<option value="후기">후기</option>
 				</select>
 			</div>
 			<div class="form-group">
