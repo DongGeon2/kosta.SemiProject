@@ -29,9 +29,12 @@ public class PointCheckController implements Controller {
 			travelStyleMap.put("계획", travelStyleArr[2]);
 			travelStyleMap.put("중요", travelStyleArr[3]);
 
-			request.setAttribute("map", travelStyleMap);
-
-			//request.setAttribute("url", "/premium-select-form.jsp");
+			/*
+			 * request.setAttribute("map", travelStyleMap); StringBuilder initial = new
+			 * StringBuilder(); for (int i =0; i<travelStyleArr.length;i++) { for(String[]
+			 * style: travelStyleArr ) { initial.append(style[i].charAt(0)); } } 첫글자로 받을지
+			 * 인덱스로 받을지
+			 */
 			request.setAttribute("url", "/premium-select-form2.jsp");
 			request.setAttribute("urlCountry", "/premium-board.jsp");
 			return "/template/layout.jsp";

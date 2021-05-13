@@ -16,11 +16,13 @@
 		<div class="card border-left-primary shadow h-100 py-2">
 			<div class="card-body">
 				<div class="row no-gutters align-items-center">
-					<div class="col mr-2">시간
+					<div class="col mr-2">
 						<div
 							class="text-lg font-weight-bold text-primary text-uppercase mb-1">
-							${country.countryTime}</div>
-						<div class="h5 mb-0 font-weight-bold text-gray-800"></div>
+							시차</div>
+					
+							
+						<div class="h5 mb-0 font-weight-bold text-gray-800">${country.countryTime}</div>
 					</div>
 					<div class="col-auto">
 						<i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -77,14 +79,10 @@
 			<div class="card-body">
 				<div class="row no-gutters align-items-center">
 					<div class="col mr-2">
-						<div
-							class="text-lg font-weight-bold text-warning text-uppercase mb-1">
-							뭐 들어가야 할까요,....</div>
-						<div class="h5 mb-0 font-weight-bold text-gray-800">뭐 들어가야
-							할까욤....</div>
-					</div>
-					<div class="col-auto">
-						<i class="fas fa-comments fa-2x text-gray-300"></i>
+						<div class="h5 mb-0 font-weight-bold text-gray-800"style="text-align:center;"><img
+				 src="images/flag/${country.countryId}.svg"
+				alt="국기 이미지" style="width:120px;">
+				 </div>
 					</div>
 				</div>
 			</div>

@@ -56,6 +56,7 @@ public class StyleDAO {
 				MemberVO mvo2 = new MemberVO();
 				mvo2.setId(rs.getString(1));
 				mvo2.setAge(rs.getInt(2));
+				memberList.add(mvo2);
 			}
 		} finally {
 			closeAll(rs, pstmt, con);

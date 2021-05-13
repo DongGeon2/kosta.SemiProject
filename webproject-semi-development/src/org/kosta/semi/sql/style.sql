@@ -23,3 +23,12 @@ SELECT s.member_id,TRUNC(MONTHS_BETWEEN(sysdate, m.birth)/12) AS AGE, m.country_
 FROM style s, member m 
 WHERE s.member_id=m.member_id AND m.country_id = '33'
  AND s.style1 ='한적' AND s.style2 ='럭셔리' AND s.style3 ='큰계획' AND s.style4 ='숙소' 
+ 
+ 
+ SELECT rn, x.*
+FROM (SELECT ROWNUM rn,p.post_no, c.country_name, p.category_name, p.post_title, p.member_id, to_char(p.time_posted, 'YYYY.MM.DD') as time_posted, p.hits
+      FROM post p, country c
+      WHERE p.country_id=c.country_id AND p.country_id='33'
+      AND p.member_id LIKE '%' || 'java' || '%'
+      ORDER BY p.post_no) x
+WHERE rn  BETWEEN 6 AND 10

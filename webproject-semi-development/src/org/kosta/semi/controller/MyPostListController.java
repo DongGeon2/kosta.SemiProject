@@ -24,6 +24,7 @@ public class MyPostListController implements Controller {
 		HttpSession session = request.getSession(false);
 		ArrayList<PostVO> list = new ArrayList<PostVO>();
 		String id = request.getParameter("id");
+		System.out.println("id:"+id);
 		MemberVO mvo = null;
 		//로그인확인
 		if (session.getAttribute("mvo") != null) {
@@ -33,10 +34,10 @@ public class MyPostListController implements Controller {
 		}
 		
 		// 본인만 본인의 작성글 리스트 보게 하고 싶으면 id와 sessionScope.mvo.id같다는 조건 걸어주기
-		if (!id.equals(mvo.getId())) {//다른회원의 조회글 쿼리스트링으로 접근시
+		/*if (!id.equals(mvo.getId())) {//다른회원의 조회글 쿼리스트링으로 접근시
 			System.out.println("현재 타회원의 내가쓴글보기는 접근 불가합니다");
 			return "redirect:AllListController.do";//수정할까? : 위내용의 팝업 띄우고 전체목록 또는 본인글쓰기목록으로
-		}else {
+		}else {*/
 			int totalPostCount=PostDAO.getInstance().getMyTotalPostCount(id);
 			String pageNo=request.getParameter("pageNo");
 			PagingBean pagingBean = null;
@@ -45,16 +46,24 @@ public class MyPostListController implements Controller {
 			} else {
 				pagingBean=new PagingBean(totalPostCount,Integer.parseInt(pageNo));
 			}
+			
+			System.out.println(pagingBean);
+			request.setAttribute("controller", "MyPostListController");
+			request.setAttribute("queryString", request.getQueryString());
+			
 			request.setAttribute("pagingBean", pagingBean);
+			System.out.println("총: "+totalPostCount);
+			System.out.println("pB start:"+pagingBean.getStartRowNumber());
+			System.out.println("pB end:"+pagingBean.getEndRowNumber());
 			list = PostDAO.getInstance().getMyPostingList(pagingBean, id);
-			//System.out.println(list);
+			System.out.println(list);
 			request.setAttribute("list", list);
 			request.setAttribute("country", "내가 쓴 글");
-			request.setAttribute("url", "/board/board-list.jsp");		
+			request.setAttribute("url", "/board/main-list.jsp");		
 			return "/template/layout.jsp";
 		}
 
 		}
-	}
+	//}
 	
 

@@ -141,6 +141,8 @@ public class PostDAO {
 	 **/
 	public ArrayList<PostVO> getMyPostingList(PagingBean pagingBean, String id) throws SQLException {
 		// 서브쿼리 작성후 ROWNUM 사용
+		System.out.println("1");
+
 		ArrayList<PostVO> list = new ArrayList<PostVO>();
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -148,21 +150,24 @@ public class PostDAO {
 		try {
 			con = dataSource.getConnection();
 			StringBuilder sql = new StringBuilder();
-			sql.append("SELECT ROWNUM, x.* ");
+			sql.append("SELECT  x.* ");
 			sql.append(
-					"FROM (SELECT p.post_no, c.country_name, p.category_name, p.post_title, p.member_id, to_char(p.time_posted, 'YYYY.MM.DD') as time_posted , p.hits ");
+					"FROM (SELECT ROWNUM rn, p.post_no, c.country_name, p.category_name, p.post_title, p.member_id, to_char(p.time_posted, 'YYYY.MM.DD') as time_posted , p.hits ");
 			sql.append("FROM post p, country c ");
 			sql.append("WHERE p.country_id=c.country_id AND p.member_id=? ");
-			sql.append("ORDER BY p.post_no) x ");
-			sql.append("WHERE ROWNUM BETWEEN ? AND ? ");
+			sql.append("ORDER BY p.post_no DESC) x ");
+			sql.append("WHERE rn BETWEEN ? AND ? ");
 			pstmt = con.prepareStatement(sql.toString());
 			pstmt.setString(1, id);
 			pstmt.setInt(2, pagingBean.getStartRowNumber());
 			pstmt.setInt(3, pagingBean.getEndRowNumber());
 			rs = pstmt.executeQuery();
+			System.out.println("2");
+			if(!rs.next())
+				System.out.println("rs없음");
 			while (rs.next()) {
 				PostVO vo = new PostVO();
-				vo.setPostNo(rs.getString(1));
+				vo.setPostNo(rs.getString(2));
 				vo.setPostTitle(rs.getString(5));
 				vo.setPostContent(null);
 				vo.setHits(rs.getInt(8));
@@ -174,7 +179,9 @@ public class PostDAO {
 				cvo.setCountryName(rs.getString(3));
 				vo.setCountryVO(cvo);
 				vo.setCatergory(rs.getString(4));
+				System.out.println("vo: "+vo);
 				list.add(vo);
+				System.out.println("list: "+list);
 			}
 		} finally {
 			closeAll(rs, pstmt, con);
@@ -303,9 +310,9 @@ public class PostDAO {
 		try {
 			con = dataSource.getConnection();
 			StringBuilder sql = new StringBuilder();
-			sql.append("SELECT ROWNUM, x.* ");
+			sql.append("SELECT x.* ");
 			sql.append(
-					"FROM (SELECT p.post_no, c.country_name, p.category_name, p.post_title, p.member_id, to_char(p.time_posted, 'YYYY.MM.DD') as time_posted, p.hits ");
+					"FROM (SELECT ROWNUM rn, p.post_no, c.country_name, p.category_name, p.post_title, p.member_id, to_char(p.time_posted, 'YYYY.MM.DD') as time_posted, p.hits ");
 			sql.append("FROM post p, country c ");
 			sql.append("WHERE p.country_id=c.country_id ");
 			if (!country_id.equals("all")) {
@@ -313,7 +320,7 @@ public class PostDAO {
 			}
 			sql.append("AND " + column + " LIKE '%' || ? || '%' ");
 			sql.append("ORDER BY p.post_no) x ");
-			sql.append("WHERE ROWNUM BETWEEN ? AND ? ");
+			sql.append("WHERE rn  BETWEEN ? AND ? ");
 			pstmt = con.prepareStatement(sql.toString());
 			// country_id가 all(모든나라에 대해 검색)일경우 country_id WHERE절 제외
 			if (!country_id.equals("all")) {
@@ -359,7 +366,6 @@ public class PostDAO {
 	 * @throws SQLException
 	 **/
 	public int getSearchByKeyWordTotalPostCount(String country_id, String column, String keyWord) throws SQLException {
-		System.out.println("PostDAO - getSearchByKeyWordTotalPostCount()메서드 접근");
 		int totalCount = 0;
 		Connection con = null;
 		PreparedStatement pstmt = null;

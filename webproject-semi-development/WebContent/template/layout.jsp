@@ -1,12 +1,34 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
-	<!-- metatag, title, css import -->
-	<c:import url="/template/headerLink.jsp"></c:import>
+<script type="text/javascript">
+	function getCookie(name) {
+		var cookie = document.cookie;
+		if (document.cookie != "") {
+			var cookie_array = cookie.split("; ");
+			for ( var index in cookie_array) {
+				var cookie_name = cookie_array[index].split("=");
+				if (cookie_name[0] == "popupYN") {
+					return cookie_name[1];
+				}
+			}
+		}
+		return;
+	}
+	function openPopup(url) {
+		var cookieCheck = getCookie("popupYN");
+		if (cookieCheck != "N")
+			window.open(url, '', 'width=450,height=750,left=0,top=0')
+	}
+</script>
+
+<!-- metatag, title, css import -->
+<c:import url="/template/headerLink.jsp"></c:import>
 </head>
-<body id="page-top">
+<body id="page-top" onload="javascript:openPopup('popup.html')">
+
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 		<!-- sideHeader -->
@@ -27,9 +49,9 @@
 						<c:import url="${urlCountry}"></c:import>
 					</c:if>
 					<!-- MAIN 전체 count 받아오기 -->
-						<%-- <c:import url="/template/memberCount.jsp"></c:import> --%>
+					<%-- <c:import url="/template/memberCount.jsp"></c:import> --%>
 					<!-- Country 별 Info 받아오기 -->
-						<%-- <c:import url="/template/countryInfo.jsp"></c:import> --%>
+					<%-- <c:import url="/template/countryInfo.jsp"></c:import> --%>
 					<!-- TABLE BOARD -->
 					<%-- 			
 						url 에 setAttribute 해서 넘겨주기
@@ -42,7 +64,7 @@
 						<c:import url="${url}"></c:import>
 					--%>
 					<c:import url="${url}"></c:import>
-	
+
 					<!-- /.TABLE BOARD -->
 				</div>
 				<!-- /.container-fluid -->

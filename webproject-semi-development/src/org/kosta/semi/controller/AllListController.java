@@ -22,12 +22,11 @@ public class AllListController implements Controller {
 			pagingBean=new PagingBean(totalPostCount,Integer.parseInt(pageNo));
 		}
 		
-		
+		request.setAttribute("controller", "AllListController");
 		request.setAttribute("pagingBean", pagingBean);
 		ArrayList<PostVO> list = PostDAO.getInstance().getAllPostingList(pagingBean);
 		request.setAttribute("list", list);
 		request.setAttribute("url", "/board/main-list.jsp");
-		
 		HashMap<String, Integer> map = MemberDAO.getInstance().getMemberCountByCountry();
 		request.setAttribute("countryMap", map);
 		request.setAttribute("urlCountry", "/template/memberCount.jsp");

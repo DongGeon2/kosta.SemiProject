@@ -37,6 +37,9 @@ public class SearchController implements Controller {
 		} else {
 			pagingBean = new PagingBean(totalPostCount, Integer.parseInt(pageNo));
 		}
+		
+		request.setAttribute("controller", "SearchController");
+		request.setAttribute("queryString", request.getQueryString());
 		request.setAttribute("pagingBean", pagingBean);
 
 		ArrayList<PostVO> resultList = new ArrayList<PostVO>();
