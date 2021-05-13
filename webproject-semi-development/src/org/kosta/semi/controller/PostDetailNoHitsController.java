@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import org.kosta.semi.model.CommentDAO;
 import org.kosta.semi.model.CommentVO;
 import org.kosta.semi.model.CountryDAO;
+import org.kosta.semi.model.CountryVO;
 import org.kosta.semi.model.FileDAO;
 import org.kosta.semi.model.FileVO;
 import org.kosta.semi.model.LikeDAO;
@@ -30,7 +31,7 @@ public class PostDetailNoHitsController implements Controller {
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("PostDetailNoHitsController 시작");
 		HttpSession session = request.getSession(false);
-		if (session == null || session.getAttribute("mvo") == null) {
+		if (session == null || (session.getAttribute("mvo") == null  && session.getAttribute("mgvo") == null)) {
 			return "redirect:index.jsp";
 		}
 		MemberVO mvo = (MemberVO) session.getAttribute("mvo");

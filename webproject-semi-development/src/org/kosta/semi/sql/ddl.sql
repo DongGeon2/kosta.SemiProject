@@ -38,7 +38,7 @@ CREATE TABLE postcomment(
    content clob not null,
    time_commented DATE not null,
    constraint fk_postcomment_member foreign key(member_id) references member(member_id),
-   constraint fk_postcomment_postforeign foreign key(post_no) references post(post_no)
+   constraint fk_postcomment_postforeign foreign key(post_no) references post(post_no) ON DELETE CASCADE
 )
 --3번
 CREATE TABLE member(
@@ -52,7 +52,7 @@ CREATE TABLE member(
    country_id VARCHAR2(100) not null,
    constraint fk_member_country foreign key(country_id) references country(country_id)
 )
-
+SELECT TRUNC(MONTHS_BETWEEN(sysdate, birth)/12) AS AGE FROM MEMBER 
 --2번
 CREATE TABLE manager(
    manager_id VARCHAR2(100) primary key,
@@ -65,18 +65,17 @@ drop table filedb;
 
 drop sequence file_seq;
 create sequence file_seq;
-
 create table filedb(
 	file_id varchar2(100) primary key,
 	post_no number not null,
 	org_name varchar2(100) not null,
 	file_name varchar2(100) not null,
-	file_path varchar2(100) not null,
+	file_path varchar2(200) not null,
 	file_size varchar2(100) not null,
 	fdate date not null,
 	constraint fk_filedb_post foreign key(post_no) references post(post_no)
 )
-
+ALTER TABLE filedb MODIFY file_path varchar2(200)
 SELECT * FROM post;
 select * from filedb;
 SELECT file_seq.nextval FROM dual;
@@ -100,11 +99,7 @@ ALTER TABLE member MODIFY ( state NUMBER DEFAULT 1 ) ;
 -- !!삭제한 모든 회원 되살리기!!
 UPDATE member SET state=1 ;
 
--- member table 포인트 추가
-ALTER TABLE member ADD ( point NUMBER ) ;
-UPDATE member SET point=0 ;
 
-ALTER TABLE member MODIFY ( point NUMBER DEFAULT 0 ) ;
 
 ---------------------------------------------------likedb추가
 drop table likedb;
@@ -125,6 +120,37 @@ select count(*) from LIKEDB where post_no=?;
 ------------comment-----------------------------
 SELECT member_id, time_commented , content  FROM postcomment  
 WHERE post_no=42 order by time_commented DESC
+----------------------------------------------------------
+-- member table 포인트 추가
+ALTER TABLE member ADD ( point NUMBER ) ;
+UPDATE member SET point=0 ;
+ALTER TABLE member MODIFY ( point NUMBER DEFAULT 0 ) ;
 
 
-ALTER TABLE member MODIFY ( point NUMBER DEFAULT 0 );
+create table member_timeline(
+	member_id varchar2(100) not null,	
+	acted_time date not null,
+	point number,
+	message clob not null,
+	primary key(member_id, acted_time)
+)
+
+INSERT INTO member_timeline VALUES('java',to_date('2021-02-22 09:04:20','yyyy-mm-dd hh24:mi:ss'),null,'회원가입');
+INSERT INTO member_timeline VALUES('spring',to_date('2021-02-22 09:05:45','yyyy-mm-dd hh24:mi:ss'),null,'회원가입');
+INSERT INTO member_timeline VALUES('mvc',to_date('2021-02-22 09:01:20','yyyy-mm-dd hh24:mi:ss'),null,'회원가입');
+INSERT INTO member_timeline VALUES('singleton',to_date('2021-02-22 08:56:10','yyyy-mm-dd hh24:mi:ss'),null,'회원가입');
+INSERT INTO member_timeline VALUES('francfranc',to_date('2021-02-22 09:02:27','yyyy-mm-dd hh24:mi:ss'),null,'회원가입');
+INSERT INTO member_timeline VALUES('princessK',to_date('2021-02-22 08:45:09','yyyy-mm-dd hh24:mi:ss'),null,'회원가입');
+-----------------------------------------------------------------
+--게시글 삭제를 위한 TABLE 수정
+--PostNo를 참조하는 테이블들의 제약조건을 수정
+--Post가 삭제 될때 해당 PK를 참조하는 자료들을 모두 삭제함
+ALTER TABLE POSTCOMMENT drop constraint fk_postcomment_postforeign
+ALTER TABLE postcomment ADD  constraint fk_postcomment_postforeign foreign key(post_no) references post(post_no) ON DELETE CASCADE
+
+ALTER TABLE filedb drop constraint fk_filedb_post
+ALTER TABLE filedb ADD  constraint fk_filedb_post foreign key(post_no) references post(post_no) ON DELETE CASCADE
+
+ALTER TABLE likedb drop constraint fk_likedb_post
+ALTER TABLE likedb ADD  constraint fk_likedb_post foreign key(post_no) references post(post_no) ON DELETE CASCADE
+

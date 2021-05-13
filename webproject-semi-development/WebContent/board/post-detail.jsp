@@ -29,6 +29,13 @@
 		}
 
 	}
+	function DeleteComment() {
+		var flag = false;
+		if (confirm("댓글을 삭제하시겠습니까?")) {
+			flag = true;
+		}
+		return flag;
+	}
 </script>
 <script>
 	let likeFlag;
@@ -100,7 +107,7 @@
 					<th class="table-active">첨부파일</th>
 					<c:choose>
 						<c:when test="${fvo!=null }">
-							<td><a href="DownloadController.do?postNo=${fvo.postVO.postNo }&fileName=${fvo.fileName}">${fvo.fileName }</a></td>
+							<td><a href="DownloadController.do?postNo=${fvo.postVO.postNo }&fileName=${fvo.fileName}"><i class="fas fa-link"></i>${fvo.fileName }</a></td>
 						</c:when>
 						<c:otherwise>
 							<td>없음</td>
@@ -135,7 +142,7 @@
 				<form name="deleteForm"
 					action="${pageContext.request.contextPath}/DeletePostController.do"
 					method="post">
-					<input type="hidden" name="pageNo"
+					<input type="hidden" name="postNo"
 						value="${requestScope.pvo.postNo}">
 				</form>
 				<form name="updateForm"
@@ -174,19 +181,21 @@
 						<c:if test="${comment.memberVO.id==sessionScope.mvo.id}">
 							<div class="btnWrap">
 								<form name="updateComment"
-									action="${pageContext.request.contextPath}/UpdatePostFormController.do"
+									action="${pageContext.request.contextPath}/UpdateCommentFormController.do"
 									method="post" style="display: inline">
 									<input type="hidden" name="commentNo"
 										value="${comment.commentNo}">
-									<button type="button" class="btn  btn-sm" onclick="updateComment()">
+									<button type="submit" class="btn btn-sm">
 										수정</button>
 								</form>
 								<form name="deleteComment"
 									action="${pageContext.request.contextPath}/DeleteCommentController.do"
-									method="post" style="display: inline">
+									method="post" style="display: inline" onsubmit="return DeleteComment();">
 									<input type="hidden" name="commentNo"
 										value="${comment.commentNo}">
-									<button type="button" class="btn  btn-sm" onclick="deleteComment()">
+										<input type="hidden" name="postNo"
+										value="${pvo.postNo}">
+									<button type="submit" class="btn btn-sm">
 										삭제</button>
 								</form>
 							</div>
@@ -195,61 +204,6 @@
 					</div>
 				</c:forEach>
 			</c:if>
-
-			<!-- html test page.... 
-			<div>
-				java<br> <font size="2" color="lightgray">11:11:11</font>
-				<div class="text_wrapper">
-					안녕 본문내용 이게 몇줄일까 모르겠넹 얼마나 얼마나 넣어야 하징 ㅎㅎㅎㅎㅎㅎㅎ
-					<div class="btnWrap">
-						<form name="updateComment"
-							action="${pageContext.request.contextPath}/UpdatePostFormController.do"
-							method="post" style="display: inline">
-							<input type="hidden" name="commentNo"
-								value="${comment.commentNo}">
-							<button type="button" class="btn  btn-sm" onclick="updateComment()">
-								수정</button>
-						</form>
-						<form name="deleteComment"
-							action="${pageContext.request.contextPath}/DeleteCommentController.do"
-							method="post" style="display: inline">
-							<input type="hidden" name="commentNo"
-								value="${comment.commentNo}">
-							<button type="button" class="btn btn-sm" onclick="deleteComment()">
-								삭제</button>
-						</form>
-					</div>
-				</div>
-				<hr>
-			</div>
-			<div>
-				java<br> <font size="2" color="lightgray">11:11:11</font>
-				<div class="text_wrapper">
-					안녕 본문내용 이게 몇줄일까 모르겠넹 얼마나 얼마나 넣어야 하징 ㅎㅎㅎㅎㅎㅎㅎ
-					<div class="btnWrap">
-						<form name="updateComment"
-							action="${pageContext.request.contextPath}/UpdatePostFormController.do"
-							method="post" style="display: inline">
-							<input type="hidden" name="commentNo"
-								value="${comment.commentNo}">
-							<button type="button" class="btn  btn-sm" onclick="updateComment()">
-								수정</button>
-						</form>
-						<form name="deleteComment"
-							action="${pageContext.request.contextPath}/DeleteCommentController.do"
-							method="post" style="display: inline">
-							<input type="hidden" name="commentNo"
-								value="${comment.commentNo}">
-							<button type="button" class="btn btn-sm" onclick="deleteComment()">
-								삭제</button>
-						</form>
-					</div>
-				</div>
-				<hr>
-			</div> -->
-			<!-- 본문내용 -->
-
-			<!-- 댓글 작성자만 수정 가능 -->
 
 			<!-- 로그인 시 댓글 작성 가능 -->
 			<c:if test="${sessionScope.mvo!=null}">
@@ -265,7 +219,7 @@
 						<div class="form-group">
 							<label for="comment"></label>
 							<textarea class="form-control" name="commentContent" rows="2"
-								placeholder="댓글을 작성해 주세요"></textarea>
+								placeholder="댓글을 작성해 주세요" required="required"></textarea>
 						</div>
 					</form>
 

@@ -21,6 +21,7 @@
     <!-- Custom styles for this template-->
     <link href="${pageContext.request.contextPath}/css/sb-admin-2.min.css" rel="stylesheet">
 
+
 </head>
 <!--  * 회원정보 수정 폼
 	 * 수정 가능 정보 : 비밀번호, 이름, 생년월일, 여행스타일, 나라 -->
@@ -35,8 +36,13 @@
                     <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
                     <div class="col-lg-7">
                         <div class="p-5">
+                        <div class="text-right">
+                        <form><a href="${pageContext.request.contextPath}/DeleteMyIdController.do">회원탈퇴</a></form></div>
+                        
+                        
                             <div class="text-center">
                                 <h1 class="h4 text-gray-900 mb-4">회원정보 수정</h1>
+                                
                             </div>
                             <form action="${pageContext.request.contextPath}/UpdateMemberController.do" method="post" class="user">
                                 <div class="form-group row">
@@ -132,10 +138,12 @@
 											</label>
 										</div>
 									</div>
-									<div class="text-center">
+									<div class="text-center" style="margin-top:50px">
                                         	<input type="submit" class="btn btn-primary" value="수정">
+                                        	
                                     </div>
 								</form>
+									
                                 <%-- <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                         <input type="text" class="form-control form-control-user" name="name"

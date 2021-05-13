@@ -12,12 +12,12 @@ public class DeletePostController implements Controller {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session = request.getSession(false);
-		if(session == null || session.getAttribute("mvo") == null || session.getAttribute("mgvo") == null || request.getMethod().equals("POST") == false){
+		if(session == null || (session.getAttribute("mvo") == null && session.getAttribute("mgvo") == null)|| request.getMethod().equals("POST") == false){
 			return "redirect:member/loginUnlocked.jsp";
 			
 		}
 		// pageNo -> postNo 수정해야함
-		String postNo = request.getParameter("pageNo");	
+		String postNo = request.getParameter("postNo");	
 		PostVO pvo = PostDAO2.getInstance().getPostingByNo(postNo);
 		System.out.println(postNo);
 		

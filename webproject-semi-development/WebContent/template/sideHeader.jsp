@@ -41,6 +41,10 @@
 						<a class="collapse-item" href="${pageContext.request.contextPath}/IndividualListBycountryController.do?countryId=39">이탈리아</a> 
 						<a class="collapse-item" href="${pageContext.request.contextPath}/IndividualListBycountryController.do?countryId=44">영국</a> 
 						<a class="collapse-item" href="${pageContext.request.contextPath}/IndividualListBycountryController.do?countryId=49">독일</a>
+						<%-- <c:if test="${sessionScope.mvo.point>=10}"> --%>
+						<c:if test="${sessionScope.mvo!=null}"> 
+						<a class="collapse-item" href="PointCheckController.do" style="background-color:gold; font-weight:bold; color:dimgray"><i class="fas fa-crown" style="color:white;"></i>&nbsp;&nbsp;&nbsp;&nbsp;PREMIUM</a>
+						</c:if>
 					</div>
 				</div></li>
 
@@ -63,7 +67,8 @@
 					aria-labelledby="headingPages" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h6 class="collapse-header">My Info</h6>
-						<a class="collapse-item" href="UpdateMemberPasswordController.do">내정보 수정</a> <a
+						<a class="collapse-item" href="MyDetailInfoController.do">내 정보 조회</a>
+						<a class="collapse-item" href="UpdateMemberPasswordController.do">내 정보 수정</a> <a
 							class="collapse-item" href="${pageContext.request.contextPath}/MyPostListController.do?id=${sessionScope.mvo.id}">내가 쓴 글 보기</a>
 					
 
