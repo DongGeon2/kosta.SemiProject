@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import org.kosta.semi.model.CommentDAO;
 import org.kosta.semi.model.CommentVO;
 import org.kosta.semi.model.CountryDAO;
+import org.kosta.semi.model.CountryVO;
 import org.kosta.semi.model.FileDAO;
 import org.kosta.semi.model.FileVO;
 import org.kosta.semi.model.LikeDAO;
@@ -30,8 +31,6 @@ public class PostDetailController implements Controller {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println();
-		System.out.println("PostDetailController 시작");
 		HttpSession session = request.getSession(false);
 		if (session == null || (session.getAttribute("mvo") == null && session.getAttribute("mgvo") == null)) {
 			return "redirect:member/loginUnlocked.jsp";
@@ -44,10 +43,10 @@ public class PostDetailController implements Controller {
 		MemberVO mvo = (MemberVO) session.getAttribute("mvo");
 		String postNo = request.getParameter("postNo");
 		PostVO pvo = PostDAO2.getInstance().getPostingByNo(postNo);
-		System.out.println(pvo);
+
 		// post 작성자 아이디와 로그인한 id 가 같을 때(본인글) 조회수 count 안하기
 		if( mvo.getId().equals(pvo.getMemberVO().getId())) {
-			//System.out.println("작성자가 글읽음");
+
 			return "PostDetailNoHitsController.do";
 		}
 
@@ -57,7 +56,6 @@ public class PostDetailController implements Controller {
 		@SuppressWarnings("unchecked")
 		ArrayList<String> noList = (ArrayList<String>) session.getAttribute("noList");
 		if (noList.contains(postNo) == false) {
-			//System.out.println("page 새로 읽음");
 			PostDAO2.getInstance().updateHit(postNo);		//혹시 파일명 깨질까
 			noList.add(postNo);
 		}
@@ -68,12 +66,10 @@ public class PostDetailController implements Controller {
 		//파일 정보 불러오기 관련 로직
 		String fileName = FileDAO.getInstance().getFileName(postNo);
 		FileVO fvo = FileDAO.getInstance().getFile(postNo, fileName);
-		System.out.println("fvo: "+fvo);
-		System.out.println(fileName);
+
 		//혹시 파일명 깨질까
 		if (fileName != null && fileName != "") {
 			fileName=new String(fileName.getBytes("UTF-8"),"8859_1");
-			System.out.println("게시글번호, 파일이름: "+postNo+","+fileName);
 		}
 		
 		String countryName = pvo.getCountryVO().getCountryName();
@@ -84,12 +80,14 @@ public class PostDetailController implements Controller {
 		ArrayList<String> time = PostDAO.getInstance().getSysdateAndLocalTime(postNo);
 		request.setAttribute("time", time);
 		
+		//해당 게시글의 cvo 가져오기
+		CountryVO cvo = CountryDAO.getInstance().findCountryName(countryName);	
+		cvo = CountryDAO.getInstance().findCountryById(cvo.getCountryId());
 		/*
 		 * comment list 가져오기 
 		 * id와 postNo 사용 
 		 */
 		ArrayList<CommentVO> commentList = CommentDAO.getInstance().getCommentListByPostNo(postNo);
-		System.out.println(commentList);
 		if(commentList!=null) {
 			//comment list --> post-detail.jsp
 			request.setAttribute("commentList", commentList);			
@@ -103,15 +101,13 @@ public class PostDetailController implements Controller {
 		 */
 		int totalLike = LikeDAO.getInstance().totalCount(postNo);
 		LikeVO lvo = LikeDAO.getInstance().check(mvo.getId(), postNo);
-		System.out.println(totalLike);
-		System.out.println(lvo);
-		System.out.println(pvo);
 		
 		request.setAttribute("lvo", lvo);
 		request.setAttribute("totalLike", totalLike);
 		request.setAttribute("count", countryCount);
 		request.setAttribute("pvo", pvo);
 		request.setAttribute("fvo", fvo);
+		request.setAttribute("country", cvo);
 		request.setAttribute("urlCountry", "/template/countryInfo.jsp");
 		request.setAttribute("url", "/board/post-detail.jsp");
 		System.out.println("PostDetailController 끝");
