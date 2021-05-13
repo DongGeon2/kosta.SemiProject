@@ -34,8 +34,8 @@ public class PointCheckController implements Controller {
 			 * i<travelStyleArr.length;i++) { for(String[] style: travelStyleArr ) {
 			 * initial.append(style[i].charAt(0)); } } 첫글자로 받을지 인덱스로 받을지
 			 */
-			request.setAttribute("map", travelStyleMap);
 			if (session.getAttribute("svo") == null) {
+				request.setAttribute("map", travelStyleMap);
 				request.setAttribute("url", "/premium-select-form2.jsp");
 				request.setAttribute("urlCountry", "/premium-board.jsp");
 				return "/template/layout.jsp";

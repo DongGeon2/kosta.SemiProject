@@ -50,9 +50,8 @@
 								</c:forEach>
 
 								<div class="text-center">
-								새로 로그인 할때마다 제출할 수 있습니다<br>
-<!-- 								제출은 한번만 가능하니 신중하게 골라주세요!<br>
- -->									<input type="submit" class="btn btn-primary"
+								여행 취향 양식은 새로 로그인 할때마다 제출할 수 있습니다<br>
+								<input type="submit" class="btn btn-primary"
 										value="나와 같은 여행 스타일 가진 분 계실까요?">
 										
 								</div>

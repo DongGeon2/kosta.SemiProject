@@ -81,4 +81,21 @@ public class StyleDAO {
 			closeAll(pstmt, con);
 		}
 	}
+	public void updateStyle(String memberId, StyleVO svo) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			con = dataSource.getConnection();
+			String sql = "Update style SET style1=? , style2=?, style3=?, style4=?  WHERE member_id=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(5, memberId);
+			pstmt.setString(1, svo.getStyle1());
+			pstmt.setString(2, svo.getStyle2());
+			pstmt.setString(3, svo.getStyle3());
+			pstmt.setString(4, svo.getStyle4());
+			pstmt.executeUpdate();
+		} finally {
+			closeAll(pstmt, con);
+		}
+	}
 }
