@@ -16,7 +16,7 @@
 		<div class="card border-left-primary shadow h-100 py-2">
 			<div class="card-body">
 				<div class="row no-gutters align-items-center">
-					<div class="col mr-2">시간
+					<div class="col mr-2">
 						<div
 							class="text-lg font-weight-bold text-primary text-uppercase mb-1">
 							시차</div>
