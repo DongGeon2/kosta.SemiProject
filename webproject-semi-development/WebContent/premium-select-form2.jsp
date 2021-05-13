@@ -6,7 +6,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>나의 여행 취향</title>
+<script type="text/javascript">
+	alert("프리미엄 게시판에 입장하셨습니다.\n현재 포인트: ${point}");
+</script>
 </head>
 <body>
 	<!-- 셀렉트박스로 선호취향 받기. <주제, 보기항목> map을 getAttribute해서 forEach이용해 동적으로 생성
@@ -28,16 +31,17 @@
 								<h1 class="h4 text-gray-900 mb-4">나의 여행 취향</h1>
 							</div>
 							<form class="user" name="travelStyleForm" method="post"
-								action="TravelStyleMatchController.do"
-								onsubmit="">
-								<c:forEach items="${requestScope.map }" var="map" varStatus="status">
+								action="TravelStyleMatchController.do" onsubmit="">
+								<c:forEach items="${requestScope.map }" var="map"
+									varStatus="status">
 									<div class="container">
 										<p>${map.key }</p>
-										<c:forEach items="${map.value }" var="radio" >
+										<c:forEach items="${map.value }" var="radio" varStatus = "type">
 											<div class="form-check-inline">
 												<label class="form-check-label" for="radio1"> <input
-													type="radio" class="form-check-input" name="style${status.count}"
-													value="${radio}" checked>${radio}
+													type="radio" class="form-check-input"
+													name="style${status.count}" value="${radio}" checked>${radio}
+													<input type="hidden" name="index${status.count}" value="${type.count}">
 												</label>
 											</div>
 										</c:forEach>
