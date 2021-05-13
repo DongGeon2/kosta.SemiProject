@@ -119,20 +119,27 @@
 				</tr>
 			</table>
 			
-			<input type="hidden" id="postNo" value="${requestScope.pvo.postNo }">
-			<span id="likeView">
 			<c:choose>
-				<c:when test="${requestScope.lvo==null}">
-					<input type="image" id="no" src="images/no-heart.png" onclick="like(false)">
-					<!-- <input type="button" value="좋아요!" onclick="return like()"> -->
+				<c:when test="${sessionScope.mvo!=null}">
+					<input type="hidden" id="postNo" value="${requestScope.pvo.postNo }">
+					<span id="likeView">
+					<c:choose>
+						<c:when test="${requestScope.lvo==null}">
+							<input type="image" id="no" src="images/no-heart.png" onclick="like(false)">
+							<!-- <input type="button" value="좋아요!" onclick="return like()"> -->
+						</c:when>
+						<c:otherwise>
+							<input type="image" id="yes" src="images/yes-heart.png" onclick="like(true)">
+						</c:otherwise>
+					</c:choose>
+					</span>
+					<span id="like_result">${requestScope.totalLike }</span>
 				</c:when>
 				<c:otherwise>
-					<input type="image" id="yes" src="images/yes-heart.png" onclick="like(true)">
-				</c:otherwise>
+					<img alt="좋아요" src="images/no-heart.png">
+					<span id="like_result">${requestScope.totalLike }</span>
+				</c:otherwise> 			
 			</c:choose>
-			</span>
-			<span id="like_result">${requestScope.totalLike }</span> 			
-			
 			<div class="btnWrap">
 				<!-- submit 을 위한 form -->
 				<form name="MoveForm" action="${pageContext.request.contextPath}/IndividualListBycountryController.do" method="post">
