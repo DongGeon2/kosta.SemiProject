@@ -113,13 +113,15 @@ drop sequence like_seq;
 create sequence like_seq;
 
 create table likedb(
-	like_id varchar2(100) primary key,
 	post_no number not null,
-	file_id varchar2(100) not null,
-	like_count varchar2(100) not null,
+	member_id varchar2(100) not null,
 	constraint fk_likedb_post foreign key(post_no) references post(post_no),
-	constraint fk_likedb_filedb foreign key(file_id) references filedb(file_id)
+	constraint fk_likedb_member foreign key(member_id) references member(member_id),
+	constraint pk_likedb primary key(post_no,member_id)
 )
+
+select * from LIKEDB;
+select count(*) from LIKEDB where post_no=?;
 ------------comment-----------------------------
 SELECT member_id, time_commented , content  FROM postcomment  
 WHERE post_no=42 order by time_commented DESC

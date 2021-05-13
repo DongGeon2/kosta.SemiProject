@@ -9,9 +9,11 @@ import javax.servlet.http.HttpSession;
 import org.kosta.semi.model.CommentDAO;
 import org.kosta.semi.model.CommentVO;
 import org.kosta.semi.model.CountryDAO;
-import org.kosta.semi.model.CountryVO;
 import org.kosta.semi.model.FileDAO;
 import org.kosta.semi.model.FileVO;
+import org.kosta.semi.model.LikeDAO;
+import org.kosta.semi.model.LikeVO;
+import org.kosta.semi.model.MemberVO;
 import org.kosta.semi.model.PostDAO;
 import org.kosta.semi.model.PostDAO2;
 import org.kosta.semi.model.PostVO;
@@ -31,7 +33,7 @@ public class PostDetailNoHitsController implements Controller {
 		if (session == null || session.getAttribute("mvo") == null) {
 			return "redirect:index.jsp";
 		}
-
+		MemberVO mvo = (MemberVO) session.getAttribute("mvo");
 		String postNo = request.getParameter("postNo");
 		PostVO pvo = PostDAO2.getInstance().getPostingByNo(postNo);
 
@@ -69,7 +71,13 @@ public class PostDetailNoHitsController implements Controller {
 			request.setAttribute("commentList", null);	
 		}
 
+		int totalLike = LikeDAO.getInstance().totalCount(postNo);
+		LikeVO lvo = LikeDAO.getInstance().check(mvo.getId(), postNo);
+		System.out.println(totalLike);
+		System.out.println("test:"+lvo);
 		
+		request.setAttribute("lvo", lvo);
+		request.setAttribute("totalLike", totalLike);
 		request.setAttribute("count", countryCount);
 		request.setAttribute("pvo", pvo);
 		request.setAttribute("fvo", fvo);

@@ -6,12 +6,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.kosta.semi.model.CountryDAO;
-import org.kosta.semi.model.CountryVO;
 import org.kosta.semi.model.CommentDAO;
 import org.kosta.semi.model.CommentVO;
+import org.kosta.semi.model.CountryDAO;
 import org.kosta.semi.model.FileDAO;
 import org.kosta.semi.model.FileVO;
+import org.kosta.semi.model.LikeDAO;
+import org.kosta.semi.model.LikeVO;
 import org.kosta.semi.model.MemberVO;
 import org.kosta.semi.model.PostDAO;
 import org.kosta.semi.model.PostDAO2;
@@ -38,6 +39,7 @@ public class PostDetailController implements Controller {
 		MemberVO mvo = (MemberVO) session.getAttribute("mvo");
 		String postNo = request.getParameter("postNo");
 		PostVO pvo = PostDAO2.getInstance().getPostingByNo(postNo);
+		System.out.println(pvo);
 		// post 작성자 아이디와 로그인한 id 가 같을 때(본인글) 조회수 count 안하기
 		if( mvo.getId().equals(pvo.getMemberVO().getId())) {
 			//System.out.println("작성자가 글읽음");
@@ -87,6 +89,13 @@ public class PostDetailController implements Controller {
 			request.setAttribute("commentList", null);	
 		}
 		
+		int totalLike = LikeDAO.getInstance().totalCount(postNo);
+		LikeVO lvo = LikeDAO.getInstance().check(mvo.getId(), postNo);
+		System.out.println(totalLike);
+		System.out.println(lvo);
+		
+		request.setAttribute("lvo", lvo);
+		request.setAttribute("totalLike", totalLike);
 		request.setAttribute("count", countryCount);
 		request.setAttribute("pvo", pvo);
 		request.setAttribute("fvo", fvo);

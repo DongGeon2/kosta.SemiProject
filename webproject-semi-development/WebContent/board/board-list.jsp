@@ -105,7 +105,7 @@
 			<c:forEach var="page" begin="${pb.startPageOfPageGroup}"
 				end="${pb.endPageOfPageGroup}">
 				<c:choose>
-					<c:when test="">
+					<c:when test="${pb.nowPage==page}">
 						<li class="page-item active"><a class="page-link"
 							href="${pageContext.request.contextPath}/AllListController.do?pageNo=${page}">${page}</a></li>
 					</c:when>
