@@ -58,6 +58,7 @@
 									<c:when test="${sessionScope.mvo!=null || sessionScope.mgvo!=null}">
 										<a
 											href="${pageContext.request.contextPath}/PostDetailController.do?postNo=${pvo.postNo}">${pvo.postTitle}
+											<span style="color:DodgerBlue">[${pvo.comment_count}]</span>	
 										</a>
 									</c:when>
 									<c:otherwise>
@@ -97,24 +98,24 @@
 		<ul class="pagination justify-content-center" style="margin-top: 50px">
 			<c:if test="${pb.previousPageGroup}">
 				<li class="page-item"><a class="page-link"
-					href="${pageContext.request.contextPath}/AllListController.do?pageNo=${pb.startPageOfPageGroup-1}">&laquo;</a></li>
+					href="${pageContext.request.contextPath}/IndividualListBycountryController.do?pageNo=${pb.startPageOfPageGroup-1}">&laquo;</a></li>
 			</c:if>
 			<c:forEach var="page" begin="${pb.startPageOfPageGroup}"
 				end="${pb.endPageOfPageGroup}">
 				<c:choose>
-					<c:when test="${pb.nowPage==page}">
+					<c:when test="${pb.nowPage==page }">
 						<li class="page-item active"><a class="page-link"
-							href="${pageContext.request.contextPath}/AllListController.do?pageNo=${page}">${page}</a></li>
+							href="${pageContext.request.contextPath}/IndividualListBycountryController.do?pageNo=${page}&countryId=${requestScope.countryId}">${page}</a></li>
 					</c:when>
 					<c:otherwise>
 						<li><a class="page-link"
-							href="${pageContext.request.contextPath}/AllListController.do?pageNo=${page}">${page}</a></li>
+							href="${pageContext.request.contextPath}/IndividualListBycountryController.do?pageNo=${page}&countryId=${requestScope.countryId}">${page}</a></li>
 					</c:otherwise>
 				</c:choose>
 			</c:forEach>
 			<c:if test="${pb.nextPageGroup}">
 				<li><a class="page-link"
-					href="${pageContext.request.contextPath}/AllListController.do?pageNo=${pb.endPageOfPageGroup+1}">&raquo;</a></li>
+					href="${pageContext.request.contextPath}/IndividualListBycountryController.do?pageNo=${pb.endPageOfPageGroup+1}">&raquo;</a></li>
 			</c:if>
 		</ul>
 		<!-- /.Pagination -->

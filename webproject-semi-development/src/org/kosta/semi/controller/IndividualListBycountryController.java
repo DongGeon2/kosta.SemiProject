@@ -16,6 +16,8 @@ public class IndividualListBycountryController implements Controller {
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		String countryId = request.getParameter("countryId");
+		//board-list.jsp-paging에서 사용 
+		request.setAttribute("countryId", countryId);
 		int totalPostCount=PostDAO.getInstance().getCountryPostCount(countryId);
 		String pageNo=request.getParameter("pageNo");
 		PagingBean pagingBean = null;
@@ -31,7 +33,6 @@ public class IndividualListBycountryController implements Controller {
 		request.setAttribute("urlCountry", "/template/countryInfo.jsp");
 		String countryName = CountryDAO.getInstance().findCountryById(countryId).getCountryName();
 		CountryVO country = CountryDAO.getInstance().findCountryById(countryId);
-		System.out.println(countryName);
 		request.setAttribute("country", country);
 		request.setAttribute("countryName", countryName);
 		request.setAttribute("count", CountryDAO.getInstance().findMemberCountByCountryname(countryName));
