@@ -97,12 +97,10 @@ public class PostDAO {
 		try {
 			con = dataSource.getConnection();
 			StringBuilder sql = new StringBuilder();
-			sql.append(
-					" SELECT p.post_no, c.country_name, p.category_name, p.post_title, p.member_id, p.time_posted, p.hits ");
-			sql.append(
-					" FROM (SELECT row_number() over(ORDER BY post_no DESC) as rnum,  post_no,post_title , member_id, hits, ");
-			sql.append(
-					" country_id, category_name, to_char(time_posted, 'YYYY.MM.DD') as time_posted FROM post WHERE country_id=? ) p, country c ");
+			sql.append(" SELECT p.post_no, c.country_name, p.category_name, p.post_title, p.member_id, p.time_posted, p.hits, ");
+			sql.append(" (SELECT count(*) FROM postcomment where post_no = p.post_no) as comment_count ");
+			sql.append(" FROM (SELECT row_number() over(ORDER BY post_no DESC) as rnum,  post_no,post_title , member_id, hits, ");
+			sql.append(" country_id, category_name, to_char(time_posted, 'YYYY.MM.DD') as time_posted FROM post WHERE country_id=? ) p, country c ");
 			sql.append(" WHERE p.country_id=c.country_id AND rnum BETWEEN ? AND ? ");
 			pstmt = con.prepareStatement(sql.toString());
 			pstmt.setString(1, countryId);
@@ -124,6 +122,7 @@ public class PostDAO {
 				cvo.setCountryName(rs.getString(2));
 				vo.setCountryVO(cvo);
 				vo.setCatergory(rs.getString(3));
+				vo.setComment_count(rs.getInt(8));
 				list.add(vo);
 			}
 		} finally {
