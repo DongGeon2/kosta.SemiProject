@@ -7,20 +7,33 @@
 	필요한것 : 
 		카테고리(분류), 글제목, 글내용
  -->
+<script>
+	function checkCatergory() {
+		var flag = true;
+		var numSelect = document.getElementById("catergory");
+		var text = numSelect.options[document.getElementById("catergory").selectedIndex].text;
+		var value = numSelect.options[document.getElementById("catergory").selectedIndex].value;
+		if(text == '분류를 선택해주세요'){
+			alert("분류를 선택해 주세요");
+			numSelect.focus();
+			flag = false;-
+		}
+		return flag;
+	}-
+</script>
 <div class="card shadow mb-4">
 	<div class="card-header py-3">
 		<h6 class="m-0 font-weight-bold text-primary">프랑스 게시판</h6>
 	</div>
 	<div class="card-body">
-		<form method="post" action="${pageContext.request.contextPath}/UpdatePostController.do" method="post">
+		<form method="post" action="${pageContext.request.contextPath}/UpdatePostController.do" method="post" onsubmit="return checkCatergory();">
 		<input type="hidden" name="postNo" value="${pvo.postNo}"></input>		
 			<div class="form-group">
 				<label for="catergory">분류</label> 
 				<select class="form-control" id="catergory" name="catergory">
-					<option selected>분류를 선택해주세요</option>
-					<option value="정보" >정보</option>
-					<option value="동행" >동행</option>
-					<option value="후기" >후기</option>
+					<option value="정보" selected>정보</option>
+					<option value="동행">동행</option>
+					<option value="후기">후기</option>
 				</select>
 			</div>
 			<div class="form-group">
