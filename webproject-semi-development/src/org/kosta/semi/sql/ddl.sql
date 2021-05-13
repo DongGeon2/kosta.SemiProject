@@ -19,6 +19,8 @@ CREATE TABLE country(
    currency VARCHAR2(100) not null
 )
 --4번
+CREATE SEQUENCE post_seq;
+
 CREATE TABLE post(
    post_no NUMBER primary key,
    country_id VARCHAR2(100) not null,
@@ -32,6 +34,8 @@ CREATE TABLE post(
    constraint fk_post_member foreign key(member_id) references member(member_id)
 )
 --5번 
+
+CREATE SEQUENCE postcomment_seq;
 CREATE TABLE postcomment( 
    comment_no NUMBER primary key,
    post_no NUMBER not null,
@@ -136,12 +140,7 @@ create table member_timeline(
 	primary key(member_id, acted_time)
 )
 
-INSERT INTO member_timeline VALUES('java',to_date('2021-02-22 09:04:20','yyyy-mm-dd hh24:mi:ss'),null,'회원가입');
-INSERT INTO member_timeline VALUES('spring',to_date('2021-02-22 09:05:45','yyyy-mm-dd hh24:mi:ss'),null,'회원가입');
-INSERT INTO member_timeline VALUES('mvc',to_date('2021-02-22 09:01:20','yyyy-mm-dd hh24:mi:ss'),null,'회원가입');
-INSERT INTO member_timeline VALUES('singleton',to_date('2021-02-22 08:56:10','yyyy-mm-dd hh24:mi:ss'),null,'회원가입');
-INSERT INTO member_timeline VALUES('francfranc',to_date('2021-02-22 09:02:27','yyyy-mm-dd hh24:mi:ss'),null,'회원가입');
-INSERT INTO member_timeline VALUES('princessK',to_date('2021-02-22 08:45:09','yyyy-mm-dd hh24:mi:ss'),null,'회원가입');
+
 -----------------------------------------------------------------
 --게시글 삭제를 위한 TABLE 수정
 --PostNo를 참조하는 테이블들의 제약조건을 수정
