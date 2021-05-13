@@ -5,6 +5,15 @@
 	main-list.jsp
 	index의 전체 게시판 끌어오기
  -->
+ <script>
+	function deletePost() {
+		var flag = false;
+		if (confirm("글을 삭제하시겠습니까?")) {
+			flag = true;
+		}
+		return flag;
+	}
+</script>
 <div class="card shadow mb-4">
 	<div class="card-header py-3">
 		<h6 class="m-0 font-weight-bold text-primary">전체 나라별 게시판</h6>
@@ -32,6 +41,9 @@
 						<th>작성자</th>
 						<th>작성일</th>
 						<th>조회수</th>
+						<c:if test="${sessionScope.mgvo!=null}">
+							<th>삭제</th>
+						</c:if>
 					</tr>
 				</thead>
 				<tbody>
@@ -55,6 +67,16 @@
 							<td>${pvo.memberVO.id}</td>
 							<td>${pvo.postTime}</td>
 							<td>${pvo.hits}</td>
+							<c:if test="${sessionScope.mgvo!=null}">
+								<form name="deleteForm" action="${pageContext.request.contextPath}/DeletePostController.do" method="post" onsubmit="return deletePost();">
+									<td>
+									<input type="hidden" name="postNo" value="${pvo.postNo}">
+									<button type="submit" class="btn btn-outline-primary btn-sm">
+										<i class="fas fa-fw fa-times"></i> 삭제
+									</button>
+									</td>
+								</form>
+							</c:if>
 						</tr>
 					</c:forEach>
 

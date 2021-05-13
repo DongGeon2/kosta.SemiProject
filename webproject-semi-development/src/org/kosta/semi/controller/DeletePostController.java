@@ -19,7 +19,6 @@ public class DeletePostController implements Controller {
 		// pageNo -> postNo 수정해야함
 		String postNo = request.getParameter("postNo");	
 		PostVO pvo = PostDAO2.getInstance().getPostingByNo(postNo);
-		System.out.println(postNo);
 		
 		String countryId = pvo.getCountryVO().getCountryId();
 		PostDAO2.getInstance().deletePosting( Integer.parseInt(postNo));

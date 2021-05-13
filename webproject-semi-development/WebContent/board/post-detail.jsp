@@ -165,11 +165,18 @@
 					<i class="fas fa-fw fa-pencil-alt"></i> 목록
 				</button>
 				<!-- 내가 쓴 글만 수정 삭제 가능 -->
+				
 				<c:if test="${requestScope.pvo.memberVO.id==sessionScope.mvo.id}">
 					<button type="button" class="btn btn-outline-primary"
 						onclick="updatePost()">
 						<i class="fas fa-fw fa-pencil-alt"></i> 수정
 					</button>
+					<button type="button" class="btn btn-outline-primary"
+						onclick="deletePost()">
+						<i class="fas fa-fw fa-times"></i> 삭제
+					</button>
+				</c:if>
+				<c:if test="${sessionScope.mgvo != null}">
 					<button type="button" class="btn btn-outline-primary"
 						onclick="deletePost()">
 						<i class="fas fa-fw fa-times"></i> 삭제
