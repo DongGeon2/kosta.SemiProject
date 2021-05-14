@@ -6,11 +6,11 @@
 	멤버 list 불러오기
  -->
 <script>
-function message() {
-	if (confirm("회원에게 쪽지를 보내시겠습니까?")) {
-		document.deleteForm.submit();
+	function message() {
+		if (confirm("회원에게 쪽지를 보내시겠습니까?")) {
+			document.deleteForm.submit();
+		}
 	}
-}
 </script>
 <div class="card shadow mb-4">
 	<div class="card-header py-3">
@@ -18,58 +18,53 @@ function message() {
 	</div>
 	<div class="card-body">
 		<div class="table-responsive">
-		
-		<form action=""
-							onsubmit="return deleteMember()"	method="post">
-		
-			<table class="table table-bordered table-hover">
-				<colgroup>
-					<col width="20%" />
-					<col width="*" />
-					<col width="15%" />
-					<col width="15%" />
-					<col width="15%" />
-				</colgroup>
-				<thead class="bg-gray-200">
-					<tr>
-						<!-- col : 7 개 -->
-						<th>ID</th>
-						<th>이름</th>
-						<th>여행스타일</th>
-						<th>현재국가</th>
-						<th>선택</th>
 
-					</tr>
-				</thead>
-				<tbody>
-					<c:forEach var="mvo" items="${requestScope.memberList}">
+			<form action="" onsubmit="return deleteMember()" method="post">
+
+				<table class="table table-bordered table-hover">
+					<colgroup>
+						<col width="20%" />
+						<col width="*" />
+						<col width="15%" />
+						<col width="15%" />
+						<col width="15%" />
+					</colgroup>
+					<thead class="bg-gray-200">
 						<tr>
-							<td>${mvo.id}</td>
-							<td title="클릭하면 상세 회원정보를 볼 수 있습니다."><a
-								href="${pageContext.request.contextPath}/MemberDetailInfoController.do?id=${mvo.id}">${mvo.name}
-							</a></td>
-							<td>${mvo.travelStyle}</td>
-							<td>${mvo.countryVO.countryName}</td>
-							<td>
-								<input type="checkbox" name="deleteId" value="${mvo.id}">
-							
-								<%-- <form name="deleteForm"
+							<!-- col : 7 개 -->
+							<th>ID</th>
+							<th>한마디</th>
+							<th>여행스타일</th>
+							<th>나이</th>
+							<th>선택</th>
+
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach var="mvo" items="${requestScope.memberList}">
+							<tr>
+								<td>${mvo.id}</td>
+								<td>${mvo.message}</td>
+								<td>${travelType}</td>
+								<td>${mvo.age}</td>
+								<td><input type="checkbox" name="deleteId"
+									value="${mvo.id}"> <%-- <form name="deleteForm"
 								action="${pageContext.request.contextPath}/DeleteMemberController.do?id=${mvo.id}"
 								method="post">
 								<input type="hidden" name="id" value="${mvo.id}">
 								<button type="button" class="btn btn-outline-primary btn-sm">
 									<i class="fas fa-fw fa-times"></i> 삭제
 								</button>
-							</form> --%>
-							</td>
-						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
-			<hr>
-			<div class="text-right">
-			<input type="submit" class="btn btn-outline-primary btn-sm" value="메세지보내기">
-			</div>
+							</form> --%></td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+				<hr>
+				<div class="text-right">
+					<input type="submit" class="btn btn-outline-primary btn-sm"
+						value="메세지보내기">
+				</div>
 			</form>
 		</div>
 		<!-- Pagination -->

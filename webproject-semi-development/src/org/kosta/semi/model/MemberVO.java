@@ -12,6 +12,15 @@ public class MemberVO {
 	private String state;
 	private int point;
 	private int age;
+	private String message;
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
+	}
+
 	public int getAge() {
 		return age;
 	}
