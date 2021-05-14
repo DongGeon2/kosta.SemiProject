@@ -20,7 +20,7 @@
 	function openPopup(url) {
 		var cookieCheck = getCookie("popupYN");
 		if (cookieCheck != "N")
-			window.open(url, '', 'width=450,height=750,left=0,top=0')
+			window.open(url, '', 'width=615,height=640,left=50,top=50')
 	}
 </script>
 
