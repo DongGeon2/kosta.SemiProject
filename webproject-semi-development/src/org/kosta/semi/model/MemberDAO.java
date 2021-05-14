@@ -537,10 +537,10 @@ public class MemberDAO {
 			rs=pstmt.executeQuery();
 			while(rs.next()) {
 				avo = new ActVO();
-				avo.setActed_time(rs.getString(2));
+				avo.setActedTime(rs.getString(2));
 				avo.setPoint(rs.getInt(3));
 				avo.setMessage(rs.getString(4));
-				avo.setMember_id(id);
+				avo.setMemberId(id);
 				list.add(avo);
 			}
 		}finally{

@@ -30,6 +30,7 @@ public class AllListController implements Controller {
 		HashMap<String, Integer> map = MemberDAO.getInstance().getMemberCountByCountry();
 		request.setAttribute("countryMap", map);
 		request.setAttribute("urlCountry", "/template/memberCount.jsp");
-		return "/template/layout.jsp";
+		request.setAttribute("urlpopup", "/template/popup.jsp");
+		return "/template/layoutpopup.jsp";
 	}
 }
