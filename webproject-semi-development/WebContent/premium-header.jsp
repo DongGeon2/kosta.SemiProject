@@ -53,10 +53,10 @@
 				<div class="row no-gutters align-items-center">
 					<div class="col mr-2">
 						<div
-							class="text-lg font-weight-bold text-info text-uppercase mb-1">ㅁㅁㅁ</div>
+							class="text-lg font-weight-bold text-info text-uppercase mb-1">${sessionScope.mvo.id}님</div>
 						<div class="row no-gutters align-items-center">
 							<div class="col-auto">
-								<div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">ㅁㅁㅁㅁ</div>
+								<div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">오늘도 즐거운<br>여행되세요</div>
 							</div>
 						</div>
 					</div>
