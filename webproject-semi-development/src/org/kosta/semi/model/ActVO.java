@@ -1,8 +1,8 @@
 package org.kosta.semi.model;
 
 public class ActVO {
-	private String member_id;
-	private String acted_time;
+	private String memberId;
+	private String actedTime;
 	private int point;
 	private String message;
 	
@@ -13,31 +13,35 @@ public class ActVO {
 	
 	public ActVO(String member_id, String acted_time, String message) {
 		super();
-		this.member_id = member_id;
-		this.acted_time = acted_time;
+		this.memberId = member_id;
+		this.actedTime = acted_time;
 		this.message = message;
 	}
 
 	public ActVO(String member_id, String acted_time, int point, String message) {
 		super();
-		this.member_id = member_id;
-		this.acted_time = acted_time;
+		this.memberId = member_id;
+		this.actedTime = acted_time;
 		this.point = point;
 		this.message = message;
 	}
+	
+	public String getMemberId() {
+		return memberId;
+	}
 
-	public String getMember_id() {
-		return member_id;
+	public void setMemberId(String memberId) {
+		this.memberId = memberId;
 	}
-	public void setMember_id(String member_id) {
-		this.member_id = member_id;
+
+	public String getActedTime() {
+		return actedTime;
 	}
-	public String getActed_time() {
-		return acted_time;
+
+	public void setActedTime(String actedTime) {
+		this.actedTime = actedTime;
 	}
-	public void setActed_time(String acted_time) {
-		this.acted_time = acted_time;
-	}
+
 	public int getPoint() {
 		return point;
 	}
@@ -53,7 +57,7 @@ public class ActVO {
 
 	@Override
 	public String toString() {
-		return "ActVO [member_id=" + member_id + ", acted_time=" + acted_time + ", point=" + point + ", message="
+		return "ActVO [member_id=" + memberId + ", acted_time=" + actedTime + ", point=" + point + ", message="
 				+ message + "]";
 	}
 	
