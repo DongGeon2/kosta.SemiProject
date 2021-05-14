@@ -162,9 +162,6 @@ public class PostDAO {
 			pstmt.setInt(2, pagingBean.getStartRowNumber());
 			pstmt.setInt(3, pagingBean.getEndRowNumber());
 			rs = pstmt.executeQuery();
-			System.out.println("2");
-			if(!rs.next())
-				System.out.println("rs없음");
 			while (rs.next()) {
 				PostVO vo = new PostVO();
 				vo.setPostNo(rs.getString(2));

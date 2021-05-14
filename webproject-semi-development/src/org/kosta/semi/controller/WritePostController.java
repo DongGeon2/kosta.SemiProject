@@ -35,7 +35,7 @@ public class WritePostController implements Controller {
 			int sizeLimit = 10*1024*1024; 			
 			//String path = request.getContextPath();
 			String savePath = request.getServletContext().getRealPath("upload");
-
+			System.out.println(savePath);
 			try {
 				multi = new MultipartRequest(request, savePath, sizeLimit, "utf-8", new DefaultFileRenamePolicy());
 				System.out.println("try문");
