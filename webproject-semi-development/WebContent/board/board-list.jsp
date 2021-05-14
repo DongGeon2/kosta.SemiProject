@@ -11,7 +11,7 @@
 		if (confirm("글을 삭제하시겠습니까?")) {
 			flag = true;
 		}
-		var flag;
+		return flag;
 	}
 </script>
 <div class="card shadow mb-4">
@@ -71,7 +71,7 @@
 							<c:if test="${sessionScope.mgvo!=null}">
 								<form name="deleteForm" action="${pageContext.request.contextPath}/DeletePostController.do" method="post" onsubmit="return deletePost();">
 									<td>
-									<input type="hidden" name="pageNo" value="${pvo.postNo}">
+									<input type="hidden" name="postNo" value="${pvo.postNo}">
 									<button type="submit" class="btn btn-outline-primary btn-sm">
 										<i class="fas fa-fw fa-times"></i> 삭제
 									</button>
