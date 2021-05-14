@@ -16,10 +16,6 @@ public class WritePostFormController implements Controller{
 		if(session == null || session.getAttribute("mvo") == null ) {
 			return "redirect:index.jsp";
 		}
-<<<<<<< HEAD
-		
-=======
->>>>>>> branch 'main' of https://github.com/DongGeon2/kosta.SemiProject.git
 		request.setAttribute("url", "/board/post-write.jsp");
 		System.out.println("리퀘스트 완료");
 		return "/template/layoutMember.jsp";
