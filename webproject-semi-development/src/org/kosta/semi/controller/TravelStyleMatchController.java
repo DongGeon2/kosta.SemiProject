@@ -38,8 +38,8 @@ public class TravelStyleMatchController implements Controller {
 		ArrayList<MemberVO> matchingMemberList = StyleDAO.getInstance().findMemberBySvo(mvo, svo); // 원래는 MemberDAO에
 																									// 들어가야할 메서드
 		request.setAttribute("memberList", matchingMemberList);
-		request.setAttribute("url", "/manager/member-list.jsp");
-		request.setAttribute("urlCountry", "/premium-board.jsp");
+		request.setAttribute("url", "/manager/member-list2.jsp");
+		request.setAttribute("urlCountry", "/premium-header.jsp");
 		return "/template/layout.jsp";
 	}
 }
