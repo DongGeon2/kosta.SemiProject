@@ -162,10 +162,7 @@ public class PostDAO {
 			pstmt.setInt(2, pagingBean.getStartRowNumber());
 			pstmt.setInt(3, pagingBean.getEndRowNumber());
 			rs = pstmt.executeQuery();
-<<<<<<< HEAD
-=======
 			System.out.println("2");
->>>>>>> branch 'main' of https://github.com/DongGeon2/kosta.SemiProject.git
 			while (rs.next()) {
 				PostVO vo = new PostVO();
 				vo.setPostNo(rs.getString(2));
