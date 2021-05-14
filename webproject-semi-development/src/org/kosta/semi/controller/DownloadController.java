@@ -71,7 +71,7 @@ public class DownloadController implements Controller {
 		 * 에러가 뜨지만 실행은 정상적으로 된다.
 		 * 제어를 벗어난 에러를 뜨게 하기 싫으면 예외를 발생시켜주거나.. 다른 컨트롤러 or jsp로 이동시켜야할듯?
 		 */
-		return null;
+		return "download";
 	}
 
 }

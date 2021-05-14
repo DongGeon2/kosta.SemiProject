@@ -30,7 +30,9 @@ public class FrontControllerServlet extends HttpServlet {
     	///// step4 /////////
     	if(view.startsWith("redirect:")) {
     		response.sendRedirect(view.substring("redirect:".length()));
-    	}else {
+    	} else if(view.equals("download")) {
+    		System.out.println("파일다운로드");
+    	} else {
     		request.getRequestDispatcher(view).forward(request, response);
     	}
     	
