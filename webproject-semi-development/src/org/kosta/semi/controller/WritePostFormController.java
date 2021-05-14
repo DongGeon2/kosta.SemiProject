@@ -16,9 +16,8 @@ public class WritePostFormController implements Controller{
 		if(session == null || session.getAttribute("mvo") == null ) {
 			return "redirect:index.jsp";
 		}
-		request.setAttribute("urlCountry", "/template/countryInfo.jsp");
 		request.setAttribute("url", "/board/post-write.jsp");
 		System.out.println("리퀘스트 완료");
-		return "/template/layout.jsp";
+		return "/template/layoutMember.jsp";
 	}
 }
