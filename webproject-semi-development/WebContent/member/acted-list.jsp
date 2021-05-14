@@ -30,7 +30,7 @@
 				<tbody>
 					<c:forEach var="acted" items="${requestScope.list}">
 						<tr>
-							<td>${acted.acted_time}</td>
+							<td>${acted.actedTime}</td>
 							<td>${acted.message}</td>
 							<td>${acted.point}</td>
 						</tr>
