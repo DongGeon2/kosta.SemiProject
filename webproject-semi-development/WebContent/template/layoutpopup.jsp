@@ -45,6 +45,7 @@
 						<c:import url="${url}"></c:import>
 					--%>
 					<c:import url="${url}"></c:import>
+					<c:import url="${urlpopup}"></c:import>
 
 					<!-- /.TABLE BOARD -->
 				</div>
