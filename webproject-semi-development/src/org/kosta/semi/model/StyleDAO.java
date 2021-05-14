@@ -41,7 +41,7 @@ public class StyleDAO {
 		try {
 			con = dataSource.getConnection();
 			StringBuffer sql = new StringBuffer();
-			sql.append("SELECT s.member_id,TRUNC(MONTHS_BETWEEN(sysdate, m.birth)/12) AS AGE, m.country_id ");
+			sql.append("SELECT s.member_id,TRUNC(MONTHS_BETWEEN(sysdate, m.birth)/12) AS AGE, m.country_id, s.message ");
 			sql.append("FROM style s, member m ");
 			sql.append("WHERE s.member_id=m.member_id AND m.country_id = ? ");
 			sql.append("AND s.style1 =? AND s.style2 =? AND s.style3 =? AND s.style4 =? ");
@@ -56,6 +56,7 @@ public class StyleDAO {
 				MemberVO mvo2 = new MemberVO();
 				mvo2.setId(rs.getString(1));
 				mvo2.setAge(rs.getInt(2));
+				mvo2.setMessage(rs.getString(4));
 				memberList.add(mvo2);
 			}
 		} finally {
@@ -69,13 +70,14 @@ public class StyleDAO {
 		PreparedStatement pstmt = null;
 		try {
 			con = dataSource.getConnection();
-			String sql = "INSERT INTO style VALUES (?,?,?,?,?) ";
+			String sql = "INSERT INTO style VALUES (?,?,?,?,?,?) ";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, memberId);
 			pstmt.setString(2, svo.getStyle1());
 			pstmt.setString(3, svo.getStyle2());
 			pstmt.setString(4, svo.getStyle3());
 			pstmt.setString(5, svo.getStyle4());
+			pstmt.setString(6, svo.getMessage());
 			pstmt.executeUpdate();
 		} finally {
 			closeAll(pstmt, con);
@@ -86,13 +88,14 @@ public class StyleDAO {
 		PreparedStatement pstmt = null;
 		try {
 			con = dataSource.getConnection();
-			String sql = "Update style SET style1=? , style2=?, style3=?, style4=?  WHERE member_id=?";
+			String sql = "Update style SET style1=? , style2=?, style3=?, style4=?, message=? WHERE member_id=?";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(5, memberId);
+			pstmt.setString(6, memberId);
 			pstmt.setString(1, svo.getStyle1());
 			pstmt.setString(2, svo.getStyle2());
 			pstmt.setString(3, svo.getStyle3());
 			pstmt.setString(4, svo.getStyle4());
+			pstmt.setString(5, svo.getMessage());
 			pstmt.executeUpdate();
 		} finally {
 			closeAll(pstmt, con);

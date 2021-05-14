@@ -142,9 +142,9 @@ CREATE TABLE style (
 	style2 VARCHAR2(100) NOT NULL,
 	style3 VARCHAR2(100) NOT NULL,
 	style4 VARCHAR2(100) NOT NULL,
+	message clob,
 	constraint fk_style_member foreign key(member_id) references member(member_id)
 )
-
 --------------------------------------------------사용sql문 
 --(포트폴리오에 적을수있게 새로 알게된 문법이나 생각이 필요했던 몇가지 위주로 추가해주시면 좋을것 같습니다)
 

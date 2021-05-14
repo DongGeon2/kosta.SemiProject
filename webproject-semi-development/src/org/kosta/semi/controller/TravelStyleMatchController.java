@@ -19,14 +19,17 @@ public class TravelStyleMatchController implements Controller {
 		MemberVO mvo = (MemberVO) session.getAttribute("mvo");
 		String memberId = mvo.getId();
 		if (session == null || mvo == null) // ||mvo.getPoint()<10 하려면 로그인시 가져오는 mvo에 point추가해야
-			return "redirect:index.jsp";
+			return "redirect:member/loginUnlocked.jsp";
 		StyleVO svo = (StyleVO) session.getAttribute("svo");
 		if (svo == null) {
 			String style1 = request.getParameter("style1");
 			String style2 = request.getParameter("style2");
 			String style3 = request.getParameter("style3");
 			String style4 = request.getParameter("style4");
-			svo = new StyleVO(style1, style2, style3, style4);
+			String message =request.getParameter("message");
+			System.out.println(message);
+			System.out.println(style1);
+			svo = new StyleVO(style1, style2, style3, style4, message);
 			session.setAttribute("svo", svo);
 			try {
 				StyleDAO.getInstance().registerStyle(memberId, svo);
@@ -34,7 +37,11 @@ public class TravelStyleMatchController implements Controller {
 				StyleDAO.getInstance().updateStyle(memberId, svo);
 			}
 		}
-
+		String [] style =svo.toString().split(",");
+		StringBuilder initial = new StringBuilder(); 
+		for(String word : style) 
+			initial.append(word.charAt(0));
+		request.setAttribute("travelType", initial.toString());
 		ArrayList<MemberVO> matchingMemberList = StyleDAO.getInstance().findMemberBySvo(mvo, svo); // 원래는 MemberDAO에
 																									// 들어가야할 메서드
 		request.setAttribute("memberList", matchingMemberList);

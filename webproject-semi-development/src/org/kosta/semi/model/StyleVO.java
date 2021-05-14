@@ -5,6 +5,13 @@ public class StyleVO {
 	private String style2;
 	private String style3;
 	private String style4;
+	private String message;
+	public String getMessage() {
+		return message;
+	}
+	public void setMessage(String message) {
+		this.message = message;
+	}
 	public StyleVO() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -15,6 +22,13 @@ public class StyleVO {
 		this.style2 = style2;
 		this.style3 = style3;
 		this.style4 = style4;
+	}
+	public StyleVO(String style1, String style2, String style3, String style4, String message) {
+		this.style1 = style1;
+		this.style2 = style2;
+		this.style3 = style3;
+		this.style4 = style4;
+		this.message=message;
 	}
 	public String getStyle1() {
 		return style1;
@@ -42,6 +56,6 @@ public class StyleVO {
 	}
 	@Override
 	public String toString() {
-		return "StyleVO [style1=" + style1 + ", style2=" + style2 + ", style3=" + style3 + ", style4=" + style4 + "]";
+		return style1+","+style2 + ","+style3+","+style4;
 	}
 }

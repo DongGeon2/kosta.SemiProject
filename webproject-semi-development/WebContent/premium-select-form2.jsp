@@ -49,11 +49,17 @@
 								&nbsp;
 								</c:forEach>
 
+								<div class="form-group row">
+									<div class="col-sm-12">
+										<input type="text" class="form-control form-control-user"
+											name="message" placeholder="간단히 여행 경로를 알려주시거나 한 줄 소개를 해주세요">
+									</div>
+								</div>
 								<div class="text-center">
-								여행 취향 양식은 새로 로그인 할때마다 제출할 수 있습니다<br>
-								<input type="submit" class="btn btn-primary"
+									<br> 여행 취향 양식은 새로 로그인 할때마다 제출할 수 있습니다<br> <input
+										type="submit" class="btn btn-primary"
 										value="나와 같은 여행 스타일 가진 분 계실까요?">
-										
+
 								</div>
 							</form>
 						</div>
