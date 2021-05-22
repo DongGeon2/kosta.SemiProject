@@ -1,1 +1,13 @@
-# kosta.SemiProject
+# Korean Assemble!
+여행 정보 공유 사이트 프로젝트
+
+### 개발자
+-KOSTA 215기 김동건
+-KOSTA 215기 김지은
+-KOSTA 215기 김정윤
+-KOSTA 215기 조수빈
+-KOSTA 215기 이다영
+-KOSTA 215기 최인재
+
+### 프로젝트 기간
+2021-04-30 ~ 2021-05-14 (14일)
