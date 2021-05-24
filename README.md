@@ -12,7 +12,7 @@
 ### 프로젝트 기간
 2021-04-30 ~ 2021-05-14 (14일)  
 
-======
+-------
 
 ### 주요 적용기술  
 HTML, CSS, JavaScript, Ajax, JSP, JSTL/EL, SQL, UML, ERD, JDBC  
